@@ -1,3695 +1,554 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>La Grâce Solution — Boutique</title>
+<title>La Grâce Solution — Connexion entreprise</title>
 
 <style>
-
-/* =====================================================
-   VARIABLES
-===================================================== */
-
-:root{
-    --blue:#0b3d91;
-    --blue2:#1769d1;
-    --blue3:#2f80ed;
-    --dark:#111827;
-    --gray:#667085;
-    --light:#f5f7fb;
-    --white:#ffffff;
-    --border:#e5e7eb;
-    --green:#16803c;
-    --red:#d62828;
-    --orange:#f59e0b;
-    --shadow:0 8px 30px rgba(0,0,0,.08);
-}
-
-
-/* =====================================================
-   RESET
-===================================================== */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    background:var(--light);
-    color:var(--dark);
-}
-
-
-/* =====================================================
-   HEADER
-===================================================== */
-
-header{
-    position:sticky;
-    top:0;
-    z-index:1000;
-
-    background:white;
-    border-bottom:1px solid var(--border);
-}
-
-.navbar{
-    width:100%;
-    max-width:1350px;
-    min-height:75px;
-
-    margin:auto;
-
-    display:flex;
-    align-items:center;
-    gap:20px;
-
-    padding:10px 20px;
-}
-
-.logo{
-    width:55px;
-    height:55px;
-
-    object-fit:cover;
-
-    border-radius:10px;
-
-    display:block;
-
-    flex-shrink:0;
-}
-
-.brand{
-    font-size:20px;
-    font-weight:800;
-
-    color:var(--blue);
-
-    white-space:nowrap;
-}
-
-.search{
-    flex:1;
-
-    max-width:600px;
-
-    display:flex;
-
-    margin:auto;
-}
-
-.search input{
-    width:100%;
-
-    height:45px;
-
-    padding:0 16px;
-
-    border:1px solid var(--border);
-
-    border-right:none;
-
-    border-radius:8px 0 0 8px;
-
-    outline:none;
-
-    font-size:15px;
-}
-
-.search input:focus{
-    border-color:var(--blue2);
-}
-
-.search button{
-    width:55px;
-
-    border:none;
-
-    background:var(--blue);
-
-    color:white;
-
-    border-radius:0 8px 8px 0;
-
-    cursor:pointer;
-
-    font-size:18px;
-}
-
-.nav-actions{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.btn{
-    border:none;
-
-    padding:11px 15px;
-
-    border-radius:8px;
-
-    cursor:pointer;
-
-    font-weight:700;
-
-    transition:.2s;
-}
-
-.btn:hover{
-    transform:translateY(-1px);
-}
-
-.btn-primary{
-    background:var(--blue);
-    color:white;
-}
-
-.btn-success{
-    background:var(--green);
-    color:white;
-}
-
-.btn-danger{
-    background:var(--red);
-    color:white;
-}
-
-.btn-light{
-    background:#eef2f7;
-    color:var(--dark);
-}
-
-.cart-count{
-    display:inline-flex;
-
-    align-items:center;
-    justify-content:center;
-
-    min-width:20px;
-    height:20px;
-
-    padding:0 5px;
-
-    margin-left:4px;
-
-    border-radius:20px;
-
-    background:#e63946;
-    color:white;
-
-    font-size:11px;
-}
-
-
-/* =====================================================
-   HERO
-===================================================== */
-
-.hero{
-    background:
-        linear-gradient(
-            135deg,
-            #082d6b,
-            #1769d1
-        );
-
-    color:white;
-
-    padding:70px 20px;
-}
-
-.hero-content{
-    max-width:1350px;
-
-    margin:auto;
-}
-
-.hero h1{
-    font-size:44px;
-
-    margin-bottom:15px;
-}
-
-.hero p{
-    max-width:700px;
-
-    font-size:18px;
-
-    line-height:1.7;
-
-    opacity:.95;
-}
-
-.hero-button{
-    display:inline-block;
-
-    margin-top:25px;
-
-    padding:13px 20px;
-
-    background:white;
-
-    color:var(--blue);
-
-    border-radius:8px;
-
-    font-weight:800;
-
-    cursor:pointer;
-}
-
-
-/* =====================================================
-   CATEGORIES
-===================================================== */
-
-.categories{
-    max-width:1350px;
-
-    margin:30px auto;
-
-    padding:0 20px;
-}
-
-.category-list{
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:10px;
-}
-
-.category-btn{
-    border:1px solid var(--border);
-
-    background:white;
-
-    padding:10px 18px;
-
-    border-radius:30px;
-
-    cursor:pointer;
-
-    transition:.2s;
-}
-
-.category-btn:hover{
-    border-color:var(--blue);
-}
-
-.category-btn.active{
-    background:var(--blue);
-
-    color:white;
-
-    border-color:var(--blue);
-}
-
-
-/* =====================================================
-   PRODUCTS
-===================================================== */
-
-.products-section{
-    max-width:1350px;
-
-    margin:40px auto;
-
-    padding:0 20px;
-}
-
-.products-header{
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:25px;
-}
-
-.products-header h2{
-    font-size:28px;
-}
-
-.products-grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fill,
-            minmax(230px,1fr)
-        );
-
-    gap:22px;
-}
-
-
-/* =====================================================
-   PRODUCT CARD
-===================================================== */
-
-.product-card{
-
-    background:white;
-
-    border:1px solid var(--border);
-
-    border-radius:14px;
-
-    overflow:hidden;
-
-    position:relative;
-
-    /*
-       Empêche le tremblement causé
-       par certaines transformations.
-    */
-    transform:translateZ(0);
-
-    backface-visibility:hidden;
-
-    box-shadow:0 3px 12px rgba(0,0,0,.04);
-
-    transition:
-        box-shadow .25s ease,
-        transform .25s ease;
-}
-
-.product-card:hover{
-    transform:
-        translateY(-3px)
-        translateZ(0);
-
-    box-shadow:
-        0 12px 35px
-        rgba(0,0,0,.10);
-}
-
-
-/* =====================================================
-   IMAGE PRODUIT — FIXE ET NETTE
-===================================================== */
-
-.product-image-container{
-
-    position:relative;
-
-    width:100%;
-
-    height:230px;
-
-    min-height:230px;
-
-    max-height:230px;
-
-    overflow:hidden;
-
-    background:#f1f3f6;
-
-    /*
-       Empêche le navigateur
-       de changer la taille de la carte.
-    */
-    contain:layout paint;
-}
-
-.product-image{
-
-    display:block;
-
-    width:100%;
-
-    height:100%;
-
-    min-width:100%;
-
-    min-height:100%;
-
-    object-fit:cover;
-
-    object-position:center;
-
-    /*
-       Pas de transformation par défaut.
-    */
-    transform:translateZ(0);
-
-    backface-visibility:hidden;
-
-    /*
-       Image nette.
-    */
-    image-rendering:auto;
-
-    /*
-       Évite les transitions
-       qui donnent une impression
-       de tremblement.
-    */
-    transition:
-        transform .35s ease;
-}
-
-.product-card:hover
-.product-image{
-
-    transform:
-        scale(1.04)
-        translateZ(0);
-}
-
-
-/* =====================================================
-   BADGES
-===================================================== */
-
-.badge{
-
-    position:absolute;
-
-    top:12px;
-    left:12px;
-
-    z-index:5;
-
-    padding:6px 9px;
-
-    border-radius:6px;
-
-    font-size:11px;
-
-    font-weight:800;
-
-    color:white;
-}
-
-.badge-promo{
-    background:#e63946;
-}
-
-.badge-stock{
-    left:auto;
-    right:12px;
-
-    background:#111827;
-}
-
-
-/* =====================================================
-   PRODUCT INFO
-===================================================== */
-
-.product-info{
-    padding:16px;
-}
-
-.product-category{
-    color:var(--gray);
-
-    font-size:12px;
-
-    margin-bottom:7px;
-}
-
-.product-name{
-    font-size:16px;
-
-    font-weight:700;
-
-    line-height:1.4;
-
-    min-height:45px;
-
-    margin-bottom:9px;
-}
-
-.product-description{
-
-    color:#667085;
-
-    font-size:13px;
-
-    line-height:1.5;
-
-    height:39px;
-
-    overflow:hidden;
-
-    margin-bottom:10px;
-}
-
-.price{
-    color:var(--blue);
-
-    font-size:20px;
-
-    font-weight:800;
-}
-
-.old-price{
-    color:#98a2b3;
-
-    font-size:13px;
-
-    text-decoration:line-through;
-
-    margin-left:6px;
-}
-
-.stock{
-    font-size:13px;
-
-    margin:10px 0 12px;
-}
-
-.stock-ok{
-    color:var(--green);
-}
-
-.stock-low{
-    color:var(--orange);
-}
-
-.stock-empty{
-    color:var(--red);
-}
-
-.add-cart{
-
-    width:100%;
-
-    border:none;
-
-    padding:12px;
-
-    border-radius:8px;
-
-    background:var(--blue);
-
-    color:white;
-
-    font-weight:700;
-
-    cursor:pointer;
-
-    transition:.2s;
-}
-
-.add-cart:hover{
-    background:#082f72;
-}
-
-.add-cart:disabled{
-    background:#c5c9d0;
-
-    cursor:not-allowed;
-}
-
-
-/* =====================================================
-   MODAL
-===================================================== */
-
-.modal{
-
-    position:fixed;
-
-    inset:0;
-
-    z-index:3000;
-
-    display:none;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:20px;
-
-    background:
-        rgba(0,0,0,.65);
-}
-
-.modal.show{
-    display:flex;
-}
-
-.modal-box{
-
-    width:100%;
-
-    max-width:500px;
-
-    max-height:92vh;
-
-    overflow-y:auto;
-
-    position:relative;
-
-    padding:28px;
-
-    border-radius:15px;
-
-    background:white;
-
-    box-shadow:
-        0 20px 70px
-        rgba(0,0,0,.25);
-}
-
-.modal-large{
-    max-width:1150px;
-}
-
-.close{
-
-    position:absolute;
-
-    right:18px;
-    top:12px;
-
-    border:none;
-
-    background:none;
-
-    font-size:28px;
-
-    cursor:pointer;
-
-    color:#555;
-}
-
-
-/* =====================================================
-   LOGIN
-===================================================== */
-
-.login-title{
-    text-align:center;
-
-    margin-bottom:25px;
-}
-
-.login-title h2{
-    margin-bottom:8px;
-}
-
-.login-title p{
-    color:var(--gray);
-
-    font-size:14px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.form-group{
-    margin-bottom:16px;
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #172033;
 }
-
-.form-group label{
-
-    display:block;
 
-    margin-bottom:7px;
-
-    font-size:14px;
-
-    font-weight:700;
+/* HEADER */
+header {
+    height: 75px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6%;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
-
-.form-group input,
-.form-group textarea,
-.form-group select{
-
-    width:100%;
 
-    padding:12px;
-
-    border:1px solid var(--border);
-
-    border-radius:8px;
-
-    outline:none;
-
-    font-family:inherit;
-
-    font-size:14px;
+.logo img {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+    border-radius: 8px;
 }
-
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus{
-
-    border-color:var(--blue2);
 
-    box-shadow:
-        0 0 0 3px
-        rgba(23,105,209,.08);
+.logo span {
+    font-size: 20px;
+    font-weight: bold;
+    color: #173b76;
 }
 
-.form-group textarea{
-
-    min-height:110px;
-
-    resize:vertical;
+/* BOUTON ENTREPRISE */
+.enterprise-btn {
+    border: none;
+    background: #173b76;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
 }
-
-.login-error{
-
-    display:none;
-
-    margin-top:12px;
-
-    padding:10px;
-
-    border-radius:7px;
-
-    background:#fee2e2;
-
-    color:var(--red);
-
-    font-size:13px;
+
+.enterprise-btn:hover {
+    background: #0e2b59;
 }
-
-
-/* =====================================================
-   DASHBOARD
-===================================================== */
-
-.dashboard-header{
 
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    gap:15px;
-
-    padding-bottom:20px;
-
-    border-bottom:1px solid var(--border);
-
-    margin-bottom:22px;
+/* PAGE */
+.hero {
+    min-height: calc(100vh - 75px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
 }
-
-.dashboard-header p{
 
-    color:var(--gray);
-
-    margin-top:5px;
-
-    font-size:14px;
+.hero-box {
+    background: white;
+    width: 100%;
+    max-width: 850px;
+    border-radius: 20px;
+    padding: 55px;
+    text-align: center;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.08);
 }
-
-.stats{
 
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:15px;
-
-    margin-bottom:25px;
+.hero-box h1 {
+    color: #173b76;
+    margin-bottom: 15px;
+    font-size: 34px;
 }
-
-.stat{
 
-    background:#f5f7fb;
-
-    padding:20px;
-
-    border-radius:10px;
-
-    border:1px solid var(--border);
-
-    color:var(--gray);
-
-    font-size:14px;
+.hero-box p {
+    color: #667085;
+    font-size: 17px;
+    line-height: 1.6;
 }
-
-.stat strong{
 
-    display:block;
-
-    color:var(--blue);
-
-    font-size:28px;
-
-    margin-top:7px;
+/* ZONE DE TEST */
+.test-panel {
+    display: none;
+    margin-top: 30px;
+    padding: 25px;
+    background: #eef7ee;
+    border: 1px solid #b8dfb8;
+    border-radius: 12px;
 }
-
-.dashboard-actions{
-
-    display:flex;
-
-    gap:10px;
-
-    flex-wrap:wrap;
 
-    margin-bottom:20px;
+.test-panel h2 {
+    color: #267326;
+    margin-bottom: 10px;
 }
 
+.logout-btn {
+    margin-top: 18px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 7px;
+    background: #d92d20;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
 
-/* =====================================================
-   IMAGE PREVIEW
-===================================================== */
-
-.image-preview{
-
-    width:100%;
-
-    height:200px;
-
-    border:
-        2px dashed
-        #cbd5e1;
-
-    border-radius:10px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    overflow:hidden;
-
-    background:#f8fafc;
-
-    color:#667085;
-
-    margin-bottom:10px;
+/* MODAL */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1000;
 }
-
-.image-preview img{
-
-    width:100%;
 
-    height:100%;
-
-    object-fit:cover;
-
-    display:block;
+.modal.active {
+    display: flex;
 }
-
-
-/* =====================================================
-   ADMIN PRODUCTS
-===================================================== */
-
-.admin-products{
-
-    display:flex;
 
-    flex-direction:column;
-
-    gap:12px;
+.login-box {
+    width: 100%;
+    max-width: 430px;
+    background: white;
+    border-radius: 18px;
+    padding: 35px;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
 }
-
-.admin-product{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:15px;
-
-    padding:13px;
-
-    border:1px solid var(--border);
 
-    border-radius:10px;
-
-    background:white;
+.close {
+    position: absolute;
+    right: 18px;
+    top: 15px;
+    border: none;
+    background: none;
+    font-size: 27px;
+    cursor: pointer;
+    color: #667085;
 }
-
-.admin-product img{
-
-    width:85px;
 
-    height:85px;
-
-    object-fit:cover;
-
-    border-radius:8px;
-
-    flex-shrink:0;
+.login-box h2 {
+    color: #173b76;
+    margin-bottom: 8px;
 }
-
-.admin-product-info{
 
-    flex:1;
-
-    line-height:1.7;
+.login-box .description {
+    color: #667085;
+    margin-bottom: 25px;
+    font-size: 14px;
 }
 
-.admin-product-info small{
-
-    color:var(--gray);
+.form-group {
+    margin-bottom: 17px;
+    text-align: left;
 }
-
-.admin-product-actions{
 
-    display:flex;
-
-    gap:7px;
-
-    flex-wrap:wrap;
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: bold;
+    font-size: 14px;
 }
-
-.status{
-
-    display:inline-block;
 
-    padding:3px 8px;
-
-    border-radius:20px;
-
-    font-size:10px;
-
-    font-weight:800;
+.form-group input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #d0d5dd;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
 }
 
-.status.active{
-
-    background:#dcfce7;
-
-    color:var(--green);
+.form-group input:focus {
+    border-color: #173b76;
+    box-shadow: 0 0 0 3px rgba(23,59,118,0.1);
 }
-
-.status.hidden{
-
-    background:#f1f5f9;
 
-    color:#64748b;
+.login-submit {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    background: #173b76;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
 }
-
-
-/* =====================================================
-   TOAST
-===================================================== */
-
-.toast{
-
-    position:fixed;
-
-    right:20px;
-    bottom:20px;
-
-    z-index:5000;
-
-    display:none;
 
-    background:#111827;
-
-    color:white;
-
-    padding:14px 18px;
-
-    border-radius:8px;
-
-    box-shadow:var(--shadow);
-
-    font-size:14px;
+.login-submit:hover {
+    background: #0e2b59;
 }
 
-.toast.show{
-    display:block;
+.error {
+    display: none;
+    margin-top: 15px;
+    padding: 11px;
+    background: #fff0f0;
+    color: #c62828;
+    border-radius: 7px;
+    font-size: 14px;
 }
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
 
-footer{
-
-    margin-top:60px;
-
-    padding:35px 20px;
-
-    text-align:center;
-
-    background:#101827;
-
-    color:white;
+.demo-info {
+    margin-top: 20px;
+    padding: 12px;
+    background: #f5f7fa;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #667085;
 }
-
-
-/* =====================================================
-   RESPONSIVE
-===================================================== */
 
-@media(max-width:900px){
+/* MOBILE */
+@media (max-width: 600px) {
 
-    .navbar{
-        flex-wrap:wrap;
+    header {
+        padding: 0 20px;
     }
 
-    .search{
-        order:3;
-
-        flex-basis:100%;
-
-        max-width:none;
+    .logo span {
+        font-size: 16px;
     }
 
-    .hero h1{
-        font-size:34px;
+    .logo img {
+        width: 43px;
+        height: 43px;
     }
 
-    .stats{
-        grid-template-columns:1fr;
+    .enterprise-btn {
+        padding: 10px 13px;
+        font-size: 12px;
     }
 
+    .hero-box {
+        padding: 35px 22px;
+    }
+
+    .hero-box h1 {
+        font-size: 27px;
+    }
+
+    .hero-box p {
+        font-size: 15px;
+    }
+
+    .login-box {
+        padding: 28px 22px;
+    }
 }
-
-@media(max-width:600px){
-
-    .brand{
-        font-size:16px;
-    }
-
-    .nav-actions{
-        margin-left:auto;
-    }
-
-    .nav-actions .btn-primary{
-        display:none;
-    }
-
-    .hero{
-        padding:50px 20px;
-    }
-
-    .hero h1{
-        font-size:30px;
-    }
-
-    .products-grid{
-        grid-template-columns:
-            repeat(2,1fr);
-
-        gap:12px;
-    }
-
-    .product-image-container{
-        height:180px;
-        min-height:180px;
-        max-height:180px;
-    }
-
-    .product-info{
-        padding:11px;
-    }
-
-    .product-name{
-        font-size:14px;
-    }
-
-    .price{
-        font-size:17px;
-    }
-
-    .admin-product{
-        flex-direction:column;
-
-        align-items:stretch;
-    }
-
-    .admin-product img{
-        width:100%;
-        height:180px;
-    }
-
-}
-
-@media(max-width:400px){
-
-    .products-grid{
-        grid-template-columns:1fr;
-    }
-
-}
-
 </style>
-</head>
 
+</head>
 
 <body>
 
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
 <header>
 
-<div class="navbar">
-
-    <img
-        class="logo"
-        src="https://lgshaiti.com/Image/lgs1.jpg"
-        alt="La Grâce Solution">
-
-    <div class="brand">
-        La Grâce Solution
-    </div>
-
-
-    <div class="search">
-
-        <input
-            type="text"
-            id="searchInput"
-            placeholder="Rechercher un produit..."
-            oninput="displayProducts()">
-
-        <button
-            onclick="displayProducts()">
-            🔎
-        </button>
-
-    </div>
-
-
-    <div class="nav-actions">
-
-        <button
-            class="btn btn-light"
-            onclick="openEnterpriseLogin()">
-
-            🔐 Espace entreprise
-
-        </button>
-
-
-        <button
-            class="btn btn-primary">
-
-            🛒 Panier
-
-            <span
-                id="cartCount"
-                class="cart-count">
-
-                0
-
-            </span>
-
-        </button>
-
-    </div>
-
+```
+<div class="logo">
+    <img src="https://lgshaiti.com/Image/lgs1.jpg" alt="La Grâce Solution">
+    <span>La Grâce Solution</span>
 </div>
+
+<button class="enterprise-btn" onclick="openLogin()">
+    🔐 Espace entreprise
+</button>
+```
 
 </header>
 
+<main class="hero">
 
-<!-- =====================================================
-     HERO
-===================================================== -->
+```
+<div class="hero-box">
 
-<section class="hero">
-
-<div class="hero-content">
-
-    <h1>
-        La Grâce Solution
-    </h1>
+    <h1>Bienvenue sur La Grâce Solution</h1>
 
     <p>
-        Découvrez nos solutions solaires,
-        électriques, batteries, outils et
-        équipements professionnels.
+        Plateforme de vente en ligne de La Grâce Solution.
+        L'espace entreprise est réservé aux personnes autorisées
+        à gérer les produits de la boutique.
     </p>
 
-    <div
-        class="hero-button"
-        onclick="document.getElementById('products').scrollIntoView()">
 
-        Découvrir les produits
+    <!-- ZONE AFFICHÉE APRÈS CONNEXION -->
+
+    <div class="test-panel" id="testPanel">
+
+        <h2>✓ Accès autorisé</h2>
+
+        <p>
+            La connexion fonctionne correctement.
+            Cette zone représente actuellement l'espace réservé
+            à l'entreprise.
+        </p>
+
+        <button class="logout-btn" onclick="logout()">
+            Se déconnecter
+        </button>
 
     </div>
 
 </div>
+```
 
-</section>
+</main>
 
+<!-- MODAL CONNEXION -->
 
-<!-- =====================================================
-     CATEGORIES
-===================================================== -->
+<div class="modal" id="loginModal">
 
-<section class="categories">
+```
+<div class="login-box">
 
-    <div
-        id="categoryList"
-        class="category-list">
-    </div>
+    <button class="close" onclick="closeLogin()">×</button>
 
-</section>
+    <h2>Connexion entreprise</h2>
 
-
-<!-- =====================================================
-     PRODUITS
-===================================================== -->
-
-<section
-    id="products"
-    class="products-section">
-
-    <div class="products-header">
-
-        <h2>
-            Nos produits
-        </h2>
-
-        <select
-            id="sortSelect"
-            class="btn btn-light"
-            onchange="displayProducts()">
-
-            <option value="default">
-                Trier
-            </option>
-
-            <option value="low">
-                Prix croissant
-            </option>
-
-            <option value="high">
-                Prix décroissant
-            </option>
-
-        </select>
-
-    </div>
+    <p class="description">
+        Connectez-vous avec vos identifiants autorisés.
+    </p>
 
 
-    <div
-        id="productsGrid"
-        class="products-grid">
-    </div>
+    <form onsubmit="login(event)">
 
-</section>
+        <div class="form-group">
+
+            <label for="username">
+                Nom d'utilisateur
+            </label>
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Nom d'utilisateur"
+                autocomplete="username"
+                required
+            >
+
+        </div>
 
 
-<!-- =====================================================
-     LOGIN ENTREPRISE
-===================================================== -->
+        <div class="form-group">
 
-<div
-    id="loginModal"
-    class="modal">
+            <label for="password">
+                Mot de passe
+            </label>
 
-    <div class="modal-box">
+            <input
+                type="password"
+                id="password"
+                placeholder="Mot de passe"
+                autocomplete="current-password"
+                required
+            >
 
-        <button
-            class="close"
-            onclick="closeModal('loginModal')">
+        </div>
 
-            ×
 
+        <button class="login-submit" type="submit">
+            Se connecter
         </button>
 
 
-        <div class="login-title">
-
-            <h2>
-                🔐 Espace entreprise
-            </h2>
-
-            <p>
-                Cette section est réservée
-                aux personnes autorisées.
-            </p>
-
+        <div class="error" id="loginError">
+            Nom d'utilisateur ou mot de passe incorrect.
         </div>
 
-
-        <form onsubmit="login(event)">
-
-            <div class="form-group">
-
-                <label>
-                    Identifiant
-                </label>
-
-                <input
-                    id="loginUsername"
-                    type="text"
-                    autocomplete="username"
-                    required>
-
-            </div>
+    </form>
 
 
-            <div class="form-group">
-
-                <label>
-                    Mot de passe
-                </label>
-
-                <input
-                    id="loginPassword"
-                    type="password"
-                    autocomplete="current-password"
-                    required>
-
-            </div>
-
-
-            <button
-                class="btn btn-primary"
-                type="submit"
-                style="width:100%">
-
-                Se connecter
-
-            </button>
-
-
-            <div
-                id="loginError"
-                class="login-error">
-
-                Identifiant ou mot de passe incorrect.
-
-            </div>
-
-        </form>
-
+    <div class="demo-info">
+        <strong>Test :</strong><br>
+        Utilisateur : entreprise<br>
+        Mot de passe : LGS2026
     </div>
 
 </div>
-
-
-<!-- =====================================================
-     DASHBOARD ENTREPRISE
-===================================================== -->
-
-<div
-    id="dashboardModal"
-    class="modal">
-
-    <div class="modal-box modal-large">
-
-        <button
-            class="close"
-            onclick="logout()">
-
-            ×
-
-        </button>
-
-
-        <div class="dashboard-header">
-
-            <div>
-
-                <h2>
-                    🏢 Tableau de bord
-                </h2>
-
-                <p>
-                    Gestion des produits
-                    — La Grâce Solution
-                </p>
-
-            </div>
-
-
-            <button
-                class="btn btn-danger"
-                onclick="logout()">
-
-                🚪 Déconnexion
-
-            </button>
-
-        </div>
-
-
-        <!-- STATISTIQUES -->
-
-        <div class="stats">
-
-            <div class="stat">
-
-                Total des produits
-
-                <strong id="totalProducts">
-                    0
-                </strong>
-
-            </div>
-
-
-            <div class="stat">
-
-                Produits publiés
-
-                <strong id="publishedProducts">
-                    0
-                </strong>
-
-            </div>
-
-
-            <div class="stat">
-
-                Stock faible
-
-                <strong id="lowStockProducts">
-                    0
-                </strong>
-
-            </div>
-
-        </div>
-
-
-        <div class="dashboard-actions">
-
-            <button
-                class="btn btn-primary"
-                onclick="showProductForm()">
-
-                ➕ Ajouter un produit
-
-            </button>
-
-
-            <button
-                class="btn btn-light"
-                onclick="renderAdminProducts()">
-
-                🔄 Actualiser
-
-            </button>
-
-        </div>
-
-
-        <!-- FORMULAIRE -->
-
-        <div
-            id="productFormContainer"
-            style="display:none">
-
-            <hr style="margin:20px 0">
-
-
-            <h3 id="formTitle">
-                Ajouter un produit
-            </h3>
-
-
-            <form
-                id="productForm"
-                onsubmit="saveProduct(event)"
-                style="margin-top:20px">
-
-
-                <input
-                    type="hidden"
-                    id="editProductId">
-
-
-                <div class="form-group">
-
-                    <label>
-                        Nom du produit *
-                    </label>
-
-                    <input
-                        id="productName"
-                        type="text"
-                        placeholder="Ex : Panneau solaire 550W"
-                        required>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Catégorie *
-                    </label>
-
-                    <input
-                        id="productCategory"
-                        type="text"
-                        placeholder="Ex : Solaire"
-                        required>
-
-                </div>
-
-
-                <div
-                    style="
-                    display:grid;
-                    grid-template-columns:
-                    repeat(2,1fr);
-                    gap:15px;">
-
-                    <div class="form-group">
-
-                        <label>
-                            Prix (HTG) *
-                        </label>
-
-                        <input
-                            id="productPrice"
-                            type="number"
-                            min="0"
-                            required>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label>
-                            Prix promotionnel
-                        </label>
-
-                        <input
-                            id="productPromoPrice"
-                            type="number"
-                            min="0">
-
-                    </div>
-
-                </div>
-
-
-                <div
-                    style="
-                    display:grid;
-                    grid-template-columns:
-                    repeat(2,1fr);
-                    gap:15px;">
-
-                    <div class="form-group">
-
-                        <label>
-                            Stock *
-                        </label>
-
-                        <input
-                            id="productStock"
-                            type="number"
-                            min="0"
-                            value="1"
-                            required>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label>
-                            Référence / SKU
-                        </label>
-
-                        <input
-                            id="productSku"
-                            type="text"
-                            placeholder="Ex : LGS-001">
-
-                    </div>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Description
-                    </label>
-
-                    <textarea
-                        id="productDescription"
-                        placeholder="Description du produit...">
-                    </textarea>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Informations de livraison
-                    </label>
-
-                    <input
-                        id="productDelivery"
-                        type="text"
-                        placeholder="Ex : Livraison disponible en Haïti">
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Image du produit
-                    </label>
-
-
-                    <div
-                        id="imagePreview"
-                        class="image-preview">
-
-                        Aucune image sélectionnée
-
-                    </div>
-
-
-                    <input
-                        id="productImageFile"
-                        type="file"
-                        accept="image/jpeg,image/png,image/webp"
-                        onchange="previewImage(event)">
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Ou URL de l'image
-                    </label>
-
-                    <input
-                        id="productImageUrl"
-                        type="url"
-                        placeholder="https://...">
-
-                </div>
-
-
-                <div
-                    style="
-                    display:flex;
-                    gap:10px;
-                    flex-wrap:wrap;">
-
-                    <button
-                        type="submit"
-                        class="btn btn-success">
-
-                        💾 Enregistrer le produit
-
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="btn btn-light"
-                        onclick="cancelProductForm()">
-
-                        Annuler
-
-                    </button>
-
-                </div>
-
-            </form>
-
-        </div>
-
-
-        <hr style="margin:30px 0">
-
-
-        <h3>
-            Produits de la boutique
-        </h3>
-
-
-        <div
-            id="adminProducts"
-            class="admin-products"
-            style="margin-top:15px">
-        </div>
-
-    </div>
+```
 
 </div>
-
-
-<!-- TOAST -->
-
-<div
-    id="toast"
-    class="toast">
-</div>
-
-
-<!-- FOOTER -->
-
-<footer>
-
-    <p>
-        © 2026 La Grâce Solution —
-        Tous droits réservés.
-    </p>
-
-</footer>
-
 
 <script>
 
-/* =====================================================
-   IDENTIFICATION ENTREPRISE
-===================================================== */
+/* =========================================
+   IDENTIFIANTS DE DÉMONSTRATION
+   ========================================= */
 
-const ENTERPRISE_USERNAME =
-    "entreprise";
+const AUTHORIZED_USERNAME = "entreprise";
+const AUTHORIZED_PASSWORD = "LGS2026";
 
-/*
-    MOT DE PASSE DE DÉMONSTRATION.
 
-    IMPORTANT :
-    cette méthode n'est pas suffisante
-    pour un vrai système sécurisé.
-*/
-const ENTERPRISE_PASSWORD =
-    "LGS2026";
+/* =========================================
+   OUVRIR LA CONNEXION
+   ========================================= */
 
-
-/* =====================================================
-   PRODUITS INITIAUX
-===================================================== */
-
-const defaultProducts = [
-
-{
-    id:1,
-
-    name:"Panneau solaire 550W",
-
-    category:"Solaire",
-
-    price:85000,
-
-    promoPrice:null,
-
-    stock:10,
-
-    sku:"LGS-SOL-550",
-
-    description:
-        "Panneau solaire haute puissance pour installation solaire.",
-
-    delivery:
-        "Livraison disponible en Haïti.",
-
-    image:
-        "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1200&q=90",
-
-    active:true
-},
-
-{
-    id:2,
-
-    name:"Panneau solaire 330W",
-
-    category:"Solaire",
-
-    price:52000,
-
-    promoPrice:null,
-
-    stock:15,
-
-    sku:"LGS-SOL-330",
-
-    description:
-        "Panneau solaire adapté aux installations résidentielles.",
-
-    delivery:
-        "Livraison disponible en Haïti.",
-
-    image:
-        "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=1200&q=90",
-
-    active:true
-},
-
-{
-    id:3,
-
-    name:"Contrôleur solaire MPPT 60A",
-
-    category:"Solaire",
-
-    price:18000,
-
-    promoPrice:null,
-
-    stock:8,
-
-    sku:"LGS-MPPT-60",
-
-    description:
-        "Contrôleur MPPT 60A pour système solaire.",
-
-    delivery:
-        "Livraison disponible.",
-
-    image:
-        "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1200&q=90",
-
-    active:true
-},
-
-{
-    id:4,
-
-    name:"Lampe solaire LED",
-
-    category:"Solaire",
-
-    price:6500,
-
-    promoPrice:null,
-
-    stock:30,
-
-    sku:"LGS-LED-01",
-
-    description:
-        "Lampe LED solaire pour éclairage extérieur.",
-
-    delivery:
-        "Livraison disponible.",
-
-    image:
-        "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=1200&q=90",
-
-    active:true
-},
-
-{
-    id:5,
-
-    name:"Batterie solaire 12V 100Ah",
-
-    category:"Batteries",
-
-    price:42000,
-
-    promoPrice:null,
-
-    stock:12,
-
-    sku:"LGS-BAT-100",
-
-    description:
-        "Batterie 12V 100Ah pour installation solaire.",
-
-    delivery:
-        "Livraison disponible.",
-
-    image:
-        "https://images.unsplash.com/photo-1619641805634-6f4c1f6b6b5d?auto=format&fit=crop&w=1200&q=90",
-
-    active:true
-},
-
-{
-    id:6,
-
-    name:"Batterie lithium 24V",
-
-    category:"Batteries",
-
-    price:68000,
-
-    promoPrice:null,
-
-    stock:7,
-
-    sku:"LGS-LITH-24",
-
-    description:
-        "Batterie lithium pour système énergétique.",
-
-    delivery:
-        "Livraison disponible.",
-
-    image:
-        "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=1200&q=90",
-
-    active:true
-},
-
-{
-    id:7,
-
-    name:"Onduleur 3000W",
-
-    category:"Onduleurs",
-
-    price:95000,
-
-    promoPrice:null,
-
-    stock:5,
-
-    sku:"LGS-OND-3000",
-
-    description:
-        "Onduleur 3000W pour installation électrique.",
-
-    delivery:
-        "Livraison disponible.",
-
-    image:
-        "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=1200&q=90",
-
-    active:true
-},
-
-{
-    id:8,
-
-    name:"Onduleur 1500W pur sinus",
-
-    category:"Onduleurs",
-
-    price:48000,
-
-    promoPrice:null,
-
-    stock:8,
-
-    sku:"LGS-OND-1500",
-
-    description:
-        "Onduleur 1500W à onde sinusoïdale pure.",
-
-    delivery:
-        "Livraison disponible.",
-
-    image:
-        "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1200&q=90",
-
-    active:true
-},
-
-{
-    id:9,
-
-    name:"Kit électrique professionnel",
-
-    category:"Électricité",
-
-    price:27500,
-
-    promoPrice:null,
-
-    stock:20,
-
-    sku:"LGS-KIT-ELEC",
-
-    description:
-        "Kit complet pour travaux électriques.",
-
-    delivery:
-        "Livraison disponible.",
-
-    image:
-        "https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=1200&q=90",
-
-    active:true
-},
-
-{
-    id:10,
-
-    name:"Disjoncteur différentiel",
-
-    category:"Électricité",
-
-    price:3200,
-
-    promoPrice:null,
-
-    stock:35,
-
-    sku:"LGS-DIS-01",
-
-    description:
-        "Disjoncteur différentiel pour protection électrique.",
-
-    delivery:
-        "Livraison disponible.",
-
-    image:
-        "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=90",
-
-    active:true
-},
-
-{
-    id:11,
-
-    name:"Multimètre numérique",
-
-    category:"Outils",
-
-    price:7500,
-
-    promoPrice:null,
-
-    stock:25,
-
-    sku:"LGS-MULT-01",
-
-    description:
-        "Multimètre numérique pour mesures électriques.",
-
-    delivery:
-        "Livraison disponible.",
-
-    image:
-        "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=90",
-
-    active:true
-},
-
-{
-    id:12,
-
-    name:"Perceuse électrique",
-
-    category:"Outils",
-
-    price:12500,
-
-    promoPrice:null,
-
-    stock:15,
-
-    sku:"LGS-PERC-01",
-
-    description:
-        "Perceuse électrique pour travaux professionnels.",
-
-    delivery:
-        "Livraison disponible.",
-
-    image:
-        "https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=1200&q=90",
-
-    active:true
-}
-
-];
-
-
-/* =====================================================
-   CHARGEMENT
-===================================================== */
-
-let products =
-    JSON.parse(
-        localStorage.getItem("lgs_products")
-    ) || defaultProducts;
-
-
-let selectedCategory = "Tous";
-
-let currentImage = "";
-
-
-/* =====================================================
-   INITIALISATION
-===================================================== */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function(){
-
-        displayCategories();
-
-        displayProducts();
-
-        updateCartCount();
-
-    }
-);
-
-
-/* =====================================================
-   CATÉGORIES
-===================================================== */
-
-function displayCategories(){
-
-    const container =
-        document.getElementById(
-            "categoryList"
-        );
-
-
-    const categories = [
-
-        "Tous",
-
-        ...new Set(
-
-            products
-                .filter(p => p.active)
-                .map(p => p.category)
-
-        )
-
-    ];
-
-
-    container.innerHTML = "";
-
-
-    categories.forEach(
-        category => {
-
-            const button =
-                document.createElement(
-                    "button"
-                );
-
-
-            button.className =
-                "category-btn " +
-                (
-                    category ===
-                    selectedCategory
-                    ? "active"
-                    : ""
-                );
-
-
-            button.textContent =
-                category;
-
-
-            button.onclick =
-                function(){
-
-                    selectedCategory =
-                        category;
-
-                    displayCategories();
-
-                    displayProducts();
-
-                };
-
-
-            container.appendChild(
-                button
-            );
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   AFFICHER PRODUITS
-===================================================== */
-
-function displayProducts(){
-
-    const grid =
-        document.getElementById(
-            "productsGrid"
-        );
-
-
-    const search =
-        document.getElementById(
-            "searchInput"
-        )
-        .value
-        .toLowerCase()
-        .trim();
-
-
-    const sort =
-        document.getElementById(
-            "sortSelect"
-        ).value;
-
-
-    let filtered =
-        products.filter(
-            product => {
-
-                if(!product.active)
-                    return false;
-
-
-                const categoryOK =
-                    selectedCategory === "Tous"
-                    ||
-                    product.category ===
-                    selectedCategory;
-
-
-                const searchOK =
-                    product.name
-                        .toLowerCase()
-                        .includes(search)
-                    ||
-                    product.category
-                        .toLowerCase()
-                        .includes(search);
-
-
-                return (
-                    categoryOK &&
-                    searchOK
-                );
-
-            }
-        );
-
-
-    if(sort === "low"){
-
-        filtered.sort(
-            (a,b) =>
-                getCurrentPrice(a)
-                -
-                getCurrentPrice(b)
-        );
-
-    }
-
-
-    if(sort === "high"){
-
-        filtered.sort(
-            (a,b) =>
-                getCurrentPrice(b)
-                -
-                getCurrentPrice(a)
-        );
-
-    }
-
-
-    grid.innerHTML = "";
-
-
-    if(filtered.length === 0){
-
-        grid.innerHTML = `
-            <p style="
-                grid-column:1/-1;
-                text-align:center;
-                padding:50px;
-                color:#667085;
-            ">
-                Aucun produit trouvé.
-            </p>
-        `;
-
-        return;
-
-    }
-
-
-    filtered.forEach(
-        product => {
-
-            const card =
-                document.createElement(
-                    "article"
-                );
-
-
-            card.className =
-                "product-card";
-
-
-            const currentPrice =
-                getCurrentPrice(
-                    product
-                );
-
-
-            const promo =
-                product.promoPrice &&
-                product.promoPrice <
-                product.price;
-
-
-            let stockHTML = "";
-
-
-            if(product.stock <= 0){
-
-                stockHTML =
-                    `
-                    <span class="stock-empty">
-                        ● Rupture de stock
-                    </span>
-                    `;
-
-            }
-            else if(product.stock <= 5){
-
-                stockHTML =
-                    `
-                    <span class="stock-low">
-                        ● Plus que ${product.stock}
-                    </span>
-                    `;
-
-            }
-            else{
-
-                stockHTML =
-                    `
-                    <span class="stock-ok">
-                        ● ${product.stock} disponible(s)
-                    </span>
-                    `;
-
-            }
-
-
-            card.innerHTML = `
-
-                <div class="product-image-container">
-
-                    ${
-                        promo
-                        ?
-                        `
-                        <span class="badge badge-promo">
-                            PROMOTION
-                        </span>
-                        `
-                        :
-                        ""
-                    }
-
-
-                    ${
-                        product.stock <= 0
-                        ?
-                        `
-                        <span class="badge badge-stock">
-                            RUPTURE
-                        </span>
-                        `
-                        :
-                        ""
-                    }
-
-
-                    <img
-                        class="product-image"
-                        src="${escapeHtml(product.image)}"
-                        alt="${escapeHtml(product.name)}"
-                        loading="lazy"
-                        decoding="async"
-                        onerror="
-                            this.onerror=null;
-                            this.src='https://placehold.co/1200x800?text=La+Grâce+Solution';
-                        "
-                    >
-
-                </div>
-
-
-                <div class="product-info">
-
-                    <div class="product-category">
-
-                        ${escapeHtml(
-                            product.category
-                        )}
-
-                    </div>
-
-
-                    <div class="product-name">
-
-                        ${escapeHtml(
-                            product.name
-                        )}
-
-                    </div>
-
-
-                    <div class="product-description">
-
-                        ${escapeHtml(
-                            product.description || ""
-                        )}
-
-                    </div>
-
-
-                    <div class="price">
-
-                        ${formatPrice(
-                            currentPrice
-                        )}
-                        HTG
-
-
-                        ${
-                            promo
-                            ?
-                            `
-                            <span class="old-price">
-
-                                ${formatPrice(
-                                    product.price
-                                )}
-                                HTG
-
-                            </span>
-                            `
-                            :
-                            ""
-                        }
-
-                    </div>
-
-
-                    <div class="stock">
-
-                        ${stockHTML}
-
-                    </div>
-
-
-                    <button
-                        class="add-cart"
-                        onclick="addToCart(${product.id})"
-                        ${product.stock <= 0 ? "disabled" : ""}>
-
-                        ${
-                            product.stock <= 0
-                            ?
-                            "Rupture de stock"
-                            :
-                            "🛒 Ajouter au panier"
-                        }
-
-                    </button>
-
-                </div>
-
-            `;
-
-
-            grid.appendChild(
-                card
-            );
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   PRIX
-===================================================== */
-
-function getCurrentPrice(product){
-
-    if(
-        product.promoPrice &&
-        product.promoPrice > 0 &&
-        product.promoPrice <
-        product.price
-    ){
-
-        return product.promoPrice;
-
-    }
-
-    return product.price;
-
-}
-
-
-function formatPrice(price){
-
-    return Number(price)
-        .toLocaleString("fr-FR");
-
-}
-
-
-/* =====================================================
-   PANIER
-===================================================== */
-
-function getCart(){
-
-    return JSON.parse(
-        localStorage.getItem(
-            "lgs_cart"
-        )
-    ) || [];
-
-}
-
-
-function addToCart(id){
-
-    const product =
-        products.find(
-            p => p.id === id
-        );
-
-
-    if(
-        !product ||
-        product.stock <= 0
-    )
-        return;
-
-
-    const cart =
-        getCart();
-
-
-    cart.push({
-
-        id:product.id,
-
-        name:product.name,
-
-        price:
-            getCurrentPrice(
-                product
-            )
-
-    });
-
-
-    localStorage.setItem(
-        "lgs_cart",
-        JSON.stringify(cart)
-    );
-
-
-    updateCartCount();
-
-
-    showToast(
-        "Produit ajouté au panier."
-    );
-
-}
-
-
-function updateCartCount(){
-
-    const cart =
-        getCart();
-
-
-    document.getElementById(
-        "cartCount"
-    ).textContent =
-        cart.length;
-
-}
-
-
-/* =====================================================
-   LOGIN
-===================================================== */
-
-function openEnterpriseLogin(){
+function openLogin() {
 
     document
-        .getElementById(
-            "loginModal"
-        )
-        .classList.add("show");
+        .getElementById("loginModal")
+        .classList.add("active");
 
+    document
+        .getElementById("username")
+        .focus();
 }
 
 
-function login(event){
+/* =========================================
+   FERMER LA CONNEXION
+   ========================================= */
+
+function closeLogin() {
+
+    document
+        .getElementById("loginModal")
+        .classList.remove("active");
+
+    document
+        .getElementById("loginError")
+        .style.display = "none";
+}
+
+
+/* =========================================
+   CONNEXION
+   ========================================= */
+
+function login(event) {
 
     event.preventDefault();
 
-
     const username =
-        document
-        .getElementById(
-            "loginUsername"
-        )
-        .value
-        .trim();
-
+        document.getElementById("username").value.trim();
 
     const password =
-        document
-        .getElementById(
-            "loginPassword"
-        )
-        .value;
+        document.getElementById("password").value;
+
+    const error =
+        document.getElementById("loginError");
 
 
-    if(
-        username ===
-        ENTERPRISE_USERNAME
-        &&
-        password ===
-        ENTERPRISE_PASSWORD
-    ){
+    if (
+        username === AUTHORIZED_USERNAME &&
+        password === AUTHORIZED_PASSWORD
+    ) {
 
         sessionStorage.setItem(
-            "lgs_enterprise_logged",
+            "lgs_authenticated",
             "true"
         );
 
+        error.style.display = "none";
 
-        document
-            .getElementById(
-                "loginError"
-            )
-            .style.display =
-            "none";
+        closeLogin();
 
+        showAuthenticatedArea();
 
-        closeModal(
-            "loginModal"
-        );
+    } else {
 
-
-        openDashboard();
-
-
-        document
-            .getElementById(
-                "loginUsername"
-            )
-            .value = "";
-
-
-        document
-            .getElementById(
-                "loginPassword"
-            )
-            .value = "";
+        error.style.display = "block";
 
     }
-    else{
-
-        document
-            .getElementById(
-                "loginError"
-            )
-            .style.display =
-            "block";
-
-    }
-
 }
 
 
-/* =====================================================
-   DASHBOARD
-===================================================== */
+/* =========================================
+   AFFICHER ZONE AUTORISÉE
+   ========================================= */
 
-function openDashboard(){
-
-    if(
-        sessionStorage.getItem(
-            "lgs_enterprise_logged"
-        ) !== "true"
-    ){
-
-        openEnterpriseLogin();
-
-        return;
-
-    }
-
+function showAuthenticatedArea() {
 
     document
-        .getElementById(
-            "dashboardModal"
-        )
-        .classList.add("show");
-
-
-    renderAdminProducts();
+        .getElementById("testPanel")
+        .style.display = "block";
 
 }
 
 
-function logout(){
+/* =========================================
+   DÉCONNEXION
+   ========================================= */
+
+function logout() {
 
     sessionStorage.removeItem(
-        "lgs_enterprise_logged"
+        "lgs_authenticated"
     );
 
-
-    closeModal(
-        "dashboardModal"
-    );
-
-
-    cancelProductForm();
-
-
-    showToast(
-        "Déconnexion effectuée."
-    );
+    document
+        .getElementById("testPanel")
+        .style.display = "none";
 
 }
 
 
-/* =====================================================
-   FORMULAIRE
-===================================================== */
+/* =========================================
+   VÉRIFIER LA SESSION AU CHARGEMENT
+   ========================================= */
 
-function showProductForm(){
+window.addEventListener("DOMContentLoaded", function() {
 
-    document
-        .getElementById(
-            "productFormContainer"
-        )
-        .style.display =
-        "block";
+    const authenticated =
+        sessionStorage.getItem("lgs_authenticated");
 
+    if (authenticated === "true") {
 
-    document
-        .getElementById(
-            "formTitle"
-        )
-        .textContent =
-        "Ajouter un produit";
-
-
-    document
-        .getElementById(
-            "productForm"
-        )
-        .reset();
-
-
-    document
-        .getElementById(
-            "editProductId"
-        )
-        .value = "";
-
-
-    currentImage = "";
-
-
-    document
-        .getElementById(
-            "imagePreview"
-        )
-        .innerHTML =
-        "Aucune image sélectionnée";
-
-}
-
-
-function cancelProductForm(){
-
-    document
-        .getElementById(
-            "productFormContainer"
-        )
-        .style.display =
-        "none";
-
-
-    document
-        .getElementById(
-            "productForm"
-        )
-        .reset();
-
-
-    document
-        .getElementById(
-            "editProductId"
-        )
-        .value = "";
-
-
-    currentImage = "";
-
-
-    document
-        .getElementById(
-            "imagePreview"
-        )
-        .innerHTML =
-        "Aucune image sélectionnée";
-
-}
-
-
-/* =====================================================
-   IMAGE PREVIEW
-===================================================== */
-
-function previewImage(event){
-
-    const file =
-        event.target.files[0];
-
-
-    if(!file)
-        return;
-
-
-    if(
-        !file.type.startsWith(
-            "image/"
-        )
-    ){
-
-        alert(
-            "Veuillez sélectionner une image."
-        );
-
-        return;
+        showAuthenticatedArea();
 
     }
 
+});
 
-    const reader =
-        new FileReader();
 
+/* =========================================
+   FERMER LE MODAL EN CLIQUANT À L'EXTÉRIEUR
+   ========================================= */
 
-    reader.onload =
-        function(e){
+document
+    .getElementById("loginModal")
+    .addEventListener("click", function(event) {
 
-            currentImage =
-                e.target.result;
+        if (event.target === this) {
 
-
-            document
-                .getElementById(
-                    "imagePreview"
-                )
-                .innerHTML = `
-
-                    <img
-                        src="${currentImage}"
-                        alt="Aperçu du produit">
-
-                `;
-
-        };
-
-
-    reader.readAsDataURL(
-        file
-    );
-
-}
-
-
-/* =====================================================
-   ENREGISTRER PRODUIT
-===================================================== */
-
-function saveProduct(event){
-
-    event.preventDefault();
-
-
-    if(
-        sessionStorage.getItem(
-            "lgs_enterprise_logged"
-        ) !== "true"
-    ){
-
-        alert(
-            "Accès refusé."
-        );
-
-        return;
-
-    }
-
-
-    const editId =
-        document
-        .getElementById(
-            "editProductId"
-        )
-        .value;
-
-
-    const name =
-        document
-        .getElementById(
-            "productName"
-        )
-        .value
-        .trim();
-
-
-    const category =
-        document
-        .getElementById(
-            "productCategory"
-        )
-        .value
-        .trim();
-
-
-    const price =
-        Number(
-            document
-            .getElementById(
-                "productPrice"
-            )
-            .value
-        );
-
-
-    const promoValue =
-        document
-        .getElementById(
-            "productPromoPrice"
-        )
-        .value;
-
-
-    const promoPrice =
-        promoValue
-        ?
-        Number(promoValue)
-        :
-        null;
-
-
-    const stock =
-        Number(
-            document
-            .getElementById(
-                "productStock"
-            )
-            .value
-        );
-
-
-    const sku =
-        document
-        .getElementById(
-            "productSku"
-        )
-        .value
-        .trim();
-
-
-    const description =
-        document
-        .getElementById(
-            "productDescription"
-        )
-        .value
-        .trim();
-
-
-    const delivery =
-        document
-        .getElementById(
-            "productDelivery"
-        )
-        .value
-        .trim();
-
-
-    const imageUrl =
-        document
-        .getElementById(
-            "productImageUrl"
-        )
-        .value
-        .trim();
-
-
-    const image =
-        currentImage
-        ||
-        imageUrl
-        ||
-        "https://placehold.co/1200x800?text=La+Grâce+Solution";
-
-
-    const productData = {
-
-        name:name,
-
-        category:category,
-
-        price:price,
-
-        promoPrice:promoPrice,
-
-        stock:stock,
-
-        sku:sku,
-
-        description:description,
-
-        delivery:delivery,
-
-        image:image,
-
-        active:true
-
-    };
-
-
-    if(editId){
-
-        const index =
-            products.findIndex(
-                p =>
-                    p.id ===
-                    Number(editId)
-            );
-
-
-        if(index !== -1){
-
-            /*
-                On conserve le statut
-                publié/masqué existant.
-            */
-            productData.active =
-                products[index].active;
-
-
-            products[index] = {
-
-                ...products[index],
-
-                ...productData
-
-            };
-
-
-            showToast(
-                "Produit modifié avec succès."
-            );
+            closeLogin();
 
         }
 
-    }
-    else{
-
-        products.push({
-
-            id:Date.now(),
-
-            ...productData
-
-        });
-
-
-        showToast(
-            "Produit ajouté avec succès."
-        );
-
-    }
-
-
-    saveProducts();
-
-
-    cancelProductForm();
-
-
-    displayCategories();
-
-    displayProducts();
-
-    renderAdminProducts();
-
-}
-
-
-/* =====================================================
-   SAUVEGARDE
-===================================================== */
-
-function saveProducts(){
-
-    localStorage.setItem(
-        "lgs_products",
-        JSON.stringify(products)
-    );
-
-}
-
-
-/* =====================================================
-   ADMIN PRODUCTS
-===================================================== */
-
-function renderAdminProducts(){
-
-    if(
-        sessionStorage.getItem(
-            "lgs_enterprise_logged"
-        ) !== "true"
-    )
-        return;
-
-
-    document
-        .getElementById(
-            "totalProducts"
-        )
-        .textContent =
-        products.length;
-
-
-    document
-        .getElementById(
-            "publishedProducts"
-        )
-        .textContent =
-        products.filter(
-            p => p.active
-        ).length;
-
-
-    document
-        .getElementById(
-            "lowStockProducts"
-        )
-        .textContent =
-        products.filter(
-            p => p.stock <= 5
-        ).length;
-
-
-    const container =
-        document.getElementById(
-            "adminProducts"
-        );
-
-
-    container.innerHTML = "";
-
-
-    if(products.length === 0){
-
-        container.innerHTML =
-            "<p>Aucun produit.</p>";
-
-        return;
-
-    }
-
-
-    products.forEach(
-        product => {
-
-            const item =
-                document.createElement(
-                    "div"
-                );
-
-
-            item.className =
-                "admin-product";
-
-
-            item.innerHTML = `
-
-                <img
-                    src="${escapeHtml(product.image)}"
-                    alt="${escapeHtml(product.name)}"
-                    onerror="
-                        this.onerror=null;
-                        this.src='https://placehold.co/400x300?text=Produit';
-                    ">
-
-
-                <div class="admin-product-info">
-
-                    <strong>
-                        ${escapeHtml(product.name)}
-                    </strong>
-
-                    <br>
-
-                    <small>
-                        ${escapeHtml(product.category)}
-                        ·
-                        ${formatPrice(
-                            getCurrentPrice(product)
-                        )}
-                        HTG
-                    </small>
-
-                    <br>
-
-                    <small>
-                        Stock :
-                        <strong>
-                            ${product.stock}
-                        </strong>
-                    </small>
-
-                    <br>
-
-
-                    ${
-                        product.active
-
-                        ?
-
-                        `
-                        <span class="status active">
-                            PUBLIÉ
-                        </span>
-                        `
-
-                        :
-
-                        `
-                        <span class="status hidden">
-                            MASQUÉ
-                        </span>
-                        `
-                    }
-
-                </div>
-
-
-                <div class="admin-product-actions">
-
-                    <button
-                        class="btn btn-light"
-                        onclick="editProduct(${product.id})">
-
-                        ✏️ Modifier
-
-                    </button>
-
-
-                    <button
-                        class="btn btn-light"
-                        onclick="toggleProduct(${product.id})">
-
-                        ${
-                            product.active
-                            ?
-                            "🙈 Masquer"
-                            :
-                            "👁️ Publier"
-                        }
-
-                    </button>
-
-
-                    <button
-                        class="btn btn-danger"
-                        onclick="deleteProduct(${product.id})">
-
-                        🗑️ Supprimer
-
-                    </button>
-
-                </div>
-
-            `;
-
-
-            container.appendChild(
-                item
-            );
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   MODIFIER PRODUIT
-===================================================== */
-
-function editProduct(id){
-
-    const product =
-        products.find(
-            p => p.id === id
-        );
-
-
-    if(!product)
-        return;
-
-
-    document
-        .getElementById(
-            "productFormContainer"
-        )
-        .style.display =
-        "block";
-
-
-    document
-        .getElementById(
-            "formTitle"
-        )
-        .textContent =
-        "Modifier le produit";
-
-
-    document
-        .getElementById(
-            "editProductId"
-        )
-        .value =
-        product.id;
-
-
-    document
-        .getElementById(
-            "productName"
-        )
-        .value =
-        product.name;
-
-
-    document
-        .getElementById(
-            "productCategory"
-        )
-        .value =
-        product.category;
-
-
-    document
-        .getElementById(
-            "productPrice"
-        )
-        .value =
-        product.price;
-
-
-    document
-        .getElementById(
-            "productPromoPrice"
-        )
-        .value =
-        product.promoPrice || "";
-
-
-    document
-        .getElementById(
-            "productStock"
-        )
-        .value =
-        product.stock;
-
-
-    document
-        .getElementById(
-            "productSku"
-        )
-        .value =
-        product.sku || "";
-
-
-    document
-        .getElementById(
-            "productDescription"
-        )
-        .value =
-        product.description || "";
-
-
-    document
-        .getElementById(
-            "productDelivery"
-        )
-        .value =
-        product.delivery || "";
-
-
-    document
-        .getElementById(
-            "productImageUrl"
-        )
-        .value =
-        "";
-
-
-    currentImage =
-        product.image;
-
-
-    document
-        .getElementById(
-            "imagePreview"
-        )
-        .innerHTML = `
-
-            <img
-                src="${escapeHtml(product.image)}"
-                alt="Aperçu">
-
-        `;
-
-}
-
-
-/* =====================================================
-   MASQUER / PUBLIER
-===================================================== */
-
-function toggleProduct(id){
-
-    const product =
-        products.find(
-            p => p.id === id
-        );
-
-
-    if(!product)
-        return;
-
-
-    product.active =
-        !product.active;
-
-
-    saveProducts();
-
-
-    displayCategories();
-
-    displayProducts();
-
-    renderAdminProducts();
-
-
-    showToast(
-
-        product.active
-        ?
-        "Produit publié."
-        :
-        "Produit masqué."
-
-    );
-
-}
-
-
-/* =====================================================
-   SUPPRIMER
-===================================================== */
-
-function deleteProduct(id){
-
-    const product =
-        products.find(
-            p => p.id === id
-        );
-
-
-    if(!product)
-        return;
-
-
-    if(
-        !confirm(
-            `Voulez-vous supprimer "${product.name}" ?`
-        )
-    )
-        return;
-
-
-    products =
-        products.filter(
-            p => p.id !== id
-        );
-
-
-    saveProducts();
-
-
-    displayCategories();
-
-    displayProducts();
-
-    renderAdminProducts();
-
-
-    showToast(
-        "Produit supprimé."
-    );
-
-}
-
-
-/* =====================================================
-   MODAL
-===================================================== */
-
-function closeModal(id){
-
-    document
-        .getElementById(id)
-        .classList.remove("show");
-
-}
-
-
-window.addEventListener(
-    "click",
-    function(event){
-
-        if(
-            event.target.classList
-                .contains("modal")
-        ){
-
-            event.target.classList
-                .remove("show");
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   TOAST
-===================================================== */
-
-function showToast(message){
-
-    const toast =
-        document.getElementById(
-            "toast"
-        );
-
-
-    toast.textContent =
-        message;
-
-
-    toast.classList.add(
-        "show"
-    );
-
-
-    setTimeout(
-        function(){
-
-            toast.classList.remove(
-                "show"
-            );
-
-        },
-        3000
-    );
-
-}
-
-
-/* =====================================================
-   PROTECTION AFFICHAGE
-===================================================== */
-
-function escapeHtml(value){
-
-    return String(
-        value ?? ""
-    )
-    .replace(
-        /&/g,
-        "&amp;"
-    )
-    .replace(
-        /</g,
-        "&lt;"
-    )
-    .replace(
-        />/g,
-        "&gt;"
-    )
-    .replace(
-        /"/g,
-        "&quot;"
-    )
-    .replace(
-        /'/g,
-        "&#039;"
-    );
-
-}
+    });
 
 </script>
 
