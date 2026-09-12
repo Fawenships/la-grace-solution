@@ -689,6 +689,15 @@ a{
     font-weight:bold;
 }
 
+.submit-btn:hover{
+    background:var(--primary-dark);
+}
+
+.submit-btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
 /* =========================
    ADMIN
 ========================= */
@@ -699,6 +708,14 @@ a{
     align-items:center;
     gap:15px;
     margin-bottom:20px;
+}
+
+.admin-header h2{
+    color:var(--dark);
+}
+
+.admin-header p{
+    color:var(--muted);
 }
 
 .admin-tabs{
@@ -793,6 +810,25 @@ a{
     color:#b91c1c;
 }
 
+.success-btn{
+    background:#dcfce7;
+    color:#166534;
+}
+
+/* =========================
+   ADMIN SECURITY
+========================= */
+
+.admin-security{
+    background:#eff6ff;
+    border:1px solid #bfdbfe;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:20px;
+    color:#1e3a8a;
+    font-size:14px;
+}
+
 /* =========================
    EMPTY
 ========================= */
@@ -817,6 +853,7 @@ a{
     border-radius:10px;
     z-index:5000;
     display:none;
+    max-width:350px;
 }
 
 .toast.show{
@@ -1702,7 +1739,9 @@ a{
             Administration
         </h2>
 
-        <br>
+        <p style="color:#6b7280;margin:5px 0 20px;">
+            Espace réservé à l'entreprise
+        </p>
 
         <form id="adminLoginForm">
 
@@ -1716,6 +1755,7 @@ a{
                     type="text"
                     id="adminUsername"
                     value="admin"
+                    autocomplete="username"
                     required
                 >
 
@@ -1730,6 +1770,7 @@ a{
                 <input
                     type="password"
                     id="adminPassword"
+                    autocomplete="current-password"
                     required
                 >
 
@@ -1787,6 +1828,11 @@ a{
                 Déconnexion
             </button>
 
+        </div>
+
+        <div class="admin-security">
+            🔐 Session administrateur sécurisée. Les modifications effectuées ici
+            sont enregistrées sur le serveur et peuvent être visibles par les visiteurs.
         </div>
 
         <div class="admin-tabs">
@@ -1919,6 +1965,25 @@ a{
 
             </div>
 
+            <div style="
+                background:#f8fafc;
+                border:1px solid var(--border);
+                border-radius:12px;
+                padding:20px;
+            ">
+
+                <h3 style="margin-bottom:8px;">
+                    Bienvenue dans l'administration
+                </h3>
+
+                <p style="color:var(--muted);">
+                    Depuis cet espace, l'entreprise peut gérer les produits,
+                    consulter les commandes, modifier les promotions et mettre
+                    à jour les informations affichées sur la boutique.
+                </p>
+
+            </div>
+
         </div>
 
         <!-- PRODUCTS -->
@@ -2024,6 +2089,7 @@ a{
                         type="number"
                         id="productPrice"
                         min="0"
+                        step="0.01"
                         required
                     >
 
@@ -2083,12 +2149,25 @@ a{
 
                 </div>
 
-                <button
-                    class="submit-btn"
-                    type="submit"
-                >
-                    Enregistrer
-                </button>
+                <div class="admin-actions">
+
+                    <button
+                        class="submit-btn"
+                        type="submit"
+                        style="flex:1;"
+                    >
+                        Enregistrer
+                    </button>
+
+                    <button
+                        class="small-btn delete-btn"
+                        type="button"
+                        onclick="cancelProductForm()"
+                    >
+                        Annuler
+                    </button>
+
+                </div>
 
             </form>
 
@@ -2384,16 +2463,21 @@ let editingProductId = null;
 
 async function api(url, options = {}){
 
+    const config = {
+        credentials:"same-origin",
+        ...options,
+        headers:{
+            ...(options.body ? {
+                "Content-Type":"application/json"
+            } : {}),
+            ...(options.headers || {})
+        }
+    };
+
     const response =
         await fetch(
             url,
-            {
-                headers:{
-                    "Content-Type":"application/json",
-                    ...(options.headers || {})
-                },
-                ...options
-            }
+            config
         );
 
     const data =
@@ -2405,6 +2489,7 @@ async function api(url, options = {}){
 
         throw new Error(
             data.error ||
+            data.message ||
             "Une erreur est survenue."
         );
 
@@ -2441,12 +2526,17 @@ function showToast(message){
 
     toast.classList.add("show");
 
-    setTimeout(
-        () => {
-            toast.classList.remove("show");
-        },
-        3000
+    clearTimeout(
+        window.toastTimer
     );
+
+    window.toastTimer =
+        setTimeout(
+            () => {
+                toast.classList.remove("show");
+            },
+            3000
+        );
 
 }
 
@@ -2528,14 +2618,22 @@ async function loadProducts(){
 
     try{
 
-        products =
+        const data =
             await api("/api/products");
+
+        products =
+            Array.isArray(data)
+            ? data
+            : data.products || [];
 
         renderProducts();
 
     }catch(error){
 
-        console.error(error);
+        console.error(
+            "Erreur produits :",
+            error
+        );
 
         document.getElementById(
             "productsContainer"
@@ -2672,6 +2770,7 @@ function renderProducts(){
                                 src="${escapeHtml(product.image)}"
                                 alt="${escapeHtml(product.name)}"
                                 loading="lazy"
+                                onerror="this.style.display='none';"
                             >`
                             :
                             `<div
@@ -2808,6 +2907,19 @@ function addToCart(productId){
         return;
     }
 
+    const stock =
+        Number(product.stock || 0);
+
+    if(stock <= 0){
+
+        showToast(
+            "Ce produit est en rupture de stock."
+        );
+
+        return;
+
+    }
+
     const existing =
         cart.find(
             item =>
@@ -2817,7 +2929,7 @@ function addToCart(productId){
 
     if(existing){
 
-        if(existing.quantity < Number(product.stock)){
+        if(existing.quantity < stock){
 
             existing.quantity++;
 
@@ -3093,17 +3205,17 @@ async function checkout(event){
                         customer_name:
                             document.getElementById(
                                 "customerName"
-                            ).value,
+                            ).value.trim(),
 
                         customer_phone:
                             document.getElementById(
                                 "customerPhone"
-                            ).value,
+                            ).value.trim(),
 
                         customer_address:
                             document.getElementById(
                                 "customerAddress"
-                            ).value,
+                            ).value.trim(),
 
                         payment_method:
                             document.getElementById(
@@ -3170,10 +3282,27 @@ async function loadSettings(){
 
     try{
 
-        settings =
+        const data =
             await api("/api/settings");
 
-        applySettings(settings);
+        settings =
+            data || {};
+
+        applySettings(
+            settings
+        );
+
+        if(
+            document.getElementById(
+                "settingSiteName"
+            )
+        ){
+
+            fillSettingsForm(
+                settings
+            );
+
+        }
 
     }catch(error){
 
@@ -3197,10 +3326,15 @@ function applySettings(data){
             data.site_name +
             " — Boutique";
 
-        document
-            .querySelector(".logo-text")
-            .textContent =
-            data.site_name;
+        const logoText =
+            document.querySelector(
+                ".logo-text"
+            );
+
+        if(logoText){
+            logoText.textContent =
+                data.site_name;
+        }
 
     }
 
@@ -3222,23 +3356,60 @@ function applySettings(data){
 
     }
 
-    if(data.phone){
-
+    const phone =
         document.getElementById(
             "contactPhone"
-        ).textContent =
-            data.phone;
+        );
+
+    if(phone){
+
+        phone.textContent =
+            data.phone ||
+            "Contactez-nous pour plus d'informations.";
 
     }
 
-    if(data.email){
-
+    const email =
         document.getElementById(
             "contactEmail"
-        ).textContent =
-            data.email;
+        );
+
+    if(email){
+
+        email.textContent =
+            data.email || "";
 
     }
+
+}
+
+
+function fillSettingsForm(data){
+
+    document.getElementById(
+        "settingSiteName"
+    ).value =
+        data.site_name || "";
+
+    document.getElementById(
+        "settingPhone"
+    ).value =
+        data.phone || "";
+
+    document.getElementById(
+        "settingEmail"
+    ).value =
+        data.email || "";
+
+    document.getElementById(
+        "settingHeroTitle"
+    ).value =
+        data.hero_title || "";
+
+    document.getElementById(
+        "settingHeroDescription"
+    ).value =
+        data.hero_description || "";
 
 }
 
@@ -3251,8 +3422,13 @@ async function loadPromotion(){
 
     try{
 
-        promotion =
+        const data =
             await api("/api/promotion");
+
+        promotion =
+            data.promotion ||
+            data ||
+            {};
 
         applyPromotion(
             promotion
@@ -3279,14 +3455,26 @@ function applyPromotion(data){
     document.getElementById(
         "promotionTitle"
     ).textContent =
-        data.title ||
-        "Promotion";
+        data.active === false
+        ?
+        "Promotion"
+        :
+        (
+            data.title ||
+            "Promotion"
+        );
 
     document.getElementById(
         "promotionDescription"
     ).textContent =
-        data.description ||
-        "Découvrez nos offres spéciales.";
+        data.active === false
+        ?
+        "Découvrez nos offres spéciales."
+        :
+        (
+            data.description ||
+            "Découvrez nos offres spéciales."
+        );
 
 }
 
@@ -3321,6 +3509,13 @@ async function adminLogin(event){
 
     event.preventDefault();
 
+    const button =
+        event.target.querySelector(
+            "button[type='submit']"
+        );
+
+    button.disabled = true;
+
     try{
 
         await api(
@@ -3332,7 +3527,7 @@ async function adminLogin(event){
                     username:
                         document.getElementById(
                             "adminUsername"
-                        ).value,
+                        ).value.trim(),
 
                     password:
                         document.getElementById(
@@ -3356,6 +3551,10 @@ async function adminLogin(event){
         showToast(
             error.message
         );
+
+    }finally{
+
+        button.disabled = false;
 
     }
 
@@ -3432,14 +3631,24 @@ async function adminLogout(){
 
 async function loadAdmin(){
 
-    await Promise.all([
-        loadStats(),
-        loadAdminProducts(),
-        loadAdminOrders(),
-        loadAdminPromotion()
-    ]);
+    try{
 
-    await loadSettings();
+        await Promise.all([
+            loadStats(),
+            loadAdminProducts(),
+            loadAdminOrders(),
+            loadAdminPromotion(),
+            loadAdminSettings()
+        ]);
+
+    }catch(error){
+
+        console.error(
+            "Erreur chargement admin :",
+            error
+        );
+
+    }
 
 }
 
@@ -3552,6 +3761,22 @@ async function loadAdminProducts(){
                 "adminProductsTable"
             );
 
+        if(!list.length){
+
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="6">
+                        <div class="empty">
+                            Aucun produit.
+                        </div>
+                    </td>
+                </tr>
+            `;
+
+            return;
+
+        }
+
         tbody.innerHTML =
             list.map(
                 product => `
@@ -3613,7 +3838,10 @@ async function loadAdminProducts(){
 
     }catch(error){
 
-        console.error(error);
+        console.error(
+            "Erreur produits admin :",
+            error
+        );
 
     }
 
@@ -3628,17 +3856,40 @@ function showProductForm(){
 
     editingProductId = null;
 
-    document.getElementById(
-        "productForm"
-    ).style.display = "block";
+    const form =
+        document.getElementById(
+            "productForm"
+        );
 
-    document.getElementById(
-        "productForm"
-    ).reset();
+    form.reset();
+
+    form.style.display =
+        "block";
 
     document.getElementById(
         "productActive"
     ).checked = true;
+
+    document.getElementById(
+        "productId"
+    ).value = "";
+
+}
+
+
+function cancelProductForm(){
+
+    editingProductId = null;
+
+    const form =
+        document.getElementById(
+            "productForm"
+        );
+
+    form.reset();
+
+    form.style.display =
+        "none";
 
 }
 
@@ -3647,23 +3898,31 @@ async function editProduct(id){
 
     try{
 
-        const list =
+        const data =
             await api(
                 "/api/admin/products"
             );
 
         const productsList =
-            Array.isArray(list)
-            ? list
-            : list.products || [];
+            Array.isArray(data)
+            ? data
+            : data.products || [];
 
         const product =
             productsList.find(
-                p => Number(p.id) === Number(id)
+                p =>
+                    Number(p.id) ===
+                    Number(id)
             );
 
         if(!product){
+
+            showToast(
+                "Produit introuvable."
+            );
+
             return;
+
         }
 
         editingProductId =
@@ -3671,7 +3930,8 @@ async function editProduct(id){
 
         document.getElementById(
             "productForm"
-        ).style.display = "block";
+        ).style.display =
+            "block";
 
         document.getElementById(
             "productId"
@@ -3738,7 +3998,7 @@ async function saveProduct(event){
         name:
             document.getElementById(
                 "productName"
-            ).value,
+            ).value.trim(),
 
         category:
             document.getElementById(
@@ -3748,7 +4008,7 @@ async function saveProduct(event){
         description:
             document.getElementById(
                 "productDescription"
-            ).value,
+            ).value.trim(),
 
         price:
             Number(
@@ -3767,7 +4027,7 @@ async function saveProduct(event){
         image:
             document.getElementById(
                 "productImage"
-            ).value,
+            ).value.trim(),
 
         active:
             document.getElementById(
@@ -3780,6 +4040,30 @@ async function saveProduct(event){
             ).checked
 
     };
+
+    if(
+        !payload.name ||
+        !payload.category ||
+        !Number.isFinite(payload.price) ||
+        payload.price < 0 ||
+        !Number.isInteger(payload.stock) ||
+        payload.stock < 0
+    ){
+
+        showToast(
+            "Veuillez vérifier les informations du produit."
+        );
+
+        return;
+
+    }
+
+    const button =
+        event.target.querySelector(
+            "button[type='submit']"
+        );
+
+    button.disabled = true;
 
     try{
 
@@ -3810,7 +4094,8 @@ async function saveProduct(event){
 
         document.getElementById(
             "productForm"
-        ).style.display = "none";
+        ).style.display =
+            "none";
 
         await loadProducts();
 
@@ -3827,6 +4112,10 @@ async function saveProduct(event){
         showToast(
             error.message
         );
+
+    }finally{
+
+        button.disabled = false;
 
     }
 
@@ -3897,6 +4186,22 @@ async function loadAdminOrders(){
             document.getElementById(
                 "adminOrdersTable"
             );
+
+        if(!orders.length){
+
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="6">
+                        <div class="empty">
+                            Aucune commande.
+                        </div>
+                    </td>
+                </tr>
+            `;
+
+            return;
+
+        }
 
         tbody.innerHTML =
             orders.map(
@@ -3976,7 +4281,10 @@ async function loadAdminOrders(){
 
     }catch(error){
 
-        console.error(error);
+        console.error(
+            "Erreur commandes admin :",
+            error
+        );
 
     }
 
@@ -3992,7 +4300,9 @@ function formatDate(date){
     try{
 
         return new Date(date)
-            .toLocaleString("fr-FR");
+            .toLocaleString(
+                "fr-FR"
+            );
 
     }catch{
 
@@ -4025,6 +4335,8 @@ async function updateOrderStatus(id,status){
 
         await loadAdminOrders();
 
+        await loadStats();
+
     }catch(error){
 
         showToast(
@@ -4051,7 +4363,8 @@ async function loadAdminPromotion(){
 
         const promo =
             data.promotion ||
-            data;
+            data ||
+            {};
 
         document.getElementById(
             "promotionTitleInput"
@@ -4072,7 +4385,10 @@ async function loadAdminPromotion(){
 
     }catch(error){
 
-        console.error(error);
+        console.error(
+            "Erreur promotion admin :",
+            error
+        );
 
     }
 
@@ -4082,6 +4398,13 @@ async function loadAdminPromotion(){
 async function savePromotion(event){
 
     event.preventDefault();
+
+    const button =
+        event.target.querySelector(
+            "button[type='submit']"
+        );
+
+    button.disabled = true;
 
     try{
 
@@ -4095,12 +4418,12 @@ async function savePromotion(event){
                         title:
                             document.getElementById(
                                 "promotionTitleInput"
-                            ).value,
+                            ).value.trim(),
 
                         description:
                             document.getElementById(
                                 "promotionDescriptionInput"
-                            ).value,
+                            ).value.trim(),
 
                         active:
                             document.getElementById(
@@ -4111,8 +4434,13 @@ async function savePromotion(event){
                 }
             );
 
+        promotion =
+            data.promotion ||
+            data ||
+            {};
+
         applyPromotion(
-            data.promotion || data
+            promotion
         );
 
         await loadPromotion();
@@ -4126,6 +4454,10 @@ async function savePromotion(event){
         showToast(
             error.message
         );
+
+    }finally{
+
+        button.disabled = false;
 
     }
 
@@ -4145,34 +4477,85 @@ async function loadAdminSettings(){
                 "/api/settings"
             );
 
-        document.getElementById(
-            "settingSiteName"
-        ).value =
-            data.site_name || "";
-
-        document.getElementById(
-            "settingPhone"
-        ).value =
-            data.phone || "";
-
-        document.getElementById(
-            "settingEmail"
-        ).value =
-            data.email || "";
-
-        document.getElementById(
-            "settingHeroTitle"
-        ).value =
-            data.hero_title || "";
-
-        document.getElementById(
-            "settingHeroDescription"
-        ).value =
-            data.hero_description || "";
+        fillSettingsForm(
+            data || {}
+        );
 
     }catch(error){
 
-        console.error(error);
+        console.error(
+            "Erreur paramètres admin :",
+            error
+        );
+
+    }
+
+}
+
+
+async function saveSettings(event){
+
+    event.preventDefault();
+
+    const button =
+        event.target.querySelector(
+            "button[type='submit']"
+        );
+
+    button.disabled = true;
+
+    try{
+
+        await api(
+            "/api/admin/settings",
+            {
+                method:"PUT",
+                body:JSON.stringify({
+
+                    site_name:
+                        document.getElementById(
+                            "settingSiteName"
+                        ).value.trim(),
+
+                    phone:
+                        document.getElementById(
+                            "settingPhone"
+                        ).value.trim(),
+
+                    email:
+                        document.getElementById(
+                            "settingEmail"
+                        ).value.trim(),
+
+                    hero_title:
+                        document.getElementById(
+                            "settingHeroTitle"
+                        ).value.trim(),
+
+                    hero_description:
+                        document.getElementById(
+                            "settingHeroDescription"
+                        ).value.trim()
+
+                })
+            }
+        );
+
+        await loadSettings();
+
+        showToast(
+            "Paramètres enregistrés."
+        );
+
+    }catch(error){
+
+        showToast(
+            error.message
+        );
+
+    }finally{
+
+        button.disabled = false;
 
     }
 
@@ -4180,7 +4563,7 @@ async function loadAdminSettings(){
 
 
 /* =========================
-   REALTIME SETTINGS
+   REALTIME
 ========================= */
 
 function connectRealtime(){
@@ -4203,8 +4586,7 @@ function connectRealtime(){
                         );
 
                     if(
-                        data.type === "products"
-                        ||
+                        data.type === "products" ||
                         data.type === "product"
                     ){
 
@@ -4225,6 +4607,28 @@ function connectRealtime(){
                     ){
 
                         await loadPromotion();
+
+                    }
+
+                    if(
+                        data.type === "orders"
+                    ){
+
+                        if(
+                            document
+                                .getElementById(
+                                    "adminOverlay"
+                                )
+                                .classList.contains(
+                                    "active"
+                                )
+                        ){
+
+                            await loadAdminOrders();
+
+                            await loadStats();
+
+                        }
 
                     }
 
@@ -4250,7 +4654,10 @@ function connectRealtime(){
 
     }catch(error){
 
-        console.error(error);
+        console.error(
+            "Erreur temps réel :",
+            error
+        );
 
     }
 
@@ -4331,67 +4738,12 @@ document
     .getElementById("settingsForm")
     .addEventListener(
         "submit",
-        async function(event){
-
-            event.preventDefault();
-
-            try{
-
-                await api(
-                    "/api/admin/settings",
-                    {
-                        method:"PUT",
-                        body:JSON.stringify({
-
-                            site_name:
-                                document.getElementById(
-                                    "settingSiteName"
-                                ).value,
-
-                            phone:
-                                document.getElementById(
-                                    "settingPhone"
-                                ).value,
-
-                            email:
-                                document.getElementById(
-                                    "settingEmail"
-                                ).value,
-
-                            hero_title:
-                                document.getElementById(
-                                    "settingHeroTitle"
-                                ).value,
-
-                            hero_description:
-                                document.getElementById(
-                                    "settingHeroDescription"
-                                ).value
-
-                        })
-                    }
-                );
-
-                await loadSettings();
-
-                showToast(
-                    "Paramètres enregistrés."
-                );
-
-            }catch(error){
-
-                showToast(
-                    error.message
-                );
-
-            }
-
-        }
+        saveSettings
     );
 
 
 /* =========================
-   ADMIN OPEN EVENT
+   OVERLAY EVENTS
 ========================= */
 
 document
@@ -4460,6 +4812,27 @@ document
 
         }
     );
+
+
+/* =========================
+   ESC KEY
+========================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key !== "Escape"){
+            return;
+        }
+
+        closeCart();
+        closeCheckout();
+        closeAdminLogin();
+        closeAdmin();
+
+    }
+);
 
 
 /* =========================
