@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -94,28 +93,23 @@
 
             color: #123d34;
 
-            font-size: 23px;
-            font-weight: 900;
-
-            line-height: 20px;
+            display: flex;
+            align-items: center;
 
             white-space: nowrap;
         }
 
-        .logo span {
+        .logo img {
+            height: 54px;
+            width: auto;
             display: block;
         }
 
-        .logo small {
-            display: block;
-
-            color: #d39a25;
-
-            font-size: 10px;
-
-            letter-spacing: 4px;
-
-            margin-top: 6px;
+        .footer-logo img {
+            height: 46px;
+            background: white;
+            padding: 4px 8px;
+            border-radius: 6px;
         }
 
 
@@ -677,13 +671,17 @@
                     #dce8e3
                 );
 
-            display: flex;
+            overflow: hidden;
+        }
 
-            align-items: center;
+        .product-image img {
+            width: 100%;
 
-            justify-content: center;
+            height: 100%;
 
-            font-size: 75px;
+            object-fit: cover;
+
+            display: block;
         }
 
         .product-info {
@@ -810,6 +808,8 @@
 
         .footer-logo {
             color: white;
+
+            display: inline-flex;
         }
 
         .footer-main h3 {
@@ -1017,6 +1017,10 @@
                 gap: 15px;
             }
 
+            .logo img {
+                height: 42px;
+            }
+
             .search-box {
                 order: 3;
 
@@ -1116,9 +1120,7 @@
 
         <a href="#accueil" class="logo">
 
-            <span>LA GRÂCE</span>
-
-            <small>SOLUTION</small>
+            <img src="https://lgshaiti.com/Image/lgs1.jpg" alt="La Grâce Solution">
 
         </a>
 
@@ -1710,13 +1712,7 @@
                 class="logo footer-logo"
             >
 
-                <span>
-                    LA GRÂCE
-                </span>
-
-                <small>
-                    SOLUTION
-                </small>
+                <img src="https://lgshaiti.com/Image/lgs1.jpg" alt="La Grâce Solution">
 
             </a>
 
@@ -1871,63 +1867,127 @@
             name: "Panneau solaire 550W",
             category: "Solaire",
             price: 85000,
-            icon: "☀️"
+            image: "https://loremflickr.com/500/400/solar-panel,photovoltaic"
         },
 
         {
             id: 2,
-            name: "Batterie solaire 12V",
-            category: "Batteries",
-            price: 42000,
-            icon: "🔋"
+            name: "Panneau solaire 330W",
+            category: "Solaire",
+            price: 52000,
+            image: "https://loremflickr.com/500/400/solar-panel,roof"
         },
 
         {
             id: 3,
-            name: "Onduleur 3000W",
-            category: "Onduleurs",
-            price: 95000,
-            icon: "🔌"
+            name: "Contrôleur solaire MPPT 60A",
+            category: "Solaire",
+            price: 18000,
+            image: "https://loremflickr.com/500/400/solar-charge-controller"
         },
 
         {
             id: 4,
-            name: "Kit électrique professionnel",
-            category: "Électricité",
-            price: 27500,
-            icon: "⚡"
+            name: "Lampe solaire LED",
+            category: "Solaire",
+            price: 6500,
+            image: "https://loremflickr.com/500/400/solar-lamp,led"
         },
 
         {
             id: 5,
-            name: "Multimètre numérique",
-            category: "Outils",
-            price: 7500,
-            icon: "🧰"
+            name: "Kit solaire portable",
+            category: "Solaire",
+            price: 32000,
+            image: "https://loremflickr.com/500/400/portable-solar-panel"
         },
 
         {
             id: 6,
-            name: "Câbles solaires",
-            category: "Accessoires",
-            price: 4500,
-            icon: "〰️"
+            name: "Batterie solaire 12V 100Ah",
+            category: "Batteries",
+            price: 42000,
+            image: "https://loremflickr.com/500/400/battery,solar"
         },
 
         {
             id: 7,
-            name: "Contrôleur solaire",
-            category: "Solaire",
-            price: 18000,
-            icon: "☀️"
+            name: "Batterie lithium 24V",
+            category: "Batteries",
+            price: 68000,
+            image: "https://loremflickr.com/500/400/lithium-battery"
         },
 
         {
             id: 8,
-            name: "Lampe solaire LED",
-            category: "Solaire",
-            price: 6500,
-            icon: "💡"
+            name: "Batterie de secours portable",
+            category: "Batteries",
+            price: 15000,
+            image: "https://loremflickr.com/500/400/power-bank,battery"
+        },
+
+        {
+            id: 9,
+            name: "Onduleur 3000W",
+            category: "Onduleurs",
+            price: 95000,
+            image: "https://loremflickr.com/500/400/power-inverter"
+        },
+
+        {
+            id: 10,
+            name: "Onduleur 1500W pur sinus",
+            category: "Onduleurs",
+            price: 48000,
+            image: "https://loremflickr.com/500/400/inverter,electronics"
+        },
+
+        {
+            id: 11,
+            name: "Kit électrique professionnel",
+            category: "Électricité",
+            price: 27500,
+            image: "https://loremflickr.com/500/400/electrical,wiring"
+        },
+
+        {
+            id: 12,
+            name: "Disjoncteur différentiel",
+            category: "Électricité",
+            price: 3200,
+            image: "https://loremflickr.com/500/400/circuit-breaker"
+        },
+
+        {
+            id: 13,
+            name: "Multimètre numérique",
+            category: "Outils",
+            price: 7500,
+            image: "https://loremflickr.com/500/400/multimeter"
+        },
+
+        {
+            id: 14,
+            name: "Perceuse électrique",
+            category: "Outils",
+            price: 12500,
+            image: "https://loremflickr.com/500/400/power-drill"
+        },
+
+        {
+            id: 15,
+            name: "Câbles solaires 10m",
+            category: "Accessoires",
+            price: 4500,
+            image: "https://loremflickr.com/500/400/electrical-cable"
+        },
+
+        {
+            id: 16,
+            name: "Connecteurs MC4 (paire)",
+            category: "Accessoires",
+            price: 1200,
+            image: "https://loremflickr.com/500/400/connector,cable"
         }
 
     ];
@@ -2034,7 +2094,7 @@
 
                     <div class="product-image">
 
-                        ${product.icon}
+                        <img src="${product.image}" alt="${product.name}" loading="lazy">
 
                     </div>
 
@@ -2479,4 +2539,3 @@
 
 </body>
 </html>
-```
