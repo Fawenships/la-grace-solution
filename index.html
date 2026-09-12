@@ -1,1372 +1,1173 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description"
-          content="La Grâce Solution - Boutique en ligne en Haïti">
-
-    <title>La Grâce Solution | Boutique en ligne</title>
-
-    <style>
-
-        /* =====================================================
-           RESET
-        ===================================================== */
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f5f7f8;
-            color: #17231f;
-        }
-
-        button,
-        input,
-        select,
-        textarea {
-            font-family: inherit;
-        }
-
-        button {
-            cursor: pointer;
-        }
-
-
-        /* =====================================================
-           TOP BAR
-        ===================================================== */
-
-        .top-bar {
-            background: #0b1f3a;
-            color: white;
-            min-height: 36px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 40px;
-            padding: 8px 20px;
-            font-size: 13px;
-        }
-
-
-        /* =====================================================
-           HEADER
-        ===================================================== */
-
-        header {
-            background: white;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 12px rgba(0,0,0,.06);
-        }
-
-        .header-main {
-            min-height: 82px;
-            padding: 14px 5%;
-            display: flex;
-            align-items: center;
-            gap: 35px;
-        }
-
-
-        /* =====================================================
-           LOGO
-        ===================================================== */
-
-        .logo {
-            text-decoration: none;
-            color: #1565c0;
-            display: flex;
-            align-items: center;
-            white-space: nowrap;
-        }
-
-        .logo img {
-            height: 54px;
-            width: auto;
-            display: block;
-        }
-
-        .footer-logo img {
-            height: 46px;
-            background: white;
-            padding: 4px 8px;
-            border-radius: 6px;
-        }
-
-
-        /* =====================================================
-           SEARCH
-        ===================================================== */
-
-        .search-box {
-            flex: 1;
-            max-width: 700px;
-            height: 46px;
-            display: flex;
-            border: 2px solid #1565c0;
-            border-radius: 7px;
-            overflow: hidden;
-        }
-
-        .search-box input {
-            flex: 1;
-            border: none;
-            outline: none;
-            padding: 0 16px;
-            font-size: 15px;
-        }
-
-        .search-box button {
-            width: 60px;
-            border: none;
-            background: #1565c0;
-            color: white;
-            font-size: 18px;
-        }
-
-        .search-box button:hover {
-            background: #0d47a1;
-        }
-
-
-        /* =====================================================
-           HEADER BUTTONS
-        ===================================================== */
-
-        .header-buttons {
-            display: flex;
-            gap: 12px;
-        }
-
-        .header-button {
-            position: relative;
-            border: none;
-            background: transparent;
-            font-size: 20px;
-            color: #17231f;
-        }
-
-        .header-button span {
-            display: block;
-            font-size: 11px;
-            margin-top: 3px;
-        }
-
-        .cart-button b {
-            position: absolute;
-            top: -7px;
-            right: -9px;
-            min-width: 19px;
-            height: 19px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #1e88e5;
-            color: white;
-            border-radius: 50%;
-            font-size: 10px;
-        }
-
-
-        /* =====================================================
-           NAVIGATION
-        ===================================================== */
-
-        .navigation {
-            min-height: 50px;
-            padding: 0 5%;
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            border-top: 1px solid #eeeeee;
-        }
-
-        .category-button {
-            border: none;
-            background: #1565c0;
-            color: white;
-            padding: 11px 18px;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-
-        .category-button:hover {
-            background: #0d47a1;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 28px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #27352f;
-            font-size: 14px;
-            font-weight: 600;
-            padding: 16px 0;
-        }
-
-        .nav-links a:hover {
-            color: #1565c0;
-        }
-
-
-        /* =====================================================
-           HERO
-        ===================================================== */
-
-        .hero {
-            margin: 25px 5%;
-            min-height: 420px;
-            padding: 55px 6%;
-            border-radius: 18px;
-
-            background:
-                radial-gradient(
-                    circle at 85% 30%,
-                    rgba(30,136,229,.28),
-                    transparent 25%
-                ),
-                linear-gradient(
-                    120deg,
-                    #071324,
-                    #0b1f3a
-                );
-
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 40px;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            max-width: 680px;
-        }
-
-        .hero-label {
-            color: #90caf9;
-            font-size: 12px;
-            font-weight: 900;
-            letter-spacing: 2px;
-        }
-
-        .hero h1 {
-            font-size: clamp(35px, 5vw, 58px);
-            line-height: 1.05;
-            margin: 18px 0;
-        }
-
-        .hero h1 strong {
-            display: block;
-            color: #42a5f5;
-        }
-
-        .hero p {
-            max-width: 580px;
-            color: #d9e6e2;
-            line-height: 1.7;
-            font-size: 16px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 28px;
-        }
-
-        .primary-button,
-        .secondary-button {
-            display: inline-block;
-            padding: 14px 21px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .primary-button {
-            background: #1e88e5;
-            color: #ffffff;
-        }
-
-        .primary-button:hover {
-            background: #42a5f5;
-        }
-
-        .secondary-button {
-            border: 1px solid rgba(255,255,255,.35);
-            color: white;
-        }
-
-        .secondary-button:hover {
-            background: rgba(255,255,255,.08);
-        }
-
-
-        /* =====================================================
-           HERO CARD
-        ===================================================== */
-
-        .hero-product {
-            width: 310px;
-            padding: 32px;
-            border-radius: 18px;
-            background: rgba(255,255,255,.08);
-            border: 1px solid rgba(255,255,255,.22);
-            text-align: center;
-            backdrop-filter: blur(10px);
-        }
-
-        .hero-circle {
-            font-size: 75px;
-            margin-bottom: 15px;
-        }
-
-        .hero-product h2 {
-            margin-bottom: 10px;
-        }
-
-        .hero-product p {
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-
-        .hero-product a {
-            color: #90caf9;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-
-        /* =====================================================
-           SECTIONS
-        ===================================================== */
-
-        .section {
-            max-width: 1400px;
-            margin: auto;
-            padding: 45px 5%;
-        }
-
-        .section-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: end;
-            gap: 20px;
-            margin-bottom: 25px;
-        }
-
-        .section-title span {
-            color: #1565c0;
-            font-size: 11px;
-            font-weight: 900;
-            letter-spacing: 2px;
-        }
-
-        .section-title h2 {
-            font-size: 29px;
-            margin-top: 7px;
-        }
-
-        .section-title p {
-            color: #77827e;
-            margin-top: 7px;
-        }
-
-        .section-title a {
-            color: #1565c0;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-
-        /* =====================================================
-           CATEGORIES
-        ===================================================== */
-
-        .categories {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 15px;
-        }
-
-        .category-card {
-            border: 1px solid #e1e6e5;
-            background: white;
-            border-radius: 12px;
-            padding: 24px 10px;
-            transition: .2s;
-            text-align: center;
-        }
-
-        .category-card:hover {
-            transform: translateY(-5px);
-            border-color: #1e88e5;
-            box-shadow: 0 10px 25px rgba(21,101,192,.10);
-        }
-
-        .category-icon {
-            font-size: 38px;
-            margin-bottom: 12px;
-        }
-
-        .category-card strong {
-            display: block;
-            font-size: 15px;
-        }
-
-        .category-card small {
-            display: block;
-            color: #89938f;
-            margin-top: 6px;
-        }
-
-
-        /* =====================================================
-           PROMOTION
-        ===================================================== */
-
-        .promotion {
-            margin: 20px 5%;
-            padding: 35px 40px;
-            background: #eaf3fc;
-            border: 1px solid #bcdcf7;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 25px;
-        }
-
-        .promotion span {
-            color: #1565c0;
-            font-size: 12px;
-            font-weight: 900;
-            letter-spacing: 1px;
-        }
-
-        .promotion h2 {
-            margin: 8px 0;
-        }
-
-        .promotion p {
-            color: #6e6754;
-        }
-
-        .promotion a {
-            background: #1565c0;
-            color: white;
-            padding: 13px 20px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            white-space: nowrap;
-        }
-
-
-        /* =====================================================
-           PRODUCTS
-        ===================================================== */
-
-        #sortSelect {
-            padding: 11px 15px;
-            background: white;
-            border: 1px solid #dce1e3;
-            border-radius: 6px;
-            outline: none;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
-        }
-
-        .product {
-            background: white;
-            border: 1px solid #e1e5e8;
-            border-radius: 12px;
-            overflow: hidden;
-            transition: .2s;
-        }
-
-        .product:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(21,101,192,.10);
-        }
-
-        .product-image {
-            height: 210px;
-            background: linear-gradient(135deg,#eaf0ee,#dce8e3);
-            overflow: hidden;
-            position: relative;
-        }
-
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .promo-badge {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            background: #e53935;
-            color: white;
-            padding: 6px 9px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: bold;
-        }
-
-        .stock-badge {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: white;
-            color: #1565c0;
-            padding: 6px 9px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: bold;
-        }
-
-        .product-info {
-            padding: 17px;
-        }
-
-        .product-category {
-            color: #84908b;
-            font-size: 11px;
-            font-weight: 900;
-            text-transform: uppercase;
-        }
-
-        .product h3 {
-            font-size: 16px;
-            margin: 8px 0 12px;
-            min-height: 38px;
-        }
-
-        .price {
-            color: #1565c0;
-            font-size: 20px;
-            font-weight: 900;
-        }
-
-        .old-price {
-            color: #999;
-            text-decoration: line-through;
-            font-size: 13px;
-            margin-left: 7px;
-        }
-
-        .add-cart {
-            width: 100%;
-            border: none;
-            background: #1565c0;
-            color: white;
-            padding: 12px;
-            margin-top: 15px;
-            border-radius: 6px;
-            font-weight: bold;
-        }
-
-        .add-cart:hover {
-            background: #0d47a1;
-        }
-
-        .add-cart:disabled {
-            background: #9aa4aa;
-            cursor: not-allowed;
-        }
-
-
-        /* =====================================================
-           AVANTAGES
-        ===================================================== */
-
-        .why-section {
-            padding: 65px 5%;
-            background: white;
-        }
-
-        .centered {
-            display: block;
-            text-align: center;
-        }
-
-        .advantages {
-            max-width: 1200px;
-            margin: 35px auto 0;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            text-align: center;
-        }
-
-        .advantage-icon {
-            font-size: 38px;
-        }
-
-        .advantages h3 {
-            margin: 12px 0 8px;
-        }
-
-        .advantages p {
-            color: #7b8581;
-            line-height: 1.5;
-        }
-
-
-        /* =====================================================
-           FOOTER
-        ===================================================== */
-
-        footer {
-            background: #0b1f3a;
-            color: #bfc9c7;
-        }
-
-        .footer-main {
-            padding: 50px 5%;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 50px;
-        }
-
-        .footer-logo {
-            color: white;
-            display: inline-flex;
-        }
-
-        .footer-main h3 {
-            color: white;
-            margin-bottom: 15px;
-        }
-
-        .footer-main a:not(.logo) {
-            display: block;
-            color: #bfc9c7;
-            text-decoration: none;
-            margin: 10px 0;
-        }
-
-        .footer-main p {
-            margin: 10px 0;
-            line-height: 1.6;
-        }
-
-        .copyright {
-            border-top: 1px solid rgba(255,255,255,.08);
-            padding: 20px 5%;
-            text-align: center;
-            font-size: 13px;
-        }
-
-
-        /* =====================================================
-           CART
-        ===================================================== */
-
-        .cart-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,.55);
-            z-index: 999;
-        }
-
-        .cart-panel {
-            background: white;
-            position: absolute;
-            right: 0;
-            top: 0;
-            height: 100%;
-            width: min(450px,100%);
-            padding: 30px;
-            overflow-y: auto;
-        }
-
-        .close-cart {
-            position: absolute;
-            right: 20px;
-            top: 15px;
-            background: none;
-            border: none;
-            font-size: 30px;
-        }
-
-        .cart-panel h2 {
-            margin-bottom: 25px;
-        }
-
-        .cart-item {
-            padding: 15px 0;
-            border-bottom: 1px solid #e5e5e5;
-            display: flex;
-            justify-content: space-between;
-            gap: 15px;
-        }
-
-        .remove-item {
-            border: none;
-            background: #fee2e2;
-            color: #a11;
-            padding: 7px;
-            border-radius: 5px;
-        }
-
-        .cart-total {
-            display: flex;
-            justify-content: space-between;
-            font-size: 20px;
-            padding: 25px 0;
-        }
-
-        .checkout-button {
-            width: 100%;
-            border: none;
-            background: #1e88e5;
-            color: #ffffff;
-            padding: 15px;
-            border-radius: 7px;
-            font-weight: 900;
-        }
-
-
-        /* =====================================================
-           EMPTY
-        ===================================================== */
-
-        .empty-products {
-            grid-column: 1 / -1;
-            text-align: center;
-            background: white;
-            padding: 50px;
-            border-radius: 12px;
-            color: #77827e;
-        }
-
-
-        /* =====================================================
-           ADMIN OVERLAY
-        ===================================================== */
-
-        .admin-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(5,15,30,.72);
-            z-index: 2000;
-            overflow-y: auto;
-        }
-
-        .admin-container {
-            width: min(1400px, 96%);
-            min-height: 90vh;
-            margin: 30px auto;
-            background: #f5f7f8;
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: 0 25px 80px rgba(0,0,0,.35);
-        }
-
-        .admin-header {
-            background: #0b1f3a;
-            color: white;
-            padding: 18px 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .admin-header h2 {
-            font-size: 21px;
-        }
-
-        .admin-header small {
-            color: #a9c5e5;
-        }
-
-        .admin-close {
-            border: none;
-            background: rgba(255,255,255,.1);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            font-size: 25px;
-        }
-
-        .admin-body {
-            display: grid;
-            grid-template-columns: 220px 1fr;
-            min-height: 800px;
-        }
-
-        .admin-sidebar {
-            background: white;
-            border-right: 1px solid #e1e5e8;
-            padding: 20px 12px;
-        }
-
-        .admin-nav-btn {
-            width: 100%;
-            border: none;
-            background: transparent;
-            padding: 13px 14px;
-            text-align: left;
-            border-radius: 8px;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #46534f;
-        }
-
-        .admin-nav-btn:hover,
-        .admin-nav-btn.active {
-            background: #eaf3fc;
-            color: #1565c0;
-        }
-
-        .admin-content {
-            padding: 28px;
-        }
-
-        .admin-tab {
-            display: none;
-        }
-
-        .admin-tab.active {
-            display: block;
-        }
-
-        .admin-title {
-            margin-bottom: 20px;
-        }
-
-        .admin-title h2 {
-            font-size: 28px;
-            margin-bottom: 6px;
-        }
-
-        .admin-title p {
-            color: #7a8581;
-        }
-
-
-        /* =====================================================
-           ADMIN STATS
-        ===================================================== */
-
-        .admin-stats {
-            display: grid;
-            grid-template-columns: repeat(4,1fr);
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .stat-card {
-            background: white;
-            border: 1px solid #e2e6e8;
-            border-radius: 12px;
-            padding: 20px;
-        }
-
-        .stat-card span {
-            font-size: 28px;
-        }
-
-        .stat-card small {
-            display: block;
-            color: #7c8783;
-            margin-top: 10px;
-        }
-
-        .stat-card strong {
-            display: block;
-            font-size: 25px;
-            margin-top: 5px;
-            color: #1565c0;
-        }
-
-
-        /* =====================================================
-           ADMIN CARDS
-        ===================================================== */
-
-        .admin-card {
-            background: white;
-            border: 1px solid #e1e5e8;
-            border-radius: 12px;
-            padding: 22px;
-            margin-bottom: 20px;
-        }
-
-        .admin-card h3 {
-            margin-bottom: 17px;
-        }
-
-
-        /* =====================================================
-           ADMIN FORMS
-        ===================================================== */
-
-        .admin-form {
-            display: grid;
-            gap: 13px;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(2,1fr);
-            gap: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 6px;
-        }
-
-        .admin-form input,
-        .admin-form select,
-        .admin-form textarea,
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 11px 12px;
-            border: 1px solid #dce1e3;
-            border-radius: 7px;
-            outline: none;
-            font-size: 14px;
-            background: white;
-        }
-
-        .admin-form textarea,
-        .form-group textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        .admin-form input:focus,
-        .admin-form select:focus,
-        .admin-form textarea:focus,
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            border-color: #1565c0;
-        }
-
-        .admin-submit {
-            border: none;
-            background: #1565c0;
-            color: white;
-            padding: 13px 18px;
-            border-radius: 7px;
-            font-weight: bold;
-        }
-
-        .admin-submit:hover {
-            background: #0d47a1;
-        }
-
-        .admin-secondary {
-            border: 1px solid #dce1e3;
-            background: white;
-            color: #27352f;
-            padding: 12px 16px;
-            border-radius: 7px;
-            font-weight: bold;
-        }
-
-        .admin-danger {
-            border: none;
-            background: #fee2e2;
-            color: #b42318;
-            padding: 9px 12px;
-            border-radius: 6px;
-            font-weight: bold;
-        }
-
-        .admin-success {
-            border: none;
-            background: #dcfce7;
-            color: #166534;
-            padding: 9px 12px;
-            border-radius: 6px;
-            font-weight: bold;
-        }
-
-        .admin-warning {
-            border: none;
-            background: #fff4d6;
-            color: #8a5a00;
-            padding: 9px 12px;
-            border-radius: 6px;
-            font-weight: bold;
-        }
-
-        .admin-hint {
-            font-size: 12px;
-            color: #89938f;
-            line-height: 1.5;
-        }
-
-
-        /* =====================================================
-           ADMIN PRODUCT LIST
-        ===================================================== */
-
-        .admin-product-item {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 14px 0;
-            border-bottom: 1px solid #e5e5e5;
-        }
-
-        .admin-product-item:last-child {
-            border-bottom: none;
-        }
-
-        .admin-product-item img {
-            width: 62px;
-            height: 62px;
-            border-radius: 8px;
-            object-fit: cover;
-            flex-shrink: 0;
-        }
-
-        .admin-product-info {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .admin-product-info strong {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .admin-product-info small {
-            color: #89938f;
-        }
-
-        .admin-product-actions {
-            display: flex;
-            gap: 7px;
-            flex-wrap: wrap;
-        }
-
-        .status {
-            display: inline-block;
-            padding: 4px 8px;
-            border-radius: 20px;
-            font-size: 10px;
-            font-weight: bold;
-            margin-left: 5px;
-        }
-
-        .status.active {
-            background: #dcfce7;
-            color: #166534;
-        }
-
-        .status.hidden {
-            background: #fee2e2;
-            color: #991b1b;
-        }
-
-
-        /* =====================================================
-           ADMIN SEARCH
-        ===================================================== */
-
-        .admin-search {
-            margin-bottom: 15px;
-        }
-
-        .admin-search input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #dce1e3;
-            border-radius: 7px;
-            outline: none;
-        }
-
-
-        /* =====================================================
-           LOGIN
-        ===================================================== */
-
-        .admin-login {
-            display: none;
-            width: min(420px,92%);
-            background: white;
-            margin: 10vh auto;
-            padding: 35px;
-            border-radius: 15px;
-            box-shadow: 0 20px 70px rgba(0,0,0,.3);
-            text-align: center;
-        }
-
-        .admin-login-icon {
-            font-size: 55px;
-            margin-bottom: 15px;
-        }
-
-        .admin-login h2 {
-            margin-bottom: 8px;
-        }
-
-        .admin-login p {
-            color: #7c8783;
-            font-size: 14px;
-            margin-bottom: 25px;
-        }
-
-        .admin-login input {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #dce1e3;
-            border-radius: 8px;
-            margin-bottom: 12px;
-            outline: none;
-        }
-
-        .admin-login button {
-            width: 100%;
-            border: none;
-            background: #1565c0;
-            color: white;
-            padding: 14px;
-            border-radius: 8px;
-            font-weight: bold;
-        }
-
-
-        /* =====================================================
-           CHECKBOX
-        ===================================================== */
-
-        .checkbox-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-        }
-
-        .checkbox-row input {
-            width: auto !important;
-        }
-
-
-        /* =====================================================
-           RESPONSIVE
-        ===================================================== */
-
-        @media(max-width:1000px) {
-
-            .categories {
-                grid-template-columns: repeat(3,1fr);
-            }
-
-            .products-grid {
-                grid-template-columns: repeat(2,1fr);
-            }
-
-            .advantages {
-                grid-template-columns: repeat(2,1fr);
-            }
-
-            .hero-product {
-                display: none;
-            }
-
-            .admin-stats {
-                grid-template-columns: repeat(2,1fr);
-            }
-
-        }
-
-
-        @media(max-width:750px) {
-
-            .admin-body {
-                grid-template-columns: 1fr;
-            }
-
-            .admin-sidebar {
-                border-right: none;
-                border-bottom: 1px solid #e1e5e8;
-                display: flex;
-                overflow-x: auto;
-                gap: 5px;
-            }
-
-            .admin-nav-btn {
-                min-width: max-content;
-            }
-
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-
-        }
-
-
-        @media(max-width:650px) {
-
-            .top-bar {
-                gap: 10px;
-                font-size: 10px;
-                flex-wrap: wrap;
-            }
-
-            .header-main {
-                flex-wrap: wrap;
-                gap: 15px;
-            }
-
-            .logo img {
-                height: 42px;
-            }
-
-            .search-box {
-                order: 3;
-                flex-basis: 100%;
-            }
-
-            .navigation {
-                overflow-x: auto;
-                gap: 10px;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hero {
-                margin: 15px 3%;
-                padding: 40px 25px;
-            }
-
-            .hero h1 {
-                font-size: 37px;
-            }
-
-            .categories {
-                grid-template-columns: repeat(2,1fr);
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .advantages {
-                grid-template-columns: 1fr;
-            }
-
-            .promotion {
-                margin: 15px 3%;
-                display: block;
-            }
-
-            .promotion a {
-                display: inline-block;
-                margin-top: 20px;
-            }
-
-            .footer-main {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title {
-                align-items: flex-start;
-                flex-direction: column;
-            }
-
-            .admin-container {
-                width: 100%;
-                margin: 0;
-                min-height: 100vh;
-                border-radius: 0;
-            }
-
-            .admin-content {
-                padding: 17px;
-            }
-
-            .admin-stats {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .admin-product-item {
-                align-items: flex-start;
-                flex-wrap: wrap;
-            }
-
-            .admin-product-actions {
-                width: 100%;
-            }
-
-        }
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>La Grâce Solution | Boutique en ligne</title>
+
+<meta
+    name="description"
+    content="La Grâce Solution - Boutique en ligne en Haïti"
+/>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f6f8fb;
+    color:#172033;
+    overflow-x:hidden;
+}
+
+img{
+    max-width:100%;
+    display:block;
+}
+
+button,
+input,
+select,
+textarea{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+
+/* =========================================================
+   TOP BAR
+========================================================= */
+
+.topbar{
+    width:100%;
+    background:#084298;
+    color:#fff;
+    text-align:center;
+    padding:9px 15px;
+    font-size:14px;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header{
+    width:100%;
+    background:#fff;
+    border-bottom:1px solid #e5e9ef;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.header-main{
+    width:100%;
+    max-width:1250px;
+    min-height:75px;
+    margin:0 auto;
+    padding:12px 20px;
+
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-size:20px;
+    font-weight:700;
+    color:#084298;
+
+    white-space:nowrap;
+}
+
+.logo img{
+    width:48px;
+    height:48px;
+    object-fit:cover;
+    border-radius:9px;
+}
+
+.search-box{
+    position:relative;
+    flex:1;
+}
+
+.search-box input{
+    width:100%;
+    height:45px;
+
+    padding:0 45px 0 15px;
+
+    border:1px solid #d8dee8;
+    border-radius:10px;
+
+    outline:none;
+    background:#fff;
+}
+
+.search-box input:focus{
+    border-color:#0b5ed7;
+}
+
+.search-icon{
+    position:absolute;
+    right:15px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    pointer-events:none;
+}
+
+.header-actions{
+    display:flex;
+    align-items:center;
+    gap:7px;
+}
+
+.header-btn{
+    height:42px;
+
+    padding:0 12px;
+
+    background:#fff;
+    border:1px solid #dfe4ec;
+    border-radius:9px;
+
+    color:#172033;
+}
+
+.header-btn:hover{
+    background:#f3f6fa;
+}
+
+.cart-count{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    min-width:20px;
+    height:20px;
+
+    margin-left:3px;
+
+    padding:0 5px;
+
+    background:#0b5ed7;
+    color:#fff;
+
+    border-radius:20px;
+
+    font-size:11px;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.nav{
+    width:100%;
+    max-width:1250px;
+    margin:0 auto;
+
+    padding:0 20px 12px;
+
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+.nav a{
+    color:#505b6d;
+    font-size:14px;
+}
+
+.nav a:hover{
+    color:#0b5ed7;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    width:100%;
+    background:#0b5ed7;
+    color:#fff;
+}
+
+.hero-inner{
+    width:100%;
+    max-width:1250px;
+    margin:0 auto;
+
+    padding:75px 20px;
+}
+
+.hero h1{
+    max-width:780px;
+
+    font-size:clamp(34px,6vw,60px);
+    line-height:1.08;
+
+    margin-bottom:20px;
+}
+
+.hero p{
+    max-width:700px;
+
+    font-size:18px;
+    line-height:1.7;
+
+    opacity:.95;
+}
+
+.hero-buttons{
+    margin-top:28px;
+
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    border:none;
+    border-radius:10px;
+
+    padding:13px 20px;
+
+    font-weight:700;
+}
+
+.btn-primary{
+    background:#fff;
+    color:#084298;
+}
+
+.btn-secondary{
+    background:transparent;
+    color:#fff;
+
+    border:1px solid rgba(255,255,255,.6);
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+.section{
+    width:100%;
+    max-width:1250px;
+
+    margin:0 auto;
+
+    padding:60px 20px;
+}
+
+.section-title{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.section-subtitle{
+    color:#687386;
+    margin-bottom:28px;
+}
+
+
+/* =========================================================
+   CATEGORIES
+========================================================= */
+
+.categories{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:15px;
+}
+
+.category{
+    background:#fff;
+
+    border:1px solid #e3e7ed;
+    border-radius:14px;
+
+    overflow:hidden;
+
+    cursor:pointer;
+}
+
+.category img{
+    width:100%;
+    height:120px;
+
+    object-fit:cover;
+}
+
+.category div{
+    padding:15px;
+
+    font-weight:700;
+}
+
+
+/* =========================================================
+   PROMOTION
+========================================================= */
+
+.promotion{
+    width:100%;
+
+    background:#fff6d9;
+
+    border:1px solid #f0d477;
+    border-radius:16px;
+
+    padding:28px;
+}
+
+.promotion h2{
+    margin-bottom:8px;
+}
+
+.promotion p{
+    color:#665925;
+    line-height:1.6;
+}
+
+
+/* =========================================================
+   PRODUCT TOOLBAR
+========================================================= */
+
+.products-toolbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:15px;
+
+    margin-bottom:25px;
+
+    flex-wrap:wrap;
+}
+
+.categories-filter{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+.filter-btn{
+    border:1px solid #dce1e8;
+
+    background:#fff;
+
+    color:#303949;
+
+    border-radius:8px;
+
+    padding:9px 13px;
+}
+
+.filter-btn.active{
+    background:#0b5ed7;
+    color:#fff;
+    border-color:#0b5ed7;
+}
+
+#sortSelect{
+    height:40px;
+
+    padding:0 12px;
+
+    border:1px solid #dce1e8;
+    border-radius:8px;
+
+    background:#fff;
+}
+
+
+/* =========================================================
+   PRODUCTS
+========================================================= */
+
+.products-grid{
+    width:100%;
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+}
+
+.product{
+    position:relative;
+
+    background:#fff;
+
+    border:1px solid #e4e8ee;
+    border-radius:15px;
+
+    overflow:hidden;
+}
+
+.product-image{
+    width:100%;
+    height:220px;
+
+    object-fit:cover;
+
+    background:#edf1f5;
+}
+
+.product-body{
+    padding:17px;
+}
+
+.product-category{
+    color:#0b5ed7;
+
+    font-size:12px;
+    font-weight:700;
+
+    text-transform:uppercase;
+}
+
+.product-name{
+    margin:8px 0;
+
+    font-size:18px;
+}
+
+.product-description{
+    color:#687386;
+
+    font-size:14px;
+    line-height:1.5;
+
+    min-height:42px;
+}
+
+.stock{
+    margin-top:9px;
+
+    color:#687386;
+
+    font-size:12px;
+}
+
+.product-bottom{
+    margin-top:16px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:10px;
+}
+
+.price{
+    font-size:19px;
+    font-weight:700;
+}
+
+.add-btn{
+    border:none;
+
+    background:#0b5ed7;
+    color:#fff;
+
+    border-radius:8px;
+
+    padding:10px 13px;
+}
+
+.add-btn:disabled{
+    background:#aeb6c2;
+    cursor:not-allowed;
+}
+
+.promo-badge{
+    position:absolute;
+
+    top:12px;
+    left:12px;
+
+    background:#dc3545;
+    color:#fff;
+
+    padding:5px 9px;
+
+    border-radius:7px;
+
+    font-size:11px;
+    font-weight:700;
+}
+
+
+/* =========================================================
+   AVANTAGES
+========================================================= */
+
+.advantages{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+
+    gap:18px;
+}
+
+.advantage{
+    background:#fff;
+
+    border:1px solid #e3e7ed;
+    border-radius:14px;
+
+    padding:25px;
+}
+
+.advantage strong{
+    display:block;
+    margin-bottom:9px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    width:100%;
+
+    background:#101828;
+    color:#fff;
+}
+
+.footer-inner{
+    width:100%;
+    max-width:1250px;
+
+    margin:0 auto;
+
+    padding:50px 20px;
+
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+
+    gap:40px;
+}
+
+.footer-inner p{
+    margin-top:10px;
+
+    color:#b8c1cf;
+
+    line-height:1.6;
+}
+
+
+/* =========================================================
+   OVERLAY
+========================================================= */
+
+.overlay{
+    position:fixed;
+
+    inset:0;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    background:rgba(15,23,42,.65);
+
+    z-index:1000;
+}
+
+.overlay.open{
+    display:flex;
+}
+
+.modal{
+    width:100%;
+    max-width:600px;
+
+    max-height:90vh;
+
+    overflow:auto;
+
+    background:#fff;
+
+    border-radius:16px;
+
+    padding:25px;
+}
+
+.modal-large{
+    max-width:1200px;
+}
+
+.modal-header{
+    display:flex;
+
+    align-items:center;
+    justify-content:space-between;
+
+    gap:15px;
+
+    margin-bottom:20px;
+}
+
+.close{
+    width:36px;
+    height:36px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#eef1f5;
+
+    font-size:22px;
+}
+
+
+/* =========================================================
+   CART
+========================================================= */
+
+.cart-item{
+    display:grid;
+
+    grid-template-columns:1fr auto;
+
+    gap:15px;
+
+    padding:15px 0;
+
+    border-bottom:1px solid #e8ecf1;
+}
+
+.cart-controls{
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-top:8px;
+}
+
+.qty-btn{
+    width:30px;
+    height:30px;
+
+    border:1px solid #dce1e8;
+
+    background:#fff;
+
+    border-radius:6px;
+}
+
+.cart-total{
+    display:flex;
+
+    align-items:center;
+    justify-content:space-between;
+
+    padding-top:20px;
+
+    font-size:21px;
+    font-weight:700;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group label{
+    display:block;
+
+    margin-bottom:7px;
+
+    font-weight:700;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+    width:100%;
+
+    border:1px solid #d8dee8;
+
+    border-radius:8px;
+
+    padding:12px;
+
+    outline:none;
+
+    background:#fff;
+}
+
+.form-group textarea{
+    min-height:100px;
+
+    resize:vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+    border-color:#0b5ed7;
+}
+
+
+/* =========================================================
+   ADMIN
+========================================================= */
+
+.admin-modal{
+    width:100%;
+    max-width:1300px;
+
+    height:92vh;
+
+    padding:0;
+
+    display:flex;
+
+    overflow:hidden;
+}
+
+.admin-sidebar{
+    width:220px;
+
+    flex-shrink:0;
+
+    background:#101828;
+    color:#fff;
+
+    padding:20px;
+}
+
+.admin-brand{
+    font-size:20px;
+    font-weight:700;
+
+    margin-bottom:25px;
+}
+
+.admin-menu{
+    display:grid;
+
+    gap:7px;
+}
+
+.admin-menu button{
+    width:100%;
+
+    border:none;
+
+    background:transparent;
+    color:#cbd5e1;
+
+    text-align:left;
+
+    padding:11px;
+
+    border-radius:8px;
+}
+
+.admin-menu button.active{
+    background:#0b5ed7;
+    color:#fff;
+}
+
+.admin-content{
+    flex:1;
+
+    min-width:0;
+
+    overflow:auto;
+
+    padding:25px;
+
+    background:#f7f9fc;
+}
+
+.admin-top{
+    display:flex;
+
+    align-items:center;
+    justify-content:space-between;
+
+    gap:15px;
+
+    margin-bottom:25px;
+}
+
+.admin-page{
+    display:none;
+}
+
+.admin-page.active{
+    display:block;
+}
+
+.stats{
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:15px;
+
+    margin-bottom:20px;
+}
+
+.stat{
+    background:#fff;
+
+    border:1px solid #e3e7ed;
+
+    border-radius:13px;
+
+    padding:20px;
+}
+
+.stat-number{
+    margin-top:8px;
+
+    font-size:27px;
+
+    font-weight:700;
+}
+
+.admin-card{
+    background:#fff;
+
+    border:1px solid #e3e7ed;
+
+    border-radius:13px;
+
+    padding:20px;
+
+    margin-bottom:20px;
+}
+
+.admin-form-grid{
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:15px;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+.admin-table-wrapper{
+    width:100%;
+
+    overflow-x:auto;
+}
+
+.admin-table{
+    width:100%;
+
+    min-width:800px;
+
+    border-collapse:collapse;
+}
+
+.admin-table th,
+.admin-table td{
+    padding:12px 8px;
+
+    text-align:left;
+
+    border-bottom:1px solid #edf0f4;
+
+    vertical-align:middle;
+}
+
+.admin-table img{
+    width:55px;
+    height:45px;
+
+    object-fit:cover;
+
+    border-radius:7px;
+}
+
+.admin-actions{
+    display:flex;
+
+    gap:6px;
+
+    flex-wrap:wrap;
+}
+
+.small-btn{
+    border:none;
+
+    border-radius:7px;
+
+    padding:7px 9px;
+}
+
+.blue{
+    background:#0b5ed7;
+    color:#fff;
+}
+
+.red{
+    background:#dc3545;
+    color:#fff;
+}
+
+.green{
+    background:#198754;
+    color:#fff;
+}
+
+.gray{
+    background:#e9edf2;
+    color:#172033;
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+.login-box{
+    max-width:420px;
+}
+
+.login-box p{
+    color:#687386;
+
+    line-height:1.5;
+
+    margin-bottom:20px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1050px){
+
+    .categories{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .products-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .advantages{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+
+@media(max-width:800px){
+
+    .header-main{
+        flex-wrap:wrap;
+    }
+
+    .logo{
+        flex:1;
+    }
+
+    .search-box{
+        order:3;
+        flex-basis:100%;
+    }
+
+    .nav{
+        overflow-x:auto;
+        white-space:nowrap;
+    }
+
+    .products-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .admin-modal{
+        height:95vh;
+
+        flex-direction:column;
+    }
+
+    .admin-sidebar{
+        width:100%;
+
+        padding:12px;
+    }
+
+    .admin-brand{
+        margin-bottom:10px;
+    }
+
+    .admin-menu{
+        display:flex;
+
+        overflow-x:auto;
+    }
+
+    .admin-menu button{
+        width:auto;
+
+        white-space:nowrap;
+    }
+
+    .admin-form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:auto;
+    }
+
+}
+
+
+@media(max-width:550px){
+
+    .header-actions{
+        width:100%;
+
+        justify-content:flex-end;
+    }
+
+    .hero-inner{
+        padding:55px 20px;
+    }
+
+    .categories{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .products-grid{
+        grid-template-columns:1fr;
+    }
+
+    .advantages{
+        grid-template-columns:1fr;
+    }
+
+    .footer-inner{
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+
+/* =========================================================
+   IMPORTANT : AUCUNE ANIMATION DE TREMBLEMENT
+========================================================= */
+
+*,
+*::before,
+*::after{
+    animation:none !important;
+}
+
+</style>
 </head>
 
 
 <body>
 
 
-<!-- =====================================================
+<!-- ======================================================
      TOP BAR
-===================================================== -->
+====================================================== -->
 
-<div class="top-bar">
-
-    <span>🚚 Livraison disponible en Haïti</span>
-
-    <span>📞 Service client</span>
-
-    <span>🔒 Paiement sécurisé</span>
-
+<div
+    class="topbar"
+    id="topMessage"
+>
+    Livraison disponible en Haïti
 </div>
 
 
-
-<!-- =====================================================
+<!-- ======================================================
      HEADER
-===================================================== -->
+====================================================== -->
 
 <header>
 
     <div class="header-main">
 
-        <a href="#accueil" class="logo">
-            <img src="https://lgshaiti.com/Image/lgs1.jpg" alt="La Grâce Solution">
+        <a
+            href="#accueil"
+            class="logo"
+        >
+
+            <img
+                src="https://lgshaiti.com/Image/lgs1.jpg"
+                alt="La Grâce Solution"
+                onerror="this.style.display='none'"
+            >
+
+            <span id="headerSiteName">
+                La Grâce Solution
+            </span>
+
         </a>
+
 
         <div class="search-box">
 
@@ -1376,38 +1177,42 @@
                 placeholder="Rechercher un produit..."
             >
 
-            <button onclick="searchProducts()">🔍</button>
+            <span class="search-icon">
+                🔎
+            </span>
 
         </div>
 
-        <div class="header-buttons">
 
-            <button class="header-button" title="Favoris">
-                ♡
-                <span>Favoris</span>
+        <div class="header-actions">
+
+            <button
+                class="header-btn"
+                onclick="showFavorites()"
+            >
+                ❤️
             </button>
 
             <button
-                class="header-button cart-button"
+                class="header-btn"
                 onclick="openCart()"
             >
-
                 🛒
-                <span>Panier</span>
 
-                <b id="cartCount">0</b>
+                <span
+                    class="cart-count"
+                    id="cartCount"
+                >
+                    0
+                </span>
 
             </button>
 
             <button
-                class="header-button"
-                title="Admin"
+                class="header-btn"
                 onclick="openAdmin()"
             >
-
-                ⚙️
-                <span>Admin</span>
-
+                ⚙️ Admin
             </button>
 
         </div>
@@ -1415,255 +1220,332 @@
     </div>
 
 
-    <nav class="navigation">
+    <nav class="nav">
 
-        <button
-            class="category-button"
-            onclick="scrollToCategories()"
-        >
-            ☰ Toutes les catégories
-        </button>
+        <a href="#accueil">
+            Accueil
+        </a>
 
-        <div class="nav-links">
+        <a href="#categories">
+            Catégories
+        </a>
 
-            <a href="#accueil">Accueil</a>
-            <a href="#categories">Catégories</a>
-            <a href="#produits">Produits</a>
-            <a href="#promotions">Promotions</a>
-            <a href="#contact">Contact</a>
+        <a href="#produits">
+            Produits
+        </a>
 
-        </div>
+        <a href="#promotion">
+            Promotions
+        </a>
+
+        <a href="#contact">
+            Contact
+        </a>
 
     </nav>
 
 </header>
 
 
+<!-- ======================================================
+     HERO
+====================================================== -->
 
-<!-- =====================================================
-     MAIN
-===================================================== -->
+<section
+    class="hero"
+    id="accueil"
+>
 
-<main id="accueil">
+    <div class="hero-inner">
 
-
-<section class="hero">
-
-    <div class="hero-content">
-
-        <span class="hero-label">
-            LA GRÂCE SOLUTION SHOP
-        </span>
-
-        <h1>
-            Les solutions dont vous avez besoin
-            <strong>au même endroit.</strong>
+        <h1 id="heroTitle">
+            Les solutions dont vous avez besoin au même endroit.
         </h1>
 
-        <p>
-            Découvrez nos produits et équipements
-            pour vos projets, votre maison et
-            vos besoins professionnels.
+        <p id="heroDescription">
+            Découvrez nos produits et solutions pour votre maison,
+            votre entreprise et vos projets.
         </p>
 
         <div class="hero-buttons">
 
-            <a href="#produits" class="primary-button">
-                Découvrir les produits →
+            <a
+                href="#produits"
+                class="btn btn-primary"
+            >
+                Découvrir les produits
             </a>
 
-            <a href="#categories" class="secondary-button">
-                Voir les catégories
+            <a
+                href="#contact"
+                class="btn btn-secondary"
+            >
+                Nous contacter
             </a>
 
         </div>
-
-    </div>
-
-
-    <div class="hero-product">
-
-        <div class="hero-circle">☀️</div>
-
-        <h2>Solutions énergétiques</h2>
-
-        <p>
-            Panneaux • Batteries • Onduleurs
-        </p>
-
-        <a href="#produits">
-            Découvrir →
-        </a>
 
     </div>
 
 </section>
 
 
-
-<!-- =====================================================
+<!-- ======================================================
      CATEGORIES
-===================================================== -->
+====================================================== -->
 
-<section class="section" id="categories">
+<section
+    class="section"
+    id="categories"
+>
 
-    <div class="section-title">
+    <h2 class="section-title">
+        Nos catégories
+    </h2>
 
-        <div>
-
-            <span>EXPLOREZ</span>
-
-            <h2>Nos catégories</h2>
-
-        </div>
-
-        <a href="#produits">
-            Voir tout →
-        </a>
-
-    </div>
+    <p class="section-subtitle">
+        Trouvez rapidement ce dont vous avez besoin.
+    </p>
 
 
     <div class="categories">
 
-        <button class="category-card"
-                onclick="filterCategory('Solaire')">
+        <div
+            class="category"
+            onclick="selectCategory('Solaire')"
+        >
 
-            <div class="category-icon">☀️</div>
+            <img
+                src="https://loremflickr.com/700/500/solar"
+                alt="Solaire"
+                loading="lazy"
+            >
 
-            <strong>Solaire</strong>
-
-            <small>Énergie solaire</small>
-
-        </button>
-
-
-        <button class="category-card"
-                onclick="filterCategory('Batteries')">
-
-            <div class="category-icon">🔋</div>
-
-            <strong>Batteries</strong>
-
-            <small>Stockage d'énergie</small>
-
-        </button>
-
-
-        <button class="category-card"
-                onclick="filterCategory('Onduleurs')">
-
-            <div class="category-icon">🔌</div>
-
-            <strong>Onduleurs</strong>
-
-            <small>Énergie & protection</small>
-
-        </button>
-
-
-        <button class="category-card"
-                onclick="filterCategory('Électricité')">
-
-            <div class="category-icon">⚡</div>
-
-            <strong>Électricité</strong>
-
-            <small>Équipements électriques</small>
-
-        </button>
-
-
-        <button class="category-card"
-                onclick="filterCategory('Outils')">
-
-            <div class="category-icon">🧰</div>
-
-            <strong>Outils</strong>
-
-            <small>Matériel professionnel</small>
-
-        </button>
-
-
-        <button class="category-card"
-                onclick="filterCategory('Accessoires')">
-
-            <div class="category-icon">📦</div>
-
-            <strong>Accessoires</strong>
-
-            <small>Accessoires divers</small>
-
-        </button>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     PROMOTION
-===================================================== -->
-
-<section class="promotion" id="promotions">
-
-    <div>
-
-        <span>🔥 OFFRES SPÉCIALES</span>
-
-        <h2>
-            Découvrez nos produits
-            à des prix intéressants
-        </h2>
-
-        <p>
-            Retrouvez régulièrement nos
-            nouveaux produits et promotions.
-        </p>
-
-    </div>
-
-    <a href="#produits">
-        Voir les offres →
-    </a>
-
-</section>
-
-
-
-<!-- =====================================================
-     PRODUITS
-===================================================== -->
-
-<section class="section" id="produits">
-
-    <div class="section-title">
-
-        <div>
-
-            <span>BOUTIQUE</span>
-
-            <h2>Produits populaires</h2>
-
-            <p id="resultText">
-                Découvrez notre sélection.
-            </p>
+            <div>
+                Solaire
+            </div>
 
         </div>
 
 
-        <select id="sortSelect" onchange="renderProducts()">
+        <div
+            class="category"
+            onclick="selectCategory('Batteries')"
+        >
 
-            <option value="default">Trier par</option>
+            <img
+                src="https://loremflickr.com/700/500/battery"
+                alt="Batteries"
+                loading="lazy"
+            >
 
-            <option value="low">
+            <div>
+                Batteries
+            </div>
+
+        </div>
+
+
+        <div
+            class="category"
+            onclick="selectCategory('Onduleurs')"
+        >
+
+            <img
+                src="https://loremflickr.com/700/500/inverter"
+                alt="Onduleurs"
+                loading="lazy"
+            >
+
+            <div>
+                Onduleurs
+            </div>
+
+        </div>
+
+
+        <div
+            class="category"
+            onclick="selectCategory('Électricité')"
+        >
+
+            <img
+                src="https://loremflickr.com/700/500/electric"
+                alt="Électricité"
+                loading="lazy"
+            >
+
+            <div>
+                Électricité
+            </div>
+
+        </div>
+
+
+        <div
+            class="category"
+            onclick="selectCategory('Outils')"
+        >
+
+            <img
+                src="https://loremflickr.com/700/500/tools"
+                alt="Outils"
+                loading="lazy"
+            >
+
+            <div>
+                Outils
+            </div>
+
+        </div>
+
+
+        <div
+            class="category"
+            onclick="selectCategory('Accessoires')"
+        >
+
+            <img
+                src="https://loremflickr.com/700/500/accessories"
+                alt="Accessoires"
+                loading="lazy"
+            >
+
+            <div>
+                Accessoires
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     PROMOTION
+====================================================== -->
+
+<section
+    class="section"
+    id="promotion"
+>
+
+    <div class="promotion">
+
+        <h2 id="promotionTitle">
+            Promotion spéciale
+        </h2>
+
+        <p id="promotionDescription">
+            Profitez de nos offres du moment.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     PRODUITS
+====================================================== -->
+
+<section
+    class="section"
+    id="produits"
+>
+
+    <h2 class="section-title">
+        Nos produits
+    </h2>
+
+    <p class="section-subtitle">
+        Des produits sélectionnés pour vos projets.
+    </p>
+
+
+    <div class="products-toolbar">
+
+        <div class="categories-filter">
+
+            <button
+                class="filter-btn active"
+                data-category="all"
+                onclick="selectCategory('all')"
+            >
+                Tous
+            </button>
+
+            <button
+                class="filter-btn"
+                data-category="Solaire"
+                onclick="selectCategory('Solaire')"
+            >
+                Solaire
+            </button>
+
+            <button
+                class="filter-btn"
+                data-category="Batteries"
+                onclick="selectCategory('Batteries')"
+            >
+                Batteries
+            </button>
+
+            <button
+                class="filter-btn"
+                data-category="Onduleurs"
+                onclick="selectCategory('Onduleurs')"
+            >
+                Onduleurs
+            </button>
+
+            <button
+                class="filter-btn"
+                data-category="Électricité"
+                onclick="selectCategory('Électricité')"
+            >
+                Électricité
+            </button>
+
+            <button
+                class="filter-btn"
+                data-category="Outils"
+                onclick="selectCategory('Outils')"
+            >
+                Outils
+            </button>
+
+            <button
+                class="filter-btn"
+                data-category="Accessoires"
+                onclick="selectCategory('Accessoires')"
+            >
+                Accessoires
+            </button>
+
+        </div>
+
+
+        <select
+            id="sortSelect"
+            onchange="renderProducts()"
+        >
+
+            <option value="default">
+                Trier
+            </option>
+
+            <option value="priceAsc">
                 Prix croissant
             </option>
 
-            <option value="high">
+            <option value="priceDesc">
                 Prix décroissant
+            </option>
+
+            <option value="name">
+                Nom
             </option>
 
         </select>
@@ -1671,82 +1553,79 @@
     </div>
 
 
-    <div id="productsGrid" class="products-grid"></div>
+    <div
+        class="products-grid"
+        id="productsGrid"
+    >
+
+        <p>
+            Chargement des produits...
+        </p>
+
+    </div>
 
 </section>
 
 
-
-<!-- =====================================================
+<!-- ======================================================
      AVANTAGES
-===================================================== -->
+====================================================== -->
 
-<section class="why-section">
+<section class="section">
 
-    <div class="section-title centered">
-
-        <span>POURQUOI NOUS CHOISIR</span>
-
-        <h2>
-            Une expérience simple et fiable
-        </h2>
-
-    </div>
-
+    <h2 class="section-title">
+        Pourquoi choisir La Grâce Solution ?
+    </h2>
 
     <div class="advantages">
 
-        <div>
+        <div class="advantage">
 
-            <div class="advantage-icon">🚚</div>
-
-            <h3>Livraison</h3>
+            <strong>
+                🚚 Livraison
+            </strong>
 
             <p>
-                Des solutions de livraison
-                adaptées à vos besoins.
+                Livraison disponible selon votre zone.
             </p>
 
         </div>
 
 
-        <div>
+        <div class="advantage">
 
-            <div class="advantage-icon">🛡️</div>
-
-            <h3>Qualité</h3>
+            <strong>
+                💳 Paiement
+            </strong>
 
             <p>
-                Des produits sélectionnés
-                pour vos projets.
+                Plusieurs solutions de paiement disponibles.
             </p>
 
         </div>
 
 
-        <div>
+        <div class="advantage">
 
-            <div class="advantage-icon">💬</div>
-
-            <h3>Support</h3>
+            <strong>
+                🔧 Solutions
+            </strong>
 
             <p>
-                Une équipe disponible pour
-                vous accompagner.
+                Des produits adaptés à différents projets.
             </p>
 
         </div>
 
 
-        <div>
+        <div class="advantage">
 
-            <div class="advantage-icon">🇭🇹</div>
-
-            <h3>En Haïti</h3>
+            <strong>
+                📞 Assistance
+            </strong>
 
             <p>
-                Une boutique pensée pour
-                le marché haïtien.
+                Contactez La Grâce Solution pour vos besoins.
             </p>
 
         </div>
@@ -1755,32 +1634,24 @@
 
 </section>
 
-</main>
 
-
-
-<!-- =====================================================
+<!-- ======================================================
      FOOTER
-===================================================== -->
+====================================================== -->
 
 <footer id="contact">
 
-    <div class="footer-main">
+    <div class="footer-inner">
 
         <div>
 
-            <a href="#accueil" class="logo footer-logo">
-
-                <img
-                    src="https://lgshaiti.com/Image/lgs1.jpg"
-                    alt="La Grâce Solution"
-                >
-
-            </a>
+            <h2 id="footerSiteName">
+                La Grâce Solution
+            </h2>
 
             <p>
-                Votre future boutique en ligne
-                pour vos équipements et solutions.
+                Des solutions pour votre maison,
+                votre entreprise et vos projets.
             </p>
 
         </div>
@@ -1788,81 +1659,97 @@
 
         <div>
 
-            <h3>Navigation</h3>
+            <h3>
+                Contact
+            </h3>
 
-            <a href="#accueil">Accueil</a>
-            <a href="#categories">Catégories</a>
-            <a href="#produits">Produits</a>
-            <a href="#promotions">Promotions</a>
+            <p id="footerPhone">
+                Téléphone : —
+            </p>
+
+            <p id="footerWhatsApp">
+                WhatsApp : —
+            </p>
+
+            <p id="footerEmail">
+                Email : —
+            </p>
 
         </div>
 
 
         <div>
 
-            <h3>Contact</h3>
+            <h3>
+                Adresse
+            </h3>
 
-            <p>📞 Téléphone : à compléter</p>
-
-            <p>💬 WhatsApp : à compléter</p>
-
-            <p>📍 Haïti</p>
+            <p id="footerAddress">
+                —
+            </p>
 
         </div>
-
-    </div>
-
-
-    <div class="copyright">
-
-        © 2026 La Grâce Solution —
-        Tous droits réservés.
 
     </div>
 
 </footer>
 
 
-
-<!-- =====================================================
+<!-- ======================================================
      PANIER
-===================================================== -->
+====================================================== -->
 
 <div
-    id="cartModal"
-    class="cart-overlay"
-    onclick="closeCart(event)"
+    class="overlay"
+    id="cartOverlay"
+    onclick="closeOverlay(event,'cartOverlay')"
 >
 
     <div
-        class="cart-panel"
+        class="modal"
         onclick="event.stopPropagation()"
     >
 
-        <button
-            class="close-cart"
-            onclick="closeCart()"
-        >
-            ×
-        </button>
+        <div class="modal-header">
 
-        <h2>🛒 Votre panier</h2>
+            <h2>
+                Votre panier
+            </h2>
 
-        <div id="cartItems"></div>
-
-        <div class="cart-total">
-
-            <span>Total</span>
-
-            <strong id="cartTotal">
-                0 HTG
-            </strong>
+            <button
+                class="close"
+                onclick="closeModal('cartOverlay')"
+            >
+                ×
+            </button>
 
         </div>
 
+
+        <div id="cartItems">
+        </div>
+
+
+        <div class="cart-total">
+
+            <span>
+                Total
+            </span>
+
+            <span id="cartTotal">
+                0 HTG
+            </span>
+
+        </div>
+
+
+        <br>
+
+
         <button
-            class="checkout-button"
-            onclick="checkout()"
+            class="btn blue"
+            style="width:100%"
+            onclick="openCheckout()"
         >
             Passer la commande
         </button>
@@ -1872,77 +1759,30 @@
 </div>
 
 
+<!-- ======================================================
+     CHECKOUT
+====================================================== -->
 
-<!-- =====================================================
-     ADMIN
-===================================================== -->
-
-<div id="adminModal" class="admin-overlay">
-
-    <!-- LOGIN -->
-
-    <div id="adminLogin" class="admin-login">
-
-        <div class="admin-login-icon">
-            🔐
-        </div>
-
-        <h2>
-            Administration
-        </h2>
-
-        <p>
-            Connectez-vous pour gérer
-            La Grâce Solution.
-        </p>
-
-        <input
-            type="password"
-            id="adminPasswordInput"
-            placeholder="Mot de passe administrateur"
-            onkeydown="if(event.key==='Enter') loginAdmin()"
-        >
-
-        <button onclick="loginAdmin()">
-            🔓 Se connecter
-        </button>
-
-        <button
-            onclick="closeAdmin()"
-            style="margin-top:10px;background:#f1f3f4;color:#333;"
-        >
-            Annuler
-        </button>
-
-    </div>
-
-
-
-    <!-- DASHBOARD -->
+<div
+    class="overlay"
+    id="checkoutOverlay"
+    onclick="closeOverlay(event,'checkoutOverlay')"
+>
 
     <div
-        id="adminDashboard"
-        class="admin-container"
-        style="display:none;"
+        class="modal"
+        onclick="event.stopPropagation()"
     >
 
-        <div class="admin-header">
+        <div class="modal-header">
 
-            <div>
-
-                <h2>
-                    ⚙️ Administration — La Grâce Solution
-                </h2>
-
-                <small>
-                    Gestion de votre boutique
-                </small>
-
-            </div>
+            <h2>
+                Finaliser la commande
+            </h2>
 
             <button
-                class="admin-close"
-                onclick="closeAdmin()"
+                class="close"
+                onclick="closeModal('checkoutOverlay')"
             >
                 ×
             </button>
@@ -1950,390 +1790,392 @@
         </div>
 
 
-        <div class="admin-body">
+        <form id="checkoutForm">
+
+            <div class="form-group">
+
+                <label>
+                    Nom complet
+                </label>
+
+                <input
+                    id="customerName"
+                    required
+                >
+
+            </div>
 
 
-            <!-- SIDEBAR -->
+            <div class="form-group">
 
-            <aside class="admin-sidebar">
+                <label>
+                    Téléphone
+                </label>
+
+                <input
+                    id="customerPhone"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Adresse
+                </label>
+
+                <textarea
+                    id="customerAddress"
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Mode de paiement
+                </label>
+
+                <select id="paymentMethod">
+
+                    <option value="MonCash">
+                        MonCash
+                    </option>
+
+                    <option value="NatCash">
+                        NatCash
+                    </option>
+
+                    <option value="À la livraison">
+                        À la livraison
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="btn blue"
+                style="width:100%"
+            >
+                Confirmer la commande
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- ======================================================
+     LOGIN ADMIN
+====================================================== -->
+
+<div
+    class="overlay"
+    id="adminLoginOverlay"
+>
+
+    <div class="modal login-box">
+
+        <div class="modal-header">
+
+            <h2>
+                Administration
+            </h2>
+
+            <button
+                class="close"
+                onclick="closeModal('adminLoginOverlay')"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <p>
+            Connectez-vous pour gérer La Grâce Solution.
+        </p>
+
+
+        <form id="adminLoginForm">
+
+            <div class="form-group">
+
+                <label>
+                    Identifiant
+                </label>
+
+                <input
+                    id="adminUsername"
+                    value="admin"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Mot de passe
+                </label>
+
+                <input
+                    id="adminPassword"
+                    type="password"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="btn blue"
+                style="width:100%"
+            >
+                Se connecter
+            </button>
+
+        </form>
+
+
+        <p
+            id="loginError"
+            style="color:#dc3545;margin-top:15px"
+        ></p>
+
+    </div>
+
+</div>
+
+
+<!-- ======================================================
+     ADMIN DASHBOARD
+====================================================== -->
+
+<div
+    class="overlay"
+    id="adminOverlay"
+>
+
+    <div class="modal admin-modal">
+
+
+        <!-- SIDEBAR -->
+
+        <aside class="admin-sidebar">
+
+            <div class="admin-brand">
+                LGS Admin
+            </div>
+
+
+            <div class="admin-menu">
 
                 <button
-                    class="admin-nav-btn active"
-                    onclick="showAdminTab('dashboard',this)"
+                    class="active"
+                    data-page="dashboard"
+                    onclick="adminPage('dashboard')"
                 >
                     📊 Tableau de bord
                 </button>
 
+
                 <button
-                    class="admin-nav-btn"
-                    onclick="showAdminTab('products',this)"
+                    data-page="products"
+                    onclick="adminPage('products')"
                 >
                     📦 Produits
                 </button>
 
-                <button
-                    class="admin-nav-btn"
-                    onclick="showAdminTab('add',this)"
-                >
-                    ➕ Ajouter
-                </button>
 
                 <button
-                    class="admin-nav-btn"
-                    onclick="showAdminTab('site',this)"
+                    data-page="orders"
+                    onclick="adminPage('orders')"
                 >
-                    🌐 Mon site
+                    🧾 Commandes
                 </button>
 
-                <button
-                    class="admin-nav-btn"
-                    onclick="showAdminTab('security',this)"
-                >
-                    🔐 Sécurité
-                </button>
 
                 <button
-                    class="admin-nav-btn"
-                    onclick="logoutAdmin()"
+                    data-page="promotion"
+                    onclick="adminPage('promotion')"
+                >
+                    🏷️ Promotion
+                </button>
+
+
+                <button
+                    data-page="site"
+                    onclick="adminPage('site')"
+                >
+                    🌐 Site
+                </button>
+
+
+                <button
+                    onclick="adminLogout()"
                 >
                     🚪 Déconnexion
                 </button>
 
-            </aside>
+            </div>
+
+        </aside>
 
 
+        <!-- ADMIN CONTENT -->
 
-            <!-- CONTENT -->
+        <section class="admin-content">
 
-            <section class="admin-content">
+            <div class="admin-top">
 
+                <div>
 
-                <!-- =========================================
-                     DASHBOARD
-                ========================================== -->
+                    <h2>
+                        Administration
+                    </h2>
 
-                <div
-                    id="adminTabDashboard"
-                    class="admin-tab active"
-                >
-
-                    <div class="admin-title">
-
-                        <h2>
-                            Tableau de bord
-                        </h2>
-
-                        <p>
-                            Vue générale de votre boutique.
-                        </p>
-
-                    </div>
-
-
-                    <div class="admin-stats">
-
-                        <div class="stat-card">
-
-                            <span>📦</span>
-
-                            <small>
-                                Produits
-                            </small>
-
-                            <strong id="statProducts">
-                                0
-                            </strong>
-
-                        </div>
-
-
-                        <div class="stat-card">
-
-                            <span>👁️</span>
-
-                            <small>
-                                Produits visibles
-                            </small>
-
-                            <strong id="statVisible">
-                                0
-                            </strong>
-
-                        </div>
-
-
-                        <div class="stat-card">
-
-                            <span>🙈</span>
-
-                            <small>
-                                Produits masqués
-                            </small>
-
-                            <strong id="statHidden">
-                                0
-                            </strong>
-
-                        </div>
-
-
-                        <div class="stat-card">
-
-                            <span>🛒</span>
-
-                            <small>
-                                Articles dans panier
-                            </small>
-
-                            <strong id="statCart">
-                                0
-                            </strong>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="admin-card">
-
-                        <h3>
-                            ⚡ Actions rapides
-                        </h3>
-
-                        <div style="
-                            display:flex;
-                            gap:10px;
-                            flex-wrap:wrap;
-                        ">
-
-                            <button
-                                class="admin-submit"
-                                onclick="showAdminTab('add')"
-                            >
-                                ➕ Ajouter un produit
-                            </button>
-
-                            <button
-                                class="admin-secondary"
-                                onclick="showAdminTab('products')"
-                            >
-                                📦 Gérer les produits
-                            </button>
-
-                            <button
-                                class="admin-secondary"
-                                onclick="showAdminTab('site')"
-                            >
-                                🌐 Modifier le site
-                            </button>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="admin-card">
-
-                        <h3>
-                            📋 Derniers produits
-                        </h3>
-
-                        <div id="dashboardProducts"></div>
-
-                    </div>
+                    <p id="adminConnectionStatus">
+                        Connecté
+                    </p>
 
                 </div>
 
 
-
-                <!-- =========================================
-                     PRODUCTS
-                ========================================== -->
-
-                <div
-                    id="adminTabProducts"
-                    class="admin-tab"
+                <button
+                    class="close"
+                    onclick="closeModal('adminOverlay')"
                 >
+                    ×
+                </button>
 
-                    <div class="admin-title">
-
-                        <h2>
-                            📦 Gestion des produits
-                        </h2>
-
-                        <p>
-                            Modifiez, masquez ou supprimez
-                            vos produits.
-                        </p>
-
-                    </div>
+            </div>
 
 
-                    <div class="admin-card">
+            <!-- DASHBOARD -->
 
-                        <div class="admin-search">
+            <div
+                class="admin-page active"
+                id="admin-dashboard"
+            >
 
-                            <input
-                                type="search"
-                                id="adminSearch"
-                                placeholder="🔍 Rechercher un produit..."
-                                oninput="renderAdminList()"
-                            >
+                <div class="stats">
 
-                        </div>
+                    <div class="stat">
 
+                        Produits
 
-                        <div id="adminProductList"></div>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- =========================================
-                     ADD / EDIT
-                ========================================== -->
-
-                <div
-                    id="adminTabAdd"
-                    class="admin-tab"
-                >
-
-                    <div class="admin-title">
-
-                        <h2 id="adminFormTitle">
-                            ➕ Ajouter un produit
-                        </h2>
-
-                        <p>
-                            Ajoutez un nouveau produit
-                            à votre catalogue.
-                        </p>
-
-                    </div>
-
-
-                    <div class="admin-card">
-
-                        <form
-                            id="productAdminForm"
-                            class="admin-form"
-                            onsubmit="saveProduct(event)"
+                        <div
+                            class="stat-number"
+                            id="statProducts"
                         >
+                            0
+                        </div>
 
-                            <input
-                                type="hidden"
-                                id="editProductId"
-                            >
-
-
-                            <div class="form-grid">
-
-                                <div class="form-group">
-
-                                    <label>
-                                        Nom du produit
-                                    </label>
-
-                                    <input
-                                        type="text"
-                                        id="adminName"
-                                        placeholder="Ex : Batterie solaire 200Ah"
-                                        required
-                                    >
-
-                                </div>
+                    </div>
 
 
-                                <div class="form-group">
+                    <div class="stat">
 
-                                    <label>
-                                        Catégorie
-                                    </label>
+                        Produits actifs
 
-                                    <select
-                                        id="adminCategory"
-                                        required
-                                    >
+                        <div
+                            class="stat-number"
+                            id="statActive"
+                        >
+                            0
+                        </div>
 
-                                        <option value="Solaire">
-                                            Solaire
-                                        </option>
-
-                                        <option value="Batteries">
-                                            Batteries
-                                        </option>
-
-                                        <option value="Onduleurs">
-                                            Onduleurs
-                                        </option>
-
-                                        <option value="Électricité">
-                                            Électricité
-                                        </option>
-
-                                        <option value="Outils">
-                                            Outils
-                                        </option>
-
-                                        <option value="Accessoires">
-                                            Accessoires
-                                        </option>
-
-                                    </select>
-
-                                </div>
+                    </div>
 
 
-                                <div class="form-group">
+                    <div class="stat">
 
-                                    <label>
-                                        Prix (HTG)
-                                    </label>
+                        Commandes
 
-                                    <input
-                                        type="number"
-                                        id="adminPrice"
-                                        min="1"
-                                        step="1"
-                                        placeholder="25000"
-                                        required
-                                    >
+                        <div
+                            class="stat-number"
+                            id="statOrders"
+                        >
+                            0
+                        </div>
 
-                                </div>
+                    </div>
 
 
-                                <div class="form-group">
+                    <div class="stat">
 
-                                    <label>
-                                        Stock
-                                    </label>
+                        Chiffre d'affaires
 
-                                    <input
-                                        type="number"
-                                        id="adminStock"
-                                        min="0"
-                                        step="1"
-                                        value="10"
-                                        required
-                                    >
+                        <div
+                            class="stat-number"
+                            id="statRevenue"
+                        >
+                            0 HTG
+                        </div>
 
-                                </div>
+                    </div>
 
-                            </div>
+                </div>
 
+
+                <div class="admin-card">
+
+                    <h3>
+                        Stock total
+                    </h3>
+
+                    <p
+                        id="statStock"
+                        style="margin-top:10px"
+                    >
+                        0
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUITS -->
+
+            <div
+                class="admin-page"
+                id="admin-products"
+            >
+
+                <div class="admin-card">
+
+                    <h3>
+                        Ajouter un produit
+                    </h3>
+
+                    <br>
+
+
+                    <form id="productForm">
+
+                        <div class="admin-form-grid">
 
                             <div class="form-group">
 
                                 <label>
-                                    Lien de la photo
+                                    Nom
                                 </label>
 
                                 <input
-                                    type="url"
-                                    id="adminImage"
-                                    placeholder="https://..."
+                                    id="productName"
                                     required
                                 >
 
@@ -2343,144 +2185,267 @@
                             <div class="form-group">
 
                                 <label>
+                                    Catégorie
+                                </label>
+
+                                <input
+                                    id="productCategory"
+                                    placeholder="Solaire"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    Prix HTG
+                                </label>
+
+                                <input
+                                    id="productPrice"
+                                    type="number"
+                                    min="0"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    Stock
+                                </label>
+
+                                <input
+                                    id="productStock"
+                                    type="number"
+                                    min="0"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group full">
+
+                                <label>
+                                    Image URL
+                                </label>
+
+                                <input
+                                    id="productImage"
+                                    placeholder="https://..."
+                                >
+
+                            </div>
+
+
+                            <div class="form-group full">
+
+                                <label>
                                     Description
                                 </label>
 
                                 <textarea
-                                    id="adminDescription"
-                                    placeholder="Description du produit..."
+                                    id="productDescription"
                                 ></textarea>
 
                             </div>
 
 
-                            <div class="form-grid">
+                            <div>
 
-                                <div class="form-group">
-
-                                    <label>
-                                        Promotion (%)
-                                    </label>
+                                <label>
 
                                     <input
-                                        type="number"
-                                        id="adminPromo"
-                                        min="0"
-                                        max="100"
-                                        value="0"
+                                        id="productActive"
+                                        type="checkbox"
+                                        checked
                                     >
 
-                                </div>
+                                    Produit actif
 
-
-                                <div
-                                    class="form-group"
-                                    style="display:flex;align-items:end;"
-                                >
-
-                                    <label
-                                        class="checkbox-row"
-                                    >
-
-                                        <input
-                                            type="checkbox"
-                                            id="adminActive"
-                                            checked
-                                        >
-
-                                        Produit visible sur le site
-
-                                    </label>
-
-                                </div>
+                                </label>
 
                             </div>
 
 
-                            <div
-                                style="
-                                    display:flex;
-                                    gap:10px;
-                                    flex-wrap:wrap;
-                                "
-                            >
+                            <div>
 
-                                <button
-                                    type="submit"
-                                    class="admin-submit"
-                                >
-                                    💾 Enregistrer le produit
-                                </button>
+                                <label>
 
+                                    <input
+                                        id="productPromo"
+                                        type="checkbox"
+                                    >
 
-                                <button
-                                    type="button"
-                                    class="admin-secondary"
-                                    onclick="resetProductForm()"
-                                >
-                                    ↩️ Réinitialiser
-                                </button>
+                                    Promotion
+
+                                </label>
 
                             </div>
 
+                        </div>
 
-                            <p class="admin-hint">
 
-                                Les modifications sont sauvegardées
-                                automatiquement dans ce navigateur.
+                        <button
+                            class="btn blue"
+                            type="submit"
+                        >
+                            Ajouter le produit
+                        </button>
 
-                            </p>
-
-                        </form>
-
-                    </div>
+                    </form>
 
                 </div>
 
 
+                <div class="admin-card">
 
-                <!-- =========================================
-                     SITE
-                ========================================== -->
+                    <h3>
+                        Produits existants
+                    </h3>
 
-                <div
-                    id="adminTabSite"
-                    class="admin-tab"
-                >
+                    <br>
 
-                    <div class="admin-title">
-
-                        <h2>
-                            🌐 Gestion du site
-                        </h2>
-
-                        <p>
-                            Modifiez les informations
-                            affichées aux visiteurs.
-                        </p>
-
+                    <div id="adminProductsList">
+                        Chargement...
                     </div>
 
+                </div>
 
-                    <div class="admin-card">
-
-                        <h3>
-                            Informations générales
-                        </h3>
+            </div>
 
 
-                        <div class="admin-form">
+            <!-- COMMANDES -->
+
+            <div
+                class="admin-page"
+                id="admin-orders"
+            >
+
+                <div class="admin-card">
+
+                    <h3>
+                        Commandes
+                    </h3>
+
+                    <br>
+
+                    <div id="adminOrdersList">
+                        Chargement...
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROMOTION -->
+
+            <div
+                class="admin-page"
+                id="admin-promotion"
+            >
+
+                <div class="admin-card">
+
+                    <h3>
+                        Gestion de la promotion
+                    </h3>
+
+                    <br>
+
+
+                    <form id="promotionForm">
+
+                        <div class="form-group">
+
+                            <label>
+
+                                <input
+                                    type="checkbox"
+                                    id="promotionActive"
+                                >
+
+                                Promotion active
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Titre
+                            </label>
+
+                            <input
+                                id="promotionAdminTitle"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Description
+                            </label>
+
+                            <textarea
+                                id="promotionAdminDescription"
+                            ></textarea>
+
+                        </div>
+
+
+                        <button
+                            class="btn blue"
+                            type="submit"
+                        >
+                            Enregistrer
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+
+            <!-- SITE -->
+
+            <div
+                class="admin-page"
+                id="admin-site"
+            >
+
+                <div class="admin-card">
+
+                    <h3>
+                        Paramètres du site
+                    </h3>
+
+                    <br>
+
+
+                    <form id="siteSettingsForm">
+
+                        <div class="admin-form-grid">
+
 
                             <div class="form-group">
 
                                 <label>
-                                    Nom de la boutique
+                                    Nom du site
                                 </label>
 
-                                <input
-                                    id="siteName"
-                                    type="text"
-                                >
+                                <input id="siteNameAdmin">
 
                             </div>
 
@@ -2491,11 +2456,7 @@
                                     Téléphone
                                 </label>
 
-                                <input
-                                    id="sitePhone"
-                                    type="text"
-                                    placeholder="Ex : +509..."
-                                >
+                                <input id="sitePhoneAdmin">
 
                             </div>
 
@@ -2506,989 +2467,500 @@
                                     WhatsApp
                                 </label>
 
-                                <input
-                                    id="siteWhatsapp"
-                                    type="text"
-                                    placeholder="Ex : +509..."
-                                >
+                                <input id="siteWhatsappAdmin">
 
                             </div>
 
 
                             <div class="form-group">
+
+                                <label>
+                                    Email
+                                </label>
+
+                                <input
+                                    id="siteEmailAdmin"
+                                    type="email"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group full">
 
                                 <label>
                                     Adresse
                                 </label>
 
-                                <input
-                                    id="siteLocation"
-                                    type="text"
-                                    placeholder="Haïti"
-                                >
+                                <input id="siteAddressAdmin">
 
                             </div>
 
 
-                            <div class="form-group">
+                            <div class="form-group full">
 
                                 <label>
-                                    Texte principal de la page d'accueil
+                                    Message du haut
                                 </label>
 
-                                <textarea
-                                    id="siteHeroText"
-                                ></textarea>
+                                <input id="siteTopMessageAdmin">
 
                             </div>
 
 
-                            <div class="form-group">
+                            <div class="form-group full">
 
                                 <label>
-                                    Message de livraison
+                                    Titre principal
                                 </label>
 
-                                <input
-                                    id="siteShipping"
-                                    type="text"
-                                >
+                                <textarea id="siteHeroTitleAdmin"></textarea>
 
                             </div>
 
 
-                            <button
-                                class="admin-submit"
-                                onclick="saveSiteSettings()"
-                            >
-                                💾 Enregistrer les informations
-                            </button>
+                            <div class="form-group full">
+
+                                <label>
+                                    Description principale
+                                </label>
+
+                                <textarea id="siteHeroDescriptionAdmin"></textarea>
+
+                            </div>
 
                         </div>
 
-                    </div>
-
-
-                    <div class="admin-card">
-
-                        <h3>
-                            🔥 Promotion
-                        </h3>
-
-                        <div class="admin-form">
-
-                            <div class="form-group">
-
-                                <label>
-                                    Titre de la promotion
-                                </label>
-
-                                <input
-                                    id="sitePromoTitle"
-                                    type="text"
-                                >
-
-                            </div>
-
-
-                            <div class="form-group">
-
-                                <label>
-                                    Description
-                                </label>
-
-                                <textarea
-                                    id="sitePromoDescription"
-                                ></textarea>
-
-                            </div>
-
-
-                            <label class="checkbox-row">
-
-                                <input
-                                    type="checkbox"
-                                    id="sitePromoVisible"
-                                    checked
-                                >
-
-                                Afficher la section promotions
-
-                            </label>
-
-
-                            <button
-                                class="admin-submit"
-                                onclick="savePromotionSettings()"
-                            >
-                                💾 Enregistrer la promotion
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- =========================================
-                     SECURITY
-                ========================================== -->
-
-                <div
-                    id="adminTabSecurity"
-                    class="admin-tab"
-                >
-
-                    <div class="admin-title">
-
-                        <h2>
-                            🔐 Sécurité
-                        </h2>
-
-                        <p>
-                            Gestion de l'accès administrateur.
-                        </p>
-
-                    </div>
-
-
-                    <div class="admin-card">
-
-                        <h3>
-                            Modifier le mot de passe
-                        </h3>
-
-                        <div class="admin-form">
-
-                            <input
-                                type="password"
-                                id="oldPassword"
-                                placeholder="Ancien mot de passe"
-                            >
-
-                            <input
-                                type="password"
-                                id="newPassword"
-                                placeholder="Nouveau mot de passe"
-                            >
-
-                            <input
-                                type="password"
-                                id="confirmPassword"
-                                placeholder="Confirmer le nouveau mot de passe"
-                            >
-
-                            <button
-                                class="admin-submit"
-                                onclick="changeAdminPassword()"
-                            >
-                                🔑 Modifier le mot de passe
-                            </button>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="admin-card">
-
-                        <h3>
-                            ⚠️ Données
-                        </h3>
-
-                        <p class="admin-hint">
-                            Cette action remet les produits ajoutés
-                            et les paramètres du site à leur état
-                            initial.
-                        </p>
-
-                        <br>
 
                         <button
-                            class="admin-danger"
-                            onclick="resetAllData()"
+                            class="btn blue"
+                            type="submit"
                         >
-                            🗑️ Réinitialiser les données
+                            Enregistrer les paramètres
                         </button>
 
-                    </div>
-
-
-                    <div class="admin-card">
-
-                        <h3>
-                            🔒 Important
-                        </h3>
-
-                        <p class="admin-hint">
-
-                            Cette version fonctionne côté navigateur
-                            avec localStorage. Elle est pratique pour
-                            une démonstration ou un prototype, mais
-                            le mot de passe n'est pas une véritable
-                            sécurité serveur.
-
-                            <br><br>
-
-                            Pour une vraie boutique, il faudra connecter
-                            cet espace à un serveur, une base de données
-                            et une authentification sécurisée.
-
-                        </p>
-
-                    </div>
+                    </form>
 
                 </div>
 
+            </div>
 
-            </section>
-
-        </div>
+        </section>
 
     </div>
 
 </div>
 
 
-
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
-
 <script>
 
-
-/* =====================================================
-   PRODUITS ORIGINAUX
-===================================================== */
-
-const products = [
-
-    {
-        id: 1,
-        name: "Panneau solaire 550W",
-        category: "Solaire",
-        price: 85000,
-        image: "https://loremflickr.com/500/400/solar-panel,photovoltaic",
-        stock: 10,
-        active: true,
-        promo: 0,
-        description: "Panneau solaire haute puissance."
-    },
-
-    {
-        id: 2,
-        name: "Panneau solaire 330W",
-        category: "Solaire",
-        price: 52000,
-        image: "https://loremflickr.com/500/400/solar-panel,roof",
-        stock: 10,
-        active: true,
-        promo: 0,
-        description: "Panneau solaire pour installations résidentielles."
-    },
-
-    {
-        id: 3,
-        name: "Contrôleur solaire MPPT 60A",
-        category: "Solaire",
-        price: 18000,
-        image: "https://loremflickr.com/500/400/solar-charge-controller",
-        stock: 10,
-        active: true,
-        promo: 0,
-        description: "Contrôleur solaire MPPT 60A."
-    },
-
-    {
-        id: 4,
-        name: "Lampe solaire LED",
-        category: "Solaire",
-        price: 6500,
-        image: "https://loremflickr.com/500/400/solar-lamp,led",
-        stock: 20,
-        active: true,
-        promo: 0,
-        description: "Lampe LED solaire."
-    },
-
-    {
-        id: 5,
-        name: "Kit solaire portable",
-        category: "Solaire",
-        price: 32000,
-        image: "https://loremflickr.com/500/400/portable-solar-panel",
-        stock: 10,
-        active: true,
-        promo: 0,
-        description: "Kit solaire portable."
-    },
-
-    {
-        id: 6,
-        name: "Batterie solaire 12V 100Ah",
-        category: "Batteries",
-        price: 42000,
-        image: "https://loremflickr.com/500/400/battery,solar",
-        stock: 10,
-        active: true,
-        promo: 0,
-        description: "Batterie solaire 12V 100Ah."
-    },
-
-    {
-        id: 7,
-        name: "Batterie lithium 24V",
-        category: "Batteries",
-        price: 68000,
-        image: "https://loremflickr.com/500/400/lithium-battery",
-        stock: 10,
-        active: true,
-        promo: 0,
-        description: "Batterie lithium 24V."
-    },
-
-    {
-        id: 8,
-        name: "Batterie de secours portable",
-        category: "Batteries",
-        price: 15000,
-        image: "https://loremflickr.com/500/400/power-bank,battery",
-        stock: 15,
-        active: true,
-        promo: 0,
-        description: "Batterie de secours portable."
-    },
-
-    {
-        id: 9,
-        name: "Onduleur 3000W",
-        category: "Onduleurs",
-        price: 95000,
-        image: "https://loremflickr.com/500/400/power-inverter",
-        stock: 8,
-        active: true,
-        promo: 0,
-        description: "Onduleur 3000W."
-    },
-
-    {
-        id: 10,
-        name: "Onduleur 1500W pur sinus",
-        category: "Onduleurs",
-        price: 48000,
-        image: "https://loremflickr.com/500/400/inverter,electronics",
-        stock: 10,
-        active: true,
-        promo: 0,
-        description: "Onduleur 1500W pur sinus."
-    },
-
-    {
-        id: 11,
-        name: "Kit électrique professionnel",
-        category: "Électricité",
-        price: 27500,
-        image: "https://loremflickr.com/500/400/electrical,wiring",
-        stock: 10,
-        active: true,
-        promo: 0,
-        description: "Kit électrique professionnel."
-    },
-
-    {
-        id: 12,
-        name: "Disjoncteur différentiel",
-        category: "Électricité",
-        price: 3200,
-        image: "https://loremflickr.com/500/400/circuit-breaker",
-        stock: 20,
-        active: true,
-        promo: 0,
-        description: "Disjoncteur différentiel."
-    },
-
-    {
-        id: 13,
-        name: "Multimètre numérique",
-        category: "Outils",
-        price: 7500,
-        image: "https://loremflickr.com/500/400/multimeter",
-        stock: 15,
-        active: true,
-        promo: 0,
-        description: "Multimètre numérique."
-    },
-
-    {
-        id: 14,
-        name: "Perceuse électrique",
-        category: "Outils",
-        price: 12500,
-        image: "https://loremflickr.com/500/400/power-drill",
-        stock: 10,
-        active: true,
-        promo: 0,
-        description: "Perceuse électrique."
-    },
-
-    {
-        id: 15,
-        name: "Câbles solaires 10m",
-        category: "Accessoires",
-        price: 4500,
-        image: "https://loremflickr.com/500/400/electrical-cable",
-        stock: 30,
-        active: true,
-        promo: 0,
-        description: "Câbles solaires de 10 mètres."
-    },
-
-    {
-        id: 16,
-        name: "Connecteurs MC4 (paire)",
-        category: "Accessoires",
-        price: 1200,
-        image: "https://loremflickr.com/500/400/connector,cable",
-        stock: 30,
-        active: true,
-        promo: 0,
-        description: "Connecteurs MC4."
-    }
-
-];
-
-
-/* =====================================================
-   CONFIGURATION ADMIN
-===================================================== */
-
-let ADMIN_PASSWORD =
-    localStorage.getItem("graceSolutionAdminPassword")
-    || "lgs2026";
-
-let adminUnlocked = false;
-
-
-/* =====================================================
-   PRODUITS ADMIN
-===================================================== */
-
-let adminProducts =
-    JSON.parse(
-        localStorage.getItem(
-            "graceSolutionAdminProducts"
-        )
-    ) || [];
-
-
-/* =====================================================
-   PRODUITS PERSONNALISÉS / MODIFICATIONS
-===================================================== */
-
-let productOverrides =
-    JSON.parse(
-        localStorage.getItem(
-            "graceSolutionProductOverrides"
-        )
-    ) || {};
-
-
-/* =====================================================
-   PARAMÈTRES DU SITE
-===================================================== */
-
-let siteSettings =
-    JSON.parse(
-        localStorage.getItem(
-            "graceSolutionSiteSettings"
-        )
-    ) || {
-
-        name: "La Grâce Solution",
-
-        phone: "à compléter",
-
-        whatsapp: "à compléter",
-
-        location: "Haïti",
-
-        heroText:
-            "Découvrez nos produits et équipements pour vos projets, votre maison et vos besoins professionnels.",
-
-        shipping:
-            "🚚 Livraison disponible en Haïti",
-
-        promoTitle:
-            "Découvrez nos produits à des prix intéressants",
-
-        promoDescription:
-            "Retrouvez régulièrement nos nouveaux produits et promotions.",
-
-        promoVisible: true
-
-    };
-
-
-/* =====================================================
-   PANIER
-===================================================== */
-
-let cart =
-    JSON.parse(
-        localStorage.getItem(
-            "graceSolutionCart"
-        )
-    ) || [];
-
-
-/* =====================================================
-   TOUS LES PRODUITS
-===================================================== */
-
-function getAllProducts() {
-
-    const originalProducts =
-        products.map(product => {
-
-            const override =
-                productOverrides[product.id];
-
-            return override
-                ? {...product, ...override}
-                : {...product};
-
-        });
-
-
-    return [
-        ...originalProducts,
-        ...adminProducts
-    ];
-
-}
-
-
-/* =====================================================
-   PRODUITS VISIBLES
-===================================================== */
-
-function getPublicProducts() {
-
-    return getAllProducts()
-        .filter(product =>
-            product.active !== false
-        );
-
-}
-
-
-/* =====================================================
+/* =========================================================
    VARIABLES
-===================================================== */
+========================================================= */
 
-let visibleProducts =
-    getPublicProducts();
+let products = [];
 
+let cart = [];
 
-/* =====================================================
-   PRIX
-===================================================== */
+let currentCategory = "all";
 
-function formatPrice(price) {
-
-    return new Intl.NumberFormat(
-        "fr-FR"
-    ).format(price) + " HTG";
-
-}
+let searchTerm = "";
 
 
-/* =====================================================
-   PRIX PROMOTION
-===================================================== */
+/* =========================================================
+   API
+========================================================= */
 
-function getFinalPrice(product) {
+async function api(url, options = {}){
 
-    if (
-        product.promo &&
-        product.promo > 0
-    ) {
+    const response = await fetch(url, {
+        credentials:"same-origin",
 
-        return Math.round(
-            product.price -
-            (
-                product.price *
-                product.promo /
-                100
-            )
+        headers:{
+            "Content-Type":"application/json"
+        },
+
+        ...options
+    });
+
+    const data = await response.json()
+        .catch(() => ({}));
+
+    if(!response.ok){
+
+        throw new Error(
+            data.error || "Erreur serveur"
         );
-
     }
 
-    return product.price;
-
+    return data;
 }
 
 
-/* =====================================================
-   AFFICHAGE PRODUITS
-===================================================== */
+/* =========================================================
+   FORMAT
+========================================================= */
 
-function renderProducts() {
+function money(value){
 
-    const grid =
+    return Number(value || 0)
+        .toLocaleString("fr-FR")
+        + " HTG";
+}
+
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+}
+
+
+/* =========================================================
+   PRODUITS
+========================================================= */
+
+async function loadProducts(){
+
+    try{
+
+        products = await api("/api/products");
+
+        renderProducts();
+
+    }catch(error){
+
+        console.error(error);
+
         document.getElementById(
             "productsGrid"
+        ).innerHTML = `
+            <p>
+                Impossible de charger les produits.
+            </p>
+        `;
+    }
+}
+
+
+function renderProducts(){
+
+    const grid =
+        document.getElementById("productsGrid");
+
+    if(!grid){
+        return;
+    }
+
+    let list = [...products];
+
+
+    if(currentCategory !== "all"){
+
+        list = list.filter(
+            product =>
+                product.category === currentCategory
         );
+    }
+
+
+    if(searchTerm){
+
+        const term =
+            searchTerm.toLowerCase();
+
+        list = list.filter(product => {
+
+            return (
+                product.name
+                    .toLowerCase()
+                    .includes(term)
+
+                ||
+
+                product.category
+                    .toLowerCase()
+                    .includes(term)
+
+                ||
+
+                product.description
+                    .toLowerCase()
+                    .includes(term)
+            );
+
+        });
+    }
+
 
     const sort =
-        document.getElementById(
-            "sortSelect"
-        ).value;
-
-    let list =
-        [...visibleProducts];
+        document.getElementById("sortSelect")?.value;
 
 
-    if (sort === "low") {
+    if(sort === "priceAsc"){
+
+        list.sort(
+            (a,b) => a.price - b.price
+        );
+
+    }
+
+    else if(sort === "priceDesc"){
+
+        list.sort(
+            (a,b) => b.price - a.price
+        );
+
+    }
+
+    else if(sort === "name"){
 
         list.sort(
             (a,b) =>
-                getFinalPrice(a) -
-                getFinalPrice(b)
+                a.name.localeCompare(b.name)
         );
 
     }
 
 
-    if (sort === "high") {
-
-        list.sort(
-            (a,b) =>
-                getFinalPrice(b) -
-                getFinalPrice(a)
-        );
-
-    }
-
-
-    grid.innerHTML = "";
-
-
-    if (list.length === 0) {
+    if(list.length === 0){
 
         grid.innerHTML = `
-
-            <div class="empty-products">
-
-                🔎
-
-                <br><br>
-
+            <p>
                 Aucun produit trouvé.
-
-            </div>
-
+            </p>
         `;
 
         return;
-
     }
 
 
-    list.forEach(product => {
+    grid.innerHTML = list.map(product => {
 
-        const finalPrice =
-            getFinalPrice(product);
+        return `
 
-        const outOfStock =
-            Number(product.stock) <= 0;
+        <article class="product">
 
+            ${
+                product.promo
+                ?
+                `<span class="promo-badge">
+                    PROMO
+                </span>`
+                :
+                ""
+            }
 
-        grid.innerHTML += `
+            <img
+                class="product-image"
+                src="${escapeHTML(
+                    product.image ||
+                    "https://via.placeholder.com/700x500?text=Produit"
+                )}"
+                alt="${escapeHTML(product.name)}"
+                loading="lazy"
+                onerror="
+                    this.onerror=null;
+                    this.src='https://via.placeholder.com/700x500?text=Produit';
+                "
+            >
 
-            <article class="product">
+            <div class="product-body">
 
-                <div class="product-image">
-
-                    <img
-                        src="${escapeHTML(product.image)}"
-                        alt="${escapeHTML(product.name)}"
-                        loading="lazy"
-                        onerror="this.style.display='none'"
-                    >
-
-                    ${
-                        product.promo > 0
-                        ?
-                        `<span class="promo-badge">
-                            -${product.promo}%
-                        </span>`
-                        :
-                        ""
-                    }
-
-                    <span class="stock-badge">
-
-                        ${
-                            outOfStock
-                            ?
-                            "Rupture"
-                            :
-                            `${product.stock} disponible(s)`
-                        }
-
-                    </span>
-
+                <div class="product-category">
+                    ${escapeHTML(product.category)}
                 </div>
 
+                <h3 class="product-name">
+                    ${escapeHTML(product.name)}
+                </h3>
 
-                <div class="product-info">
+                <p class="product-description">
+                    ${escapeHTML(product.description)}
+                </p>
 
-                    <div class="product-category">
+                <div class="stock">
+                    ${
+                        product.stock > 0
+                        ?
+                        `${product.stock} disponible(s)`
+                        :
+                        "Rupture de stock"
+                    }
+                </div>
 
-                        ${escapeHTML(product.category)}
+                <div class="product-bottom">
 
-                    </div>
-
-
-                    <h3>
-                        ${escapeHTML(product.name)}
-                    </h3>
-
-
-                    <div class="price">
-
-                        ${formatPrice(finalPrice)}
-
-                        ${
-                            product.promo > 0
-                            ?
-                            `<span class="old-price">
-                                ${formatPrice(product.price)}
-                            </span>`
-                            :
-                            ""
-                        }
-
-                    </div>
-
+                    <span class="price">
+                        ${money(product.price)}
+                    </span>
 
                     <button
-                        class="add-cart"
-                        onclick="addToCart(${product.id})"
-                        ${outOfStock ? "disabled" : ""}
-                    >
-
+                        class="add-btn"
                         ${
-                            outOfStock
-                            ?
-                            "❌ Rupture de stock"
-                            :
-                            "🛒 Ajouter au panier"
+                            product.stock <= 0
+                            ? "disabled"
+                            : ""
                         }
-
+                        onclick="addToCart(${product.id})"
+                    >
+                        Ajouter
                     </button>
 
                 </div>
 
-            </article>
+            </div>
+
+        </article>
 
         `;
+
+    }).join("");
+}
+
+
+/* =========================================================
+   CATEGORIES
+========================================================= */
+
+function selectCategory(category){
+
+    currentCategory = category;
+
+    document
+        .querySelectorAll(".filter-btn")
+        .forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.category === category
+            );
+
+        });
+
+    renderProducts();
+
+    if(
+        document.activeElement?.tagName !== "INPUT"
+    ){
+
+        document.getElementById("produits")
+            ?.scrollIntoView({
+                behavior:"smooth",
+                block:"start"
+            });
+    }
+}
+
+
+/* =========================================================
+   RECHERCHE
+========================================================= */
+
+document
+    .getElementById("searchInput")
+    .addEventListener("input", function(){
+
+        searchTerm =
+            this.value.trim();
+
+        renderProducts();
 
     });
 
 
-    document.getElementById(
-        "resultText"
-    ).textContent =
-        `${list.length} produit(s) disponible(s).`;
+/* =========================================================
+   PANIER
+========================================================= */
 
-}
+function loadCart(){
 
+    try{
 
-/* =====================================================
-   PROTECTION HTML
-===================================================== */
+        cart = JSON.parse(
+            localStorage.getItem("lgs_cart") || "[]"
+        );
 
-function escapeHTML(value) {
+    }catch{
 
-    return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-
-}
-
-
-/* =====================================================
-   RECHERCHE
-===================================================== */
-
-function searchProducts() {
-
-    const search =
-        document
-            .getElementById(
-                "searchInput"
-            )
-            .value
-            .toLowerCase()
-            .trim();
-
-
-    if (!search) {
-
-        visibleProducts =
-            getPublicProducts();
-
-    } else {
-
-        visibleProducts =
-            getPublicProducts()
-                .filter(product => {
-
-                    const text =
-                        product.name +
-                        " " +
-                        product.category +
-                        " " +
-                        (product.description || "");
-
-                    return text
-                        .toLowerCase()
-                        .includes(search);
-
-                });
+        cart = [];
 
     }
 
-
-    renderProducts();
-
-
-    document
-        .getElementById("produits")
-        .scrollIntoView({
-            behavior: "smooth"
-        });
-
+    updateCartCount();
 }
 
 
-document
-    .getElementById(
-        "searchInput"
-    )
-    .addEventListener(
-        "keydown",
-        function(event) {
+function saveCart(){
 
-            if (
-                event.key === "Enter"
-            ) {
-
-                searchProducts();
-
-            }
-
-        }
+    localStorage.setItem(
+        "lgs_cart",
+        JSON.stringify(cart)
     );
 
-
-/* =====================================================
-   FILTRE CATÉGORIE
-===================================================== */
-
-function filterCategory(category) {
-
-    visibleProducts =
-        getPublicProducts()
-            .filter(
-                product =>
-                    product.category ===
-                    category
-            );
-
-
-    renderProducts();
-
-
-    document
-        .getElementById("produits")
-        .scrollIntoView({
-            behavior: "smooth"
-        });
-
+    updateCartCount();
 }
 
 
-/* =====================================================
-   PANIER
-===================================================== */
+function updateCartCount(){
 
-function addToCart(id) {
-
-    const product =
-        getPublicProducts()
-            .find(
-                product =>
-                    product.id === id
-            );
-
-
-    if (!product) return;
-
-
-    if (Number(product.stock) <= 0) {
-
-        alert(
-            "Ce produit est actuellement en rupture de stock."
+    const total =
+        cart.reduce(
+            (sum,item) =>
+                sum + Number(item.quantity || 0),
+            0
         );
 
-        return;
+    document.getElementById(
+        "cartCount"
+    ).textContent = total;
+}
 
+
+function addToCart(id){
+
+    const product =
+        products.find(
+            item => item.id === id
+        );
+
+    if(!product || product.stock <= 0){
+
+        return;
     }
 
 
     const existing =
         cart.find(
-            item =>
-                item.id === id
+            item => item.id === id
         );
 
 
-    if (existing) {
+    if(existing){
 
-        if (
-            existing.quantity >=
-            Number(product.stock)
-        ) {
+        if(
+            existing.quantity <
+            product.stock
+        ){
 
-            alert(
-                "Vous avez atteint la quantité disponible pour ce produit."
-            );
-
-            return;
-
+            existing.quantity++;
         }
 
-        existing.quantity++;
-
-    } else {
+    }else{
 
         cart.push({
 
-            ...product,
+            id:product.id,
 
-            price: getFinalPrice(product),
+            name:product.name,
 
-            quantity: 1
+            price:product.price,
+
+            quantity:1
 
         });
 
@@ -3497,111 +2969,111 @@ function addToCart(id) {
 
     saveCart();
 
-    openCart();
-
-}
-
-
-/* =====================================================
-   SAUVEGARDER PANIER
-===================================================== */
-
-function saveCart() {
-
-    localStorage.setItem(
-        "graceSolutionCart",
-        JSON.stringify(cart)
-    );
-
-    updateCartCount();
-
     renderCart();
 
+    openCart();
 }
 
 
-/* =====================================================
-   COMPTEUR
-===================================================== */
+function removeFromCart(id){
 
-function updateCartCount() {
-
-    const count =
-        cart.reduce(
-            (total,item) =>
-                total +
-                item.quantity,
-            0
+    cart =
+        cart.filter(
+            item => item.id !== id
         );
 
+    saveCart();
 
-    document.getElementById(
-        "cartCount"
-    ).textContent = count;
+    renderCart();
+}
 
 
-    const statCart =
-        document.getElementById(
-            "statCart"
+function changeQuantity(id, amount){
+
+    const item =
+        cart.find(
+            product => product.id === id
         );
 
-    if (statCart) {
+    const product =
+        products.find(
+            product => product.id === id
+        );
 
-        statCart.textContent =
-            count;
-
+    if(!item || !product){
+        return;
     }
 
+
+    item.quantity += amount;
+
+
+    if(item.quantity <= 0){
+
+        removeFromCart(id);
+
+        return;
+    }
+
+
+    if(item.quantity > product.stock){
+
+        item.quantity = product.stock;
+    }
+
+
+    saveCart();
+
+    renderCart();
 }
 
 
-/* =====================================================
-   AFFICHER PANIER
-===================================================== */
-
-function renderCart() {
+function renderCart(){
 
     const container =
-        document.getElementById(
-            "cartItems"
-        );
+        document.getElementById("cartItems");
+
+    if(!container){
+        return;
+    }
 
 
-    if (cart.length === 0) {
+    if(cart.length === 0){
 
         container.innerHTML = `
-
             <p>
                 Votre panier est vide.
             </p>
-
         `;
-
 
         document.getElementById(
             "cartTotal"
-        ).textContent =
-            "0 HTG";
-
+        ).textContent = "0 HTG";
 
         return;
-
     }
 
-
-    container.innerHTML = "";
 
     let total = 0;
 
 
-    cart.forEach(item => {
+    container.innerHTML =
+        cart.map(item => {
 
-        total +=
-            item.price *
-            item.quantity;
+            const product =
+                products.find(
+                    p => p.id === item.id
+                );
 
 
-        container.innerHTML += `
+            const subtotal =
+                item.price * item.quantity;
+
+
+            total += subtotal;
+
+
+            return `
 
             <div class="cart-item">
 
@@ -3611,1561 +3083,1446 @@ function renderCart() {
                         ${escapeHTML(item.name)}
                     </strong>
 
-                    <br>
-
-                    ${formatPrice(item.price)}
-
-                    × ${item.quantity}
-
-                </div>
-
-
-                <button
-                    class="remove-item"
-                    onclick="removeFromCart(${item.id})"
-                >
-
-                    Supprimer
-
-                </button>
-
-            </div>
-
-        `;
-
-    });
-
-
-    document.getElementById(
-        "cartTotal"
-    ).textContent =
-        formatPrice(total);
-
-}
-
-
-/* =====================================================
-   SUPPRIMER PANIER
-===================================================== */
-
-function removeFromCart(id) {
-
-    cart =
-        cart.filter(
-            item =>
-                item.id !== id
-        );
-
-
-    saveCart();
-
-}
-
-
-/* =====================================================
-   OUVRIR PANIER
-===================================================== */
-
-function openCart() {
-
-    document.getElementById(
-        "cartModal"
-    ).style.display = "block";
-
-    renderCart();
-
-}
-
-
-/* =====================================================
-   FERMER PANIER
-===================================================== */
-
-function closeCart(event) {
-
-    if (
-        !event ||
-        event.target.id ===
-        "cartModal"
-    ) {
-
-        document.getElementById(
-            "cartModal"
-        ).style.display = "none";
-
-    }
-
-}
-
-
-/* =====================================================
-   CATÉGORIES
-===================================================== */
-
-function scrollToCategories() {
-
-    document
-        .getElementById(
-            "categories"
-        )
-        .scrollIntoView({
-            behavior: "smooth"
-        });
-
-}
-
-
-/* =====================================================
-   COMMANDER
-===================================================== */
-
-function checkout() {
-
-    if (cart.length === 0) {
-
-        alert(
-            "Votre panier est vide."
-        );
-
-        return;
-
-    }
-
-
-    alert(
-        "La page de commande sera connectée au système de paiement dans la prochaine étape."
-    );
-
-}
-
-
-/* =====================================================
-   ADMIN — OUVRIR
-===================================================== */
-
-function openAdmin() {
-
-    const modal =
-        document.getElementById(
-            "adminModal"
-        );
-
-
-    modal.style.display =
-        "block";
-
-
-    if (adminUnlocked) {
-
-        document.getElementById(
-            "adminLogin"
-        ).style.display =
-            "none";
-
-        document.getElementById(
-            "adminDashboard"
-        ).style.display =
-            "block";
-
-        updateAdminDashboard();
-
-    } else {
-
-        document.getElementById(
-            "adminLogin"
-        ).style.display =
-            "block";
-
-        document.getElementById(
-            "adminDashboard"
-        ).style.display =
-            "none";
-
-        setTimeout(() => {
-
-            document.getElementById(
-                "adminPasswordInput"
-            ).focus();
-
-        },100);
-
-    }
-
-}
-
-
-/* =====================================================
-   ADMIN — FERMER
-===================================================== */
-
-function closeAdmin() {
-
-    document.getElementById(
-        "adminModal"
-    ).style.display =
-        "none";
-
-}
-
-
-/* =====================================================
-   ADMIN — CONNEXION
-===================================================== */
-
-function loginAdmin() {
-
-    const password =
-        document.getElementById(
-            "adminPasswordInput"
-        ).value;
-
-
-    if (
-        password !==
-        ADMIN_PASSWORD
-    ) {
-
-        alert(
-            "❌ Mot de passe incorrect."
-        );
-
-        return;
-
-    }
-
-
-    adminUnlocked = true;
-
-
-    document.getElementById(
-        "adminPasswordInput"
-    ).value = "";
-
-
-    document.getElementById(
-        "adminLogin"
-    ).style.display =
-        "none";
-
-
-    document.getElementById(
-        "adminDashboard"
-    ).style.display =
-        "block";
-
-
-    updateAdminDashboard();
-
-}
-
-
-/* =====================================================
-   ADMIN — DÉCONNEXION
-===================================================== */
-
-function logoutAdmin() {
-
-    adminUnlocked = false;
-
-    document.getElementById(
-        "adminDashboard"
-    ).style.display =
-        "none";
-
-    document.getElementById(
-        "adminLogin"
-    ).style.display =
-        "block";
-
-}
-
-
-/* =====================================================
-   ADMIN — ONGLETS
-===================================================== */
-
-function showAdminTab(tab, button) {
-
-    document
-        .querySelectorAll(".admin-tab")
-        .forEach(
-            element =>
-                element.classList.remove(
-                    "active"
-                )
-        );
-
-
-    document
-        .querySelectorAll(".admin-nav-btn")
-        .forEach(
-            element =>
-                element.classList.remove(
-                    "active"
-                )
-        );
-
-
-    const target =
-        document.getElementById(
-            "adminTab" +
-            tab.charAt(0).toUpperCase() +
-            tab.slice(1)
-        );
-
-
-    if (target) {
-
-        target.classList.add(
-            "active"
-        );
-
-    }
-
-
-    if (button) {
-
-        button.classList.add(
-            "active"
-        );
-
-    }
-
-
-    if (tab === "products") {
-
-        renderAdminList();
-
-    }
-
-
-    if (tab === "dashboard") {
-
-        updateAdminDashboard();
-
-    }
-
-
-    if (tab === "site") {
-
-        loadSiteSettings();
-
-    }
-
-}
-
-
-/* =====================================================
-   ADMIN — DASHBOARD
-===================================================== */
-
-function updateAdminDashboard() {
-
-    const all =
-        getAllProducts();
-
-
-    const visible =
-        all.filter(
-            p =>
-                p.active !== false
-        );
-
-
-    const hidden =
-        all.filter(
-            p =>
-                p.active === false
-        );
-
-
-    document.getElementById(
-        "statProducts"
-    ).textContent =
-        all.length;
-
-
-    document.getElementById(
-        "statVisible"
-    ).textContent =
-        visible.length;
-
-
-    document.getElementById(
-        "statHidden"
-    ).textContent =
-        hidden.length;
-
-
-    document.getElementById(
-        "statCart"
-    ).textContent =
-        cart.reduce(
-            (total,item) =>
-                total + item.quantity,
-            0
-        );
-
-
-    const dashboard =
-        document.getElementById(
-            "dashboardProducts"
-        );
-
-
-    dashboard.innerHTML = "";
-
-
-    all.slice(-5)
-        .reverse()
-        .forEach(product => {
-
-            dashboard.innerHTML += `
-
-                <div class="admin-product-item">
-
-                    <img
-                        src="${escapeHTML(product.image)}"
-                        alt=""
-                    >
-
-                    <div class="admin-product-info">
-
-                        <strong>
-                            ${escapeHTML(product.name)}
-                        </strong>
-
-                        <small>
-                            ${escapeHTML(product.category)}
-                            •
-                            ${formatPrice(product.price)}
-                        </small>
+                    <div>
+                        ${money(item.price)}
+                    </div>
+
+                    <div class="cart-controls">
+
+                        <button
+                            class="qty-btn"
+                            onclick="changeQuantity(${item.id},-1)"
+                        >
+                            −
+                        </button>
+
+                        <span>
+                            ${item.quantity}
+                        </span>
+
+                        <button
+                            class="qty-btn"
+                            onclick="changeQuantity(${item.id},1)"
+                        >
+                            +
+                        </button>
 
                     </div>
 
                 </div>
 
-            `;
-
-        });
-
-}
-
-
-/* =====================================================
-   ADMIN — LISTE
-===================================================== */
-
-function renderAdminList() {
-
-    const container =
-        document.getElementById(
-            "adminProductList"
-        );
-
-
-    const search =
-        (
-            document.getElementById(
-                "adminSearch"
-            )?.value || ""
-        )
-        .toLowerCase()
-        .trim();
-
-
-    let list =
-        getAllProducts();
-
-
-    if (search) {
-
-        list =
-            list.filter(product => {
-
-                return (
-                    product.name +
-                    " " +
-                    product.category
-                )
-                .toLowerCase()
-                .includes(search);
-
-            });
-
-    }
-
-
-    if (list.length === 0) {
-
-        container.innerHTML = `
-
-            <p class="admin-hint">
-                Aucun produit trouvé.
-            </p>
-
-        `;
-
-        return;
-
-    }
-
-
-    container.innerHTML = "";
-
-
-    list.forEach(product => {
-
-        const isOriginal =
-            products.some(
-                p =>
-                    p.id === product.id
-            );
-
-
-        container.innerHTML += `
-
-            <div class="admin-product-item">
-
-                <img
-                    src="${escapeHTML(product.image)}"
-                    alt="${escapeHTML(product.name)}"
-                >
-
-
-                <div class="admin-product-info">
+                <div>
 
                     <strong>
-
-                        ${escapeHTML(product.name)}
-
-                        ${
-                            product.active !== false
-                            ?
-                            `<span class="status active">
-                                VISIBLE
-                            </span>`
-                            :
-                            `<span class="status hidden">
-                                MASQUÉ
-                            </span>`
-                        }
-
+                        ${money(subtotal)}
                     </strong>
 
-
-                    <small>
-
-                        ${escapeHTML(product.category)}
-                        •
-                        ${formatPrice(product.price)}
-                        •
-                        Stock : ${product.stock ?? 0}
-
-                        ${
-                            product.promo > 0
-                            ?
-                            ` • -${product.promo}%`
-                            :
-                            ""
-                        }
-
-                    </small>
-
-                </div>
-
-
-                <div class="admin-product-actions">
+                    <br>
 
                     <button
-                        class="admin-secondary"
-                        onclick="editProduct(${product.id})"
+                        class="small-btn red"
+                        style="margin-top:8px"
+                        onclick="removeFromCart(${item.id})"
                     >
-                        ✏️ Modifier
+                        Supprimer
                     </button>
-
-
-                    <button
-                        class="${
-                            product.active !== false
-                            ?
-                            "admin-warning"
-                            :
-                            "admin-success"
-                        }"
-                        onclick="toggleProduct(${product.id})"
-                    >
-
-                        ${
-                            product.active !== false
-                            ?
-                            "🙈 Masquer"
-                            :
-                            "👁️ Afficher"
-                        }
-
-                    </button>
-
-
-                    ${
-                        isOriginal
-                        ?
-                        ""
-                        :
-                        `
-                        <button
-                            class="admin-danger"
-                            onclick="deleteProduct(${product.id})"
-                        >
-                            🗑️ Supprimer
-                        </button>
-                        `
-                    }
 
                 </div>
 
             </div>
 
-        `;
+            `;
+
+        }).join("");
+
+
+    document.getElementById(
+        "cartTotal"
+    ).textContent = money(total);
+}
+
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+function openCart(){
+
+    renderCart();
+
+    document
+        .getElementById("cartOverlay")
+        .classList.add("open");
+}
+
+
+function openCheckout(){
+
+    if(cart.length === 0){
+
+        alert("Votre panier est vide.");
+
+        return;
+    }
+
+
+    closeModal("cartOverlay");
+
+    document
+        .getElementById("checkoutOverlay")
+        .classList.add("open");
+}
+
+
+function closeModal(id){
+
+    document
+        .getElementById(id)
+        ?.classList.remove("open");
+}
+
+
+function closeOverlay(event,id){
+
+    if(event.target.id === id){
+
+        closeModal(id);
+    }
+}
+
+
+/* =========================================================
+   COMMANDE
+========================================================= */
+
+document
+    .getElementById("checkoutForm")
+    .addEventListener("submit", async function(event){
+
+        event.preventDefault();
+
+
+        if(cart.length === 0){
+
+            alert("Votre panier est vide.");
+
+            return;
+        }
+
+
+        try{
+
+            const data = await api(
+                "/api/orders",
+                {
+                    method:"POST",
+
+                    body:JSON.stringify({
+
+                        customer_name:
+                            document.getElementById(
+                                "customerName"
+                            ).value,
+
+                        phone:
+                            document.getElementById(
+                                "customerPhone"
+                            ).value,
+
+                        address:
+                            document.getElementById(
+                                "customerAddress"
+                            ).value,
+
+                        payment_method:
+                            document.getElementById(
+                                "paymentMethod"
+                            ).value,
+
+                        items:cart
+
+                    })
+                }
+            );
+
+
+            alert(
+                "Commande #" +
+                data.order.id +
+                " enregistrée avec succès."
+            );
+
+
+            cart = [];
+
+            saveCart();
+
+            renderCart();
+
+            closeModal("checkoutOverlay");
+
+            this.reset();
+
+            await loadProducts();
+
+        }catch(error){
+
+            alert(error.message);
+
+        }
 
     });
 
-}
 
+/* =========================================================
+   ADMIN
+========================================================= */
 
-/* =====================================================
-   ADMIN — SAUVEGARDE
-===================================================== */
+function openAdmin(){
 
-function saveAdminProducts() {
-
-    localStorage.setItem(
-        "graceSolutionAdminProducts",
-        JSON.stringify(
-            adminProducts
-        )
-    );
+    document
+        .getElementById("adminLoginOverlay")
+        .classList.add("open");
 
 }
 
 
-function saveProductOverrides() {
-
-    localStorage.setItem(
-        "graceSolutionProductOverrides",
-        JSON.stringify(
-            productOverrides
-        )
-    );
-
-}
-
-
-/* =====================================================
-   ADMIN — AJOUT / MODIFICATION
-===================================================== */
-
-function saveProduct(event) {
+async function adminLogin(event){
 
     event.preventDefault();
 
 
-    const id =
+    const username =
         document.getElementById(
-            "editProductId"
+            "adminUsername"
+        ).value;
+
+    const password =
+        document.getElementById(
+            "adminPassword"
         ).value;
 
 
-    const name =
-        document.getElementById(
-            "adminName"
-        ).value.trim();
+    try{
 
+        await api(
+            "/api/admin/login",
+            {
+                method:"POST",
 
-    const category =
-        document.getElementById(
-            "adminCategory"
-        ).value;
-
-
-    const price =
-        Number(
-            document.getElementById(
-                "adminPrice"
-            ).value
+                body:JSON.stringify({
+                    username,
+                    password
+                })
+            }
         );
 
 
-    const stock =
-        Number(
-            document.getElementById(
-                "adminStock"
-            ).value
+        document.getElementById(
+            "loginError"
+        ).textContent = "";
+
+
+        closeModal(
+            "adminLoginOverlay"
         );
 
 
-    const image =
+        document
+            .getElementById("adminOverlay")
+            .classList.add("open");
+
+
+        await loadAdmin();
+
+    }catch(error){
+
         document.getElementById(
-            "adminImage"
-        ).value.trim();
-
-
-    const description =
-        document.getElementById(
-            "adminDescription"
-        ).value.trim();
-
-
-    const promo =
-        Number(
-            document.getElementById(
-                "adminPromo"
-            ).value
-        ) || 0;
-
-
-    const active =
-        document.getElementById(
-            "adminActive"
-        ).checked;
-
-
-    if (
-        !name ||
-        !category ||
-        !price ||
-        !image
-    ) {
-
-        alert(
-            "Veuillez remplir les champs obligatoires."
-        );
-
-        return;
+            "loginError"
+        ).textContent =
+            error.message;
 
     }
-
-
-    const data = {
-
-        name,
-        category,
-        price,
-        stock,
-        image,
-        description,
-        promo,
-        active
-
-    };
-
-
-    /* MODIFICATION */
-
-    if (id) {
-
-        const numericId =
-            Number(id);
-
-
-        const adminIndex =
-            adminProducts.findIndex(
-                product =>
-                    product.id ===
-                    numericId
-            );
-
-
-        if (adminIndex !== -1) {
-
-            adminProducts[adminIndex] =
-                {
-                    ...adminProducts[adminIndex],
-                    ...data
-                };
-
-            saveAdminProducts();
-
-        } else {
-
-            productOverrides[numericId] =
-                data;
-
-            saveProductOverrides();
-
-        }
-
-
-        alert(
-            "✅ Produit modifié avec succès."
-        );
-
-    }
-
-    /* AJOUT */
-
-    else {
-
-        adminProducts.push({
-
-            id:
-                Date.now(),
-
-            ...data
-
-        });
-
-
-        saveAdminProducts();
-
-
-        alert(
-            "✅ Produit ajouté au catalogue."
-        );
-
-    }
-
-
-    resetProductForm();
-
-
-    visibleProducts =
-        getPublicProducts();
-
-
-    renderProducts();
-
-    renderAdminList();
-
-    updateAdminDashboard();
 
 }
 
 
-/* =====================================================
-   ADMIN — MODIFIER
-===================================================== */
+async function adminLogout(){
 
-function editProduct(id) {
+    try{
 
-    const product =
-        getAllProducts()
-            .find(
-                product =>
-                    product.id === id
-            );
+        await api(
+            "/api/admin/logout",
+            {
+                method:"POST"
+            }
+        );
 
+    }catch(error){
 
-    if (!product) return;
+        console.error(error);
 
-
-    document.getElementById(
-        "editProductId"
-    ).value =
-        product.id;
+    }
 
 
-    document.getElementById(
-        "adminName"
-    ).value =
-        product.name;
+    closeModal("adminOverlay");
+
+}
 
 
-    document.getElementById(
-        "adminCategory"
-    ).value =
-        product.category;
+/* =========================================================
+   ADMIN NAVIGATION
+========================================================= */
 
+function adminPage(page){
 
-    document.getElementById(
-        "adminPrice"
-    ).value =
-        product.price;
+    document
+        .querySelectorAll(".admin-page")
+        .forEach(section => {
 
+            section.classList.remove("active");
 
-    document.getElementById(
-        "adminStock"
-    ).value =
-        product.stock ?? 0;
-
-
-    document.getElementById(
-        "adminImage"
-    ).value =
-        product.image;
-
-
-    document.getElementById(
-        "adminDescription"
-    ).value =
-        product.description || "";
-
-
-    document.getElementById(
-        "adminPromo"
-    ).value =
-        product.promo || 0;
-
-
-    document.getElementById(
-        "adminActive"
-    ).checked =
-        product.active !== false;
-
-
-    document.getElementById(
-        "adminFormTitle"
-    ).textContent =
-        "✏️ Modifier le produit";
-
-
-    showAdminTab("add");
+        });
 
 
     document
         .getElementById(
-            "adminTabAdd"
+            "admin-" + page
         )
-        .scrollIntoView({
-            behavior: "smooth"
+        ?.classList.add("active");
+
+
+    document
+        .querySelectorAll(".admin-menu button")
+        .forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.page === page
+            );
+
         });
 
-}
 
+    if(page === "dashboard"){
 
-/* =====================================================
-   ADMIN — RESET FORMULAIRE
-===================================================== */
+        loadStats();
 
-function resetProductForm() {
+    }
 
-    document.getElementById(
-        "productAdminForm"
-    ).reset();
+    if(page === "products"){
 
+        loadAdminProducts();
 
-    document.getElementById(
-        "editProductId"
-    ).value = "";
+    }
 
+    if(page === "orders"){
 
-    document.getElementById(
-        "adminStock"
-    ).value = 10;
+        loadOrders();
 
+    }
 
-    document.getElementById(
-        "adminPromo"
-    ).value = 0;
+    if(page === "promotion"){
 
+        loadPromotion();
 
-    document.getElementById(
-        "adminActive"
-    ).checked = true;
+    }
 
+    if(page === "site"){
 
-    document.getElementById(
-        "adminFormTitle"
-    ).textContent =
-        "➕ Ajouter un produit";
+        loadSettings();
+
+    }
 
 }
 
 
-/* =====================================================
-   ADMIN — AFFICHER / MASQUER
-===================================================== */
+/* =========================================================
+   ADMIN CHARGEMENT
+========================================================= */
 
-function toggleProduct(id) {
+async function loadAdmin(){
 
-    const adminIndex =
-        adminProducts.findIndex(
-            product =>
-                product.id === id
+    await loadStats();
+
+    await loadAdminProducts();
+
+    await loadOrders();
+
+    await loadPromotion();
+
+    await loadSettings();
+
+}
+
+
+async function loadStats(){
+
+    try{
+
+        const data =
+            await api("/api/admin/stats");
+
+
+        document.getElementById(
+            "statProducts"
+        ).textContent =
+            data.products;
+
+
+        document.getElementById(
+            "statActive"
+        ).textContent =
+            data.activeProducts;
+
+
+        document.getElementById(
+            "statOrders"
+        ).textContent =
+            data.orders;
+
+
+        document.getElementById(
+            "statRevenue"
+        ).textContent =
+            money(data.revenue);
+
+
+        document.getElementById(
+            "statStock"
+        ).textContent =
+            data.stock + " unité(s)";
+
+    }catch(error){
+
+        console.error(error);
+
+    }
+
+}
+
+
+/* =========================================================
+   ADMIN PRODUITS
+========================================================= */
+
+let adminProducts = [];
+
+
+async function loadAdminProducts(){
+
+    try{
+
+        adminProducts =
+            await api(
+                "/api/admin/products"
+            );
+
+        renderAdminProducts();
+
+    }catch(error){
+
+        console.error(error);
+
+    }
+
+}
+
+
+function renderAdminProducts(){
+
+    const container =
+        document.getElementById(
+            "adminProductsList"
         );
 
 
-    if (adminIndex !== -1) {
+    if(adminProducts.length === 0){
 
-        adminProducts[adminIndex].active =
-            adminProducts[adminIndex].active === false;
+        container.innerHTML = `
+            <p>
+                Aucun produit.
+            </p>
+        `;
 
-        saveAdminProducts();
+        return;
+    }
 
-    } else {
 
-        const original =
-            products.find(
-                product =>
-                    product.id === id
+    container.innerHTML = `
+
+        <div class="admin-table-wrapper">
+
+            <table class="admin-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Image
+                        </th>
+
+                        <th>
+                            Produit
+                        </th>
+
+                        <th>
+                            Catégorie
+                        </th>
+
+                        <th>
+                            Prix
+                        </th>
+
+                        <th>
+                            Stock
+                        </th>
+
+                        <th>
+                            État
+                        </th>
+
+                        <th>
+                            Actions
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    ${
+                        adminProducts.map(
+                            product => `
+
+                            <tr>
+
+                                <td>
+
+                                    <img
+                                        src="${escapeHTML(
+                                            product.image ||
+                                            "https://via.placeholder.com/100"
+                                        )}"
+                                        alt=""
+                                        onerror="
+                                            this.onerror=null;
+                                            this.src='https://via.placeholder.com/100';
+                                        "
+                                    >
+
+                                </td>
+
+
+                                <td>
+
+                                    <strong>
+                                        ${escapeHTML(product.name)}
+                                    </strong>
+
+                                    <br>
+
+                                    <small>
+                                        ${
+                                            product.promo
+                                            ? "🏷️ PROMO"
+                                            : ""
+                                        }
+                                    </small>
+
+                                </td>
+
+
+                                <td>
+                                    ${escapeHTML(product.category)}
+                                </td>
+
+
+                                <td>
+                                    ${money(product.price)}
+                                </td>
+
+
+                                <td>
+                                    ${product.stock}
+                                </td>
+
+
+                                <td>
+
+                                    ${
+                                        product.active
+                                        ?
+                                        "🟢 Actif"
+                                        :
+                                        "🔴 Caché"
+                                    }
+
+                                </td>
+
+
+                                <td>
+
+                                    <div class="admin-actions">
+
+                                        <button
+                                            class="small-btn ${
+                                                product.active
+                                                ? "gray"
+                                                : "green"
+                                            }"
+                                            onclick="toggleProduct(${product.id})"
+                                        >
+                                            ${
+                                                product.active
+                                                ? "Masquer"
+                                                : "Activer"
+                                            }
+                                        </button>
+
+
+                                        <button
+                                            class="small-btn red"
+                                            onclick="deleteProduct(${product.id})"
+                                        >
+                                            Supprimer
+                                        </button>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                            `
+                        ).join("")
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    `;
+}
+
+
+document
+    .getElementById("productForm")
+    .addEventListener(
+        "submit",
+        async function(event){
+
+            event.preventDefault();
+
+
+            try{
+
+                await api(
+                    "/api/admin/products",
+                    {
+                        method:"POST",
+
+                        body:JSON.stringify({
+
+                            name:
+                                document.getElementById(
+                                    "productName"
+                                ).value,
+
+                            category:
+                                document.getElementById(
+                                    "productCategory"
+                                ).value,
+
+                            price:
+                                Number(
+                                    document.getElementById(
+                                        "productPrice"
+                                    ).value
+                                ),
+
+                            stock:
+                                Number(
+                                    document.getElementById(
+                                        "productStock"
+                                    ).value
+                                ),
+
+                            image:
+                                document.getElementById(
+                                    "productImage"
+                                ).value,
+
+                            description:
+                                document.getElementById(
+                                    "productDescription"
+                                ).value,
+
+                            active:
+                                document.getElementById(
+                                    "productActive"
+                                ).checked,
+
+                            promo:
+                                document.getElementById(
+                                    "productPromo"
+                                ).checked
+
+                        })
+                    }
+                );
+
+
+                this.reset();
+
+                document.getElementById(
+                    "productActive"
+                ).checked = true;
+
+
+                await loadAdminProducts();
+
+                await loadProducts();
+
+                await loadStats();
+
+
+                alert(
+                    "Produit ajouté avec succès."
+                );
+
+            }catch(error){
+
+                alert(error.message);
+
+            }
+
+        }
+    );
+
+
+async function toggleProduct(id){
+
+    const product =
+        adminProducts.find(
+            p => p.id === id
+        );
+
+
+    if(!product){
+        return;
+    }
+
+
+    try{
+
+        await api(
+            "/api/admin/products/" + id,
+            {
+                method:"PUT",
+
+                body:JSON.stringify({
+
+                    name:product.name,
+
+                    category:product.category,
+
+                    description:
+                        product.description,
+
+                    price:product.price,
+
+                    stock:product.stock,
+
+                    image:product.image,
+
+                    active:!product.active,
+
+                    promo:product.promo
+
+                })
+            }
+        );
+
+
+        await loadAdminProducts();
+
+        await loadProducts();
+
+        await loadStats();
+
+    }catch(error){
+
+        alert(error.message);
+
+    }
+
+}
+
+
+async function deleteProduct(id){
+
+    if(
+        !confirm(
+            "Voulez-vous vraiment supprimer ce produit ?"
+        )
+    ){
+
+        return;
+    }
+
+
+    try{
+
+        await api(
+            "/api/admin/products/" + id,
+            {
+                method:"DELETE"
+            }
+        );
+
+
+        await loadAdminProducts();
+
+        await loadProducts();
+
+        await loadStats();
+
+    }catch(error){
+
+        alert(error.message);
+
+    }
+
+}
+
+
+/* =========================================================
+   COMMANDES ADMIN
+========================================================= */
+
+async function loadOrders(){
+
+    try{
+
+        const orders =
+            await api(
+                "/api/admin/orders"
             );
 
 
-        if (!original) return;
+        const container =
+            document.getElementById(
+                "adminOrdersList"
+            );
 
 
-        const current =
-            productOverrides[id] || {};
+        if(orders.length === 0){
+
+            container.innerHTML = `
+                <p>
+                    Aucune commande.
+                </p>
+            `;
+
+            return;
+        }
 
 
-        productOverrides[id] = {
+        container.innerHTML =
+            orders.map(order => `
 
-            ...current,
+                <div
+                    class="admin-card"
+                    style="margin-bottom:12px"
+                >
 
-            active:
-                current.active === false
+                    <strong>
+                        Commande #${order.id}
+                    </strong>
+
+                    <p style="margin-top:8px">
+                        Client :
+                        ${escapeHTML(order.customer_name)}
+                    </p>
+
+                    <p>
+                        Téléphone :
+                        ${escapeHTML(order.phone)}
+                    </p>
+
+                    <p>
+                        Total :
+                        <strong>
+                            ${money(order.total)}
+                        </strong>
+                    </p>
+
+                    <br>
+
+                    <select
+                        onchange="changeOrderStatus(
+                            ${order.id},
+                            this.value
+                        )"
+                    >
+
+                        <option
+                            value="nouvelle"
+                            ${
+                                order.status === "nouvelle"
+                                ? "selected"
+                                : ""
+                            }
+                        >
+                            Nouvelle
+                        </option>
+
+                        <option
+                            value="confirmee"
+                            ${
+                                order.status === "confirmee"
+                                ? "selected"
+                                : ""
+                            }
+                        >
+                            Confirmée
+                        </option>
+
+                        <option
+                            value="preparee"
+                            ${
+                                order.status === "preparee"
+                                ? "selected"
+                                : ""
+                            }
+                        >
+                            Préparée
+                        </option>
+
+                        <option
+                            value="livree"
+                            ${
+                                order.status === "livree"
+                                ? "selected"
+                                : ""
+                            }
+                        >
+                            Livrée
+                        </option>
+
+                        <option
+                            value="annulee"
+                            ${
+                                order.status === "annulee"
+                                ? "selected"
+                                : ""
+                            }
+                        >
+                            Annulée
+                        </option>
+
+                    </select>
+
+                </div>
+
+            `).join("");
+
+    }catch(error){
+
+        console.error(error);
+
+    }
+
+}
+
+
+async function changeOrderStatus(id,status){
+
+    try{
+
+        await api(
+            "/api/admin/orders/" + id + "/status",
+            {
+                method:"PATCH",
+
+                body:JSON.stringify({
+                    status
+                })
+            }
+        );
+
+
+        await loadOrders();
+
+        await loadStats();
+
+    }catch(error){
+
+        alert(error.message);
+
+    }
+
+}
+
+
+/* =========================================================
+   PROMOTION
+========================================================= */
+
+async function loadPromotion(){
+
+    try{
+
+        const data =
+            await api(
+                "/api/promotion"
+            );
+
+
+        document.getElementById(
+            "promotionActive"
+        ).checked =
+            data.active;
+
+
+        document.getElementById(
+            "promotionAdminTitle"
+        ).value =
+            data.title || "";
+
+
+        document.getElementById(
+            "promotionAdminDescription"
+        ).value =
+            data.description || "";
+
+
+        applyPromotion(data);
+
+    }catch(error){
+
+        console.error(error);
+
+    }
+
+}
+
+
+function applyPromotion(data){
+
+    const box =
+        document.getElementById(
+            "promotion"
+        );
+
+
+    if(!data.active){
+
+        box.style.display = "none";
+
+        return;
+    }
+
+
+    box.style.display = "block";
+
+
+    document.getElementById(
+        "promotionTitle"
+    ).textContent =
+        data.title || "Promotion";
+
+
+    document.getElementById(
+        "promotionDescription"
+    ).textContent =
+        data.description || "";
+
+}
+
+
+document
+    .getElementById("promotionForm")
+    .addEventListener(
+        "submit",
+        async function(event){
+
+            event.preventDefault();
+
+
+            try{
+
+                const data =
+                    await api(
+                        "/api/admin/promotion",
+                        {
+                            method:"PUT",
+
+                            body:JSON.stringify({
+
+                                active:
+                                    document.getElementById(
+                                        "promotionActive"
+                                    ).checked,
+
+                                title:
+                                    document.getElementById(
+                                        "promotionAdminTitle"
+                                    ).value,
+
+                                description:
+                                    document.getElementById(
+                                        "promotionAdminDescription"
+                                    ).value
+
+                            })
+                        }
+                    );
+
+
+                applyPromotion(data);
+
+
+                alert(
+                    "Promotion mise à jour."
+                );
+
+            }catch(error){
+
+                alert(error.message);
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   PARAMÈTRES SITE
+========================================================= */
+
+async function loadSettings(){
+
+    try{
+
+        const data =
+            await api(
+                "/api/settings"
+            );
+
+
+        document.getElementById(
+            "siteNameAdmin"
+        ).value =
+            data.site_name || "";
+
+
+        document.getElementById(
+            "sitePhoneAdmin"
+        ).value =
+            data.phone || "";
+
+
+        document.getElementById(
+            "siteWhatsappAdmin"
+        ).value =
+            data.whatsapp || "";
+
+
+        document.getElementById(
+            "siteEmailAdmin"
+        ).value =
+            data.email || "";
+
+
+        document.getElementById(
+            "siteAddressAdmin"
+        ).value =
+            data.address || "";
+
+
+        document.getElementById(
+            "siteTopMessageAdmin"
+        ).value =
+            data.top_message || "";
+
+
+        document.getElementById(
+            "siteHeroTitleAdmin"
+        ).value =
+            data.hero_title || "";
+
+
+        document.getElementById(
+            "siteHeroDescriptionAdmin"
+        ).value =
+            data.hero_description || "";
+
+
+        applySettings(data);
+
+    }catch(error){
+
+        console.error(error);
+
+    }
+
+}
+
+
+function applySettings(data){
+
+    document.getElementById(
+        "headerSiteName"
+    ).textContent =
+        data.site_name || "La Grâce Solution";
+
+
+    document.getElementById(
+        "footerSiteName"
+    ).textContent =
+        data.site_name || "La Grâce Solution";
+
+
+    document.getElementById(
+        "topMessage"
+    ).textContent =
+        data.top_message || "";
+
+
+    document.getElementById(
+        "heroTitle"
+    ).textContent =
+        data.hero_title || "";
+
+
+    document.getElementById(
+        "heroDescription"
+    ).textContent =
+        data.hero_description || "";
+
+
+    document.getElementById(
+        "footerPhone"
+    ).textContent =
+        "Téléphone : " +
+        (data.phone || "—");
+
+
+    document.getElementById(
+        "footerWhatsApp"
+    ).textContent =
+        "WhatsApp : " +
+        (data.whatsapp || "—");
+
+
+    document.getElementById(
+        "footerEmail"
+    ).textContent =
+        "Email : " +
+        (data.email || "—");
+
+
+    document.getElementById(
+        "footerAddress"
+    ).textContent =
+        data.address || "—";
+
+}
+
+
+document
+    .getElementById("siteSettingsForm")
+    .addEventListener(
+        "submit",
+        async function(event){
+
+            event.preventDefault();
+
+
+            try{
+
+                const data =
+                    await api(
+                        "/api/admin/settings",
+                        {
+                            method:"PUT",
+
+                            body:JSON.stringify({
+
+                                site_name:
+                                    document.getElementById(
+                                        "siteNameAdmin"
+                                    ).value,
+
+                                phone:
+                                    document.getElementById(
+                                        "sitePhoneAdmin"
+                                    ).value,
+
+                                whatsapp:
+                                    document.getElementById(
+                                        "siteWhatsappAdmin"
+                                    ).value,
+
+                                email:
+                                    document.getElementById(
+                                        "siteEmailAdmin"
+                                    ).value,
+
+                                address:
+                                    document.getElementById(
+                                        "siteAddressAdmin"
+                                    ).value,
+
+                                top_message:
+                                    document.getElementById(
+                                        "siteTopMessageAdmin"
+                                    ).value,
+
+                                hero_title:
+                                    document.getElementById(
+                                        "siteHeroTitleAdmin"
+                                    ).value,
+
+                                hero_description:
+                                    document.getElementById(
+                                        "siteHeroDescriptionAdmin"
+                                    ).value
+
+                            })
+                        }
+                    );
+
+
+                applySettings(data);
+
+
+                alert(
+                    "Paramètres enregistrés."
+                );
+
+            }catch(error){
+
+                alert(error.message);
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   FAVORIS
+========================================================= */
+
+function showFavorites(){
+
+    alert(
+        "La section Favoris sera disponible prochainement."
+    );
+
+}
+
+
+/* =========================================================
+   TEMPS RÉEL
+========================================================= */
+
+function startRealtime(){
+
+    if(!window.EventSource){
+        return;
+    }
+
+
+    const events =
+        new EventSource(
+            "/api/events"
+        );
+
+
+    events.onmessage =
+        async function(event){
+
+            try{
+
+                const data =
+                    JSON.parse(event.data);
+
+
+                if(
+                    data.type === "products"
+                ){
+
+                    await loadProducts();
+
+                }
+
+
+                if(
+                    data.type === "settings"
+                ){
+
+                    await loadSettings();
+
+                }
+
+
+                if(
+                    data.type === "promotion"
+                ){
+
+                    await loadPromotion();
+
+                }
+
+            }catch(error){
+
+                console.error(error);
+
+            }
 
         };
 
 
-        saveProductOverrides();
-
-    }
-
-
-    visibleProducts =
-        getPublicProducts();
-
-
-    renderProducts();
-
-    renderAdminList();
-
-    updateAdminDashboard();
-
-}
-
-
-/* =====================================================
-   ADMIN — SUPPRIMER PRODUIT AJOUTÉ
-===================================================== */
-
-function deleteProduct(id) {
-
-    const original =
-        products.some(
-            product =>
-                product.id === id
-        );
-
-
-    if (original) {
-
-        alert(
-            "Les 16 produits d'origine ne peuvent pas être supprimés, mais ils peuvent être modifiés ou masqués."
-        );
-
-        return;
-
-    }
-
-
-    if (
-        !confirm(
-            "Voulez-vous vraiment supprimer ce produit ?"
-        )
-    ) {
-
-        return;
-
-    }
-
-
-    adminProducts =
-        adminProducts.filter(
-            product =>
-                product.id !== id
-        );
-
-
-    saveAdminProducts();
-
-
-    visibleProducts =
-        getPublicProducts();
-
-
-    renderProducts();
-
-    renderAdminList();
-
-    updateAdminDashboard();
-
-}
-
-
-/* =====================================================
-   ADMIN — ANCIENNE FONCTION SUPPRESSION
-===================================================== */
-
-function removeAdminProduct(id) {
-
-    deleteProduct(id);
-
-}
-
-
-/* =====================================================
-   PARAMÈTRES DU SITE
-===================================================== */
-
-function loadSiteSettings() {
-
-    document.getElementById(
-        "siteName"
-    ).value =
-        siteSettings.name;
-
-
-    document.getElementById(
-        "sitePhone"
-    ).value =
-        siteSettings.phone;
-
-
-    document.getElementById(
-        "siteWhatsapp"
-    ).value =
-        siteSettings.whatsapp;
-
-
-    document.getElementById(
-        "siteLocation"
-    ).value =
-        siteSettings.location;
-
-
-    document.getElementById(
-        "siteHeroText"
-    ).value =
-        siteSettings.heroText;
-
-
-    document.getElementById(
-        "siteShipping"
-    ).value =
-        siteSettings.shipping;
-
-
-    document.getElementById(
-        "sitePromoTitle"
-    ).value =
-        siteSettings.promoTitle;
-
-
-    document.getElementById(
-        "sitePromoDescription"
-    ).value =
-        siteSettings.promoDescription;
-
-
-    document.getElementById(
-        "sitePromoVisible"
-    ).checked =
-        siteSettings.promoVisible;
-
-}
-
-
-/* =====================================================
-   SAUVEGARDER INFORMATIONS SITE
-===================================================== */
-
-function saveSiteSettings() {
-
-    siteSettings.name =
-        document.getElementById(
-            "siteName"
-        ).value.trim();
-
-
-    siteSettings.phone =
-        document.getElementById(
-            "sitePhone"
-        ).value.trim();
-
-
-    siteSettings.whatsapp =
-        document.getElementById(
-            "siteWhatsapp"
-        ).value.trim();
-
-
-    siteSettings.location =
-        document.getElementById(
-            "siteLocation"
-        ).value.trim();
-
-
-    siteSettings.heroText =
-        document.getElementById(
-            "siteHeroText"
-        ).value.trim();
-
-
-    siteSettings.shipping =
-        document.getElementById(
-            "siteShipping"
-        ).value.trim();
-
-
-    localStorage.setItem(
-        "graceSolutionSiteSettings",
-        JSON.stringify(
-            siteSettings
-        )
-    );
-
-
-    applySiteSettings();
-
-
-    alert(
-        "✅ Les informations du site ont été enregistrées."
-    );
-
-}
-
-
-/* =====================================================
-   PROMOTION
-===================================================== */
-
-function savePromotionSettings() {
-
-    siteSettings.promoTitle =
-        document.getElementById(
-            "sitePromoTitle"
-        ).value.trim();
-
-
-    siteSettings.promoDescription =
-        document.getElementById(
-            "sitePromoDescription"
-        ).value.trim();
-
-
-    siteSettings.promoVisible =
-        document.getElementById(
-            "sitePromoVisible"
-        ).checked;
-
-
-    localStorage.setItem(
-        "graceSolutionSiteSettings",
-        JSON.stringify(
-            siteSettings
-        )
-    );
-
-
-    applySiteSettings();
-
-
-    alert(
-        "✅ Promotion enregistrée."
-    );
-
-}
-
-
-/* =====================================================
-   APPLIQUER PARAMÈTRES SITE
-===================================================== */
-
-function applySiteSettings() {
-
-    const topBar =
-        document.querySelector(
-            ".top-bar span"
-        );
-
-
-    if (topBar) {
-
-        topBar.textContent =
-            siteSettings.shipping;
-
-    }
-
-
-    const heroP =
-        document.querySelector(
-            ".hero-content p"
-        );
-
-
-    if (heroP) {
-
-        heroP.textContent =
-            siteSettings.heroText;
-
-    }
-
-
-    const promo =
-        document.getElementById(
-            "promotions"
-        );
-
-
-    if (promo) {
-
-        promo.style.display =
-            siteSettings.promoVisible
-            ? "flex"
-            : "none";
-
-
-        const title =
-            promo.querySelector(
-                "h2"
-            );
-
-
-        const description =
-            promo.querySelector(
-                "p"
-            );
-
-
-        if (title) {
-
-            title.textContent =
-                siteSettings.promoTitle;
-
-        }
-
-
-        if (description) {
-
-            description.textContent =
-                siteSettings.promoDescription;
-
-        }
-
-    }
-
-
-    const footerParagraphs =
-        document.querySelectorAll(
-            "footer .footer-main p"
-        );
-
-
-    if (
-        footerParagraphs.length >= 4
-    ) {
-
-        footerParagraphs[1].textContent =
-            "📞 Téléphone : " +
-            siteSettings.phone;
-
-        footerParagraphs[2].textContent =
-            "💬 WhatsApp : " +
-            siteSettings.whatsapp;
-
-        footerParagraphs[3].textContent =
-            "📍 " +
-            siteSettings.location;
-
-    }
-
-}
-
-
-/* =====================================================
-   CHANGER MOT DE PASSE
-===================================================== */
-
-function changeAdminPassword() {
-
-    const oldPassword =
-        document.getElementById(
-            "oldPassword"
-        ).value;
-
-
-    const newPassword =
-        document.getElementById(
-            "newPassword"
-        ).value;
-
-
-    const confirmPassword =
-        document.getElementById(
-            "confirmPassword"
-        ).value;
-
-
-    if (
-        oldPassword !==
-        ADMIN_PASSWORD
-    ) {
-
-        alert(
-            "❌ Ancien mot de passe incorrect."
-        );
-
-        return;
-
-    }
-
-
-    if (
-        !newPassword ||
-        newPassword.length < 6
-    ) {
-
-        alert(
-            "Le nouveau mot de passe doit contenir au moins 6 caractères."
-        );
-
-        return;
-
-    }
-
-
-    if (
-        newPassword !==
-        confirmPassword
-    ) {
-
-        alert(
-            "❌ Les mots de passe ne correspondent pas."
-        );
-
-        return;
-
-    }
-
-
-    ADMIN_PASSWORD =
-        newPassword;
-
-
-    localStorage.setItem(
-        "graceSolutionAdminPassword",
-        ADMIN_PASSWORD
-    );
-
-
-    document.getElementById(
-        "oldPassword"
-    ).value = "";
-
-    document.getElementById(
-        "newPassword"
-    ).value = "";
-
-    document.getElementById(
-        "confirmPassword"
-    ).value = "";
-
-
-    alert(
-        "✅ Mot de passe modifié avec succès."
-    );
-
-}
-
-
-/* =====================================================
-   RESET DONNÉES
-===================================================== */
-
-function resetAllData() {
-
-    if (
-        !confirm(
-            "ATTENTION : cette action supprimera les produits ajoutés et les modifications enregistrées. Continuer ?"
-        )
-    ) {
-
-        return;
-
-    }
-
-
-    localStorage.removeItem(
-        "graceSolutionAdminProducts"
-    );
-
-    localStorage.removeItem(
-        "graceSolutionProductOverrides"
-    );
-
-    localStorage.removeItem(
-        "graceSolutionSiteSettings"
-    );
-
-
-    adminProducts = [];
-
-    productOverrides = {};
-
-
-    siteSettings = {
-
-        name: "La Grâce Solution",
-
-        phone: "à compléter",
-
-        whatsapp: "à compléter",
-
-        location: "Haïti",
-
-        heroText:
-            "Découvrez nos produits et équipements pour vos projets, votre maison et vos besoins professionnels.",
-
-        shipping:
-            "🚚 Livraison disponible en Haïti",
-
-        promoTitle:
-            "Découvrez nos produits à des prix intéressants",
-
-        promoDescription:
-            "Retrouvez régulièrement nos nouveaux produits et promotions.",
-
-        promoVisible: true
+    events.onerror = function(){
+
+        /*
+         * EventSource se reconnecte automatiquement.
+         * Rien à faire ici.
+         */
 
     };
 
-
-    applySiteSettings();
-
-
-    visibleProducts =
-        getPublicProducts();
+}
 
 
-    renderProducts();
+/* =========================================================
+   INITIALISATION
+========================================================= */
 
-    renderAdminList();
+async function initialize(){
 
-    updateAdminDashboard();
+    loadCart();
 
-    loadSiteSettings();
+    await loadProducts();
 
+    await loadSettings();
 
-    alert(
-        "✅ Les données ont été réinitialisées."
-    );
+    await loadPromotion();
+
+    startRealtime();
 
 }
 
 
-/* =====================================================
-   INITIALISATION
-===================================================== */
-
-applySiteSettings();
-
-renderProducts();
-
-updateCartCount();
-
-renderCart();
+initialize();
 
 </script>
 
