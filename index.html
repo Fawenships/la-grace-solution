@@ -1,36 +1,789 @@
-```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>La Grâce Solution — Boutique</title>
+<title>La Grâce Solution — Boutique</title>
 
-    <link rel="stylesheet" href="style.css">
+<style>
+:root{
+    --primary:#0b5ed7;
+    --primary-dark:#084298;
+    --orange:#ff6a00;
+    --green:#198754;
+    --red:#dc3545;
+    --dark:#172033;
+    --light:#f5f7fb;
+    --white:#fff;
+    --border:#e2e6ed;
+    --shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--light);
+    color:var(--dark);
+}
+
+button,
+input,
+select,
+textarea{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+    border:none;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    background:var(--white);
+    border-bottom:1px solid var(--border);
+    padding:14px 5%;
+    display:flex;
+    align-items:center;
+    gap:20px;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    min-width:max-content;
+}
+
+.logo-area img{
+    width:48px;
+    height:48px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.logo-area h1{
+    font-size:20px;
+}
+
+.search-box{
+    flex:1;
+    max-width:600px;
+    margin:auto;
+}
+
+.search-box input{
+    width:100%;
+    padding:13px 16px;
+    border:1px solid var(--border);
+    border-radius:25px;
+    outline:none;
+}
+
+.search-box input:focus{
+    border-color:var(--primary);
+}
+
+.header-actions{
+    display:flex;
+    gap:10px;
+}
+
+.header-btn{
+    padding:11px 15px;
+    border-radius:8px;
+    color:white;
+    background:var(--primary);
+}
+
+.enterprise-btn{
+    background:var(--dark);
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+    color:white;
+    padding:70px 5%;
+    text-align:center;
+}
+
+.hero h2{
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+.hero p{
+    font-size:18px;
+    max-width:700px;
+    margin:0 auto 25px;
+    line-height:1.6;
+}
+
+.hero button{
+    background:white;
+    color:var(--primary);
+    padding:14px 24px;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+/* =========================
+   CATEGORIES
+========================= */
+
+.categories{
+    padding:25px 5%;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.category-btn{
+    padding:10px 18px;
+    background:white;
+    border:1px solid var(--border);
+    border-radius:25px;
+}
+
+.category-btn.active,
+.category-btn:hover{
+    background:var(--primary);
+    color:white;
+}
+
+/* =========================
+   PRODUCTS
+========================= */
+
+.products-section{
+    padding:20px 5% 60px;
+}
+
+.products-section h2{
+    margin-bottom:25px;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+    gap:20px;
+}
+
+.product-card{
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    transition:.2s;
+}
+
+.product-card:hover{
+    transform:translateY(-3px);
+}
+
+.product-card img{
+    width:100%;
+    height:210px;
+    object-fit:cover;
+    background:#eee;
+}
+
+.product-info{
+    padding:16px;
+}
+
+.product-info h3{
+    margin-bottom:8px;
+}
+
+.product-description{
+    color:#667085;
+    font-size:14px;
+    line-height:1.5;
+    min-height:42px;
+}
+
+.product-category{
+    display:inline-block;
+    margin:10px 0;
+    padding:5px 9px;
+    background:#eef4ff;
+    color:var(--primary);
+    border-radius:5px;
+    font-size:12px;
+}
+
+.price{
+    font-size:20px;
+    font-weight:bold;
+    margin:8px 0;
+}
+
+.stock{
+    color:#667085;
+    font-size:13px;
+    margin-bottom:12px;
+}
+
+.add-cart{
+    width:100%;
+    padding:11px;
+    background:var(--primary);
+    color:white;
+    border-radius:7px;
+}
+
+.add-cart:hover{
+    background:var(--primary-dark);
+}
+
+.empty{
+    text-align:center;
+    padding:50px;
+    color:#667085;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background:var(--dark);
+    color:white;
+    padding:35px 5%;
+    text-align:center;
+}
+
+footer p{
+    margin:7px;
+}
+
+/* =========================
+   CART
+========================= */
+
+.cart-panel{
+    position:fixed;
+    top:0;
+    right:-450px;
+    width:420px;
+    max-width:100%;
+    height:100vh;
+    background:white;
+    z-index:3000;
+    box-shadow:-5px 0 25px rgba(0,0,0,.15);
+    transition:.3s;
+    display:flex;
+    flex-direction:column;
+}
+
+.cart-panel.open{
+    right:0;
+}
+
+.cart-header{
+    padding:20px;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.close-btn{
+    background:none;
+    font-size:25px;
+}
+
+.cart-items{
+    flex:1;
+    overflow:auto;
+    padding:20px;
+}
+
+.cart-item{
+    display:flex;
+    gap:10px;
+    padding:12px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.cart-item img{
+    width:65px;
+    height:65px;
+    object-fit:cover;
+    border-radius:7px;
+}
+
+.cart-item-info{
+    flex:1;
+}
+
+.cart-item-info h4{
+    margin-bottom:5px;
+}
+
+.quantity{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:8px;
+}
+
+.quantity button{
+    width:28px;
+    height:28px;
+    border-radius:5px;
+    background:#eee;
+}
+
+.remove-item{
+    color:var(--red);
+    background:none;
+}
+
+.cart-footer{
+    border-top:1px solid var(--border);
+    padding:20px;
+}
+
+.cart-total{
+    display:flex;
+    justify-content:space-between;
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.checkout-btn{
+    width:100%;
+    padding:13px;
+    background:var(--green);
+    color:white;
+    border-radius:7px;
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+.overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    z-index:5000;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.overlay.show{
+    display:flex;
+}
+
+.login-box{
+    background:white;
+    width:420px;
+    max-width:100%;
+    border-radius:12px;
+    padding:30px;
+    box-shadow:0 15px 50px rgba(0,0,0,.25);
+}
+
+.login-box h2{
+    margin-bottom:8px;
+}
+
+.login-box p{
+    color:#667085;
+    margin-bottom:20px;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:7px;
+    font-weight:bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+    padding:11px;
+    border:1px solid var(--border);
+    border-radius:7px;
+    outline:none;
+}
+
+.form-group textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+    border-color:var(--primary);
+}
+
+.login-actions{
+    display:flex;
+    gap:10px;
+    margin-top:20px;
+}
+
+.login-actions button{
+    flex:1;
+    padding:12px;
+    border-radius:7px;
+}
+
+.login-submit{
+    background:var(--primary);
+    color:white;
+}
+
+.login-cancel{
+    background:#eee;
+}
+
+.error{
+    color:var(--red);
+    margin-top:10px;
+    display:none;
+}
+
+/* =========================
+   ENTERPRISE
+========================= */
+
+.enterprise{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:4000;
+    overflow-y:auto;
+    background:#f1f3f7;
+}
+
+.enterprise.show{
+    display:block;
+}
+
+.enterprise-header{
+    background:var(--dark);
+    color:white;
+    padding:15px 5%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.enterprise-brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.enterprise-brand img{
+    width:45px;
+    height:45px;
+    object-fit:cover;
+    border-radius:8px;
+}
+
+.enterprise-actions{
+    display:flex;
+    gap:10px;
+}
+
+.enterprise-actions button{
+    padding:10px 15px;
+    border-radius:7px;
+}
+
+.back-store{
+    background:white;
+    color:var(--dark);
+}
+
+.logout{
+    background:var(--red);
+    color:white;
+}
+
+.enterprise-content{
+    padding:30px 5%;
+    max-width:1400px;
+    margin:auto;
+}
+
+.enterprise-title{
+    margin-bottom:25px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:30px;
+}
+
+.stat{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:var(--shadow);
+}
+
+.stat span{
+    display:block;
+    color:#667085;
+    font-size:14px;
+    margin-bottom:8px;
+}
+
+.stat strong{
+    font-size:28px;
+}
+
+.enterprise-grid{
+    display:grid;
+    grid-template-columns:380px 1fr;
+    gap:25px;
+}
+
+.enterprise-card{
+    background:white;
+    border-radius:10px;
+    padding:22px;
+    box-shadow:var(--shadow);
+    margin-bottom:25px;
+}
+
+.enterprise-card h3{
+    margin-bottom:20px;
+}
+
+.form-actions{
+    display:flex;
+    gap:10px;
+}
+
+.form-actions button{
+    flex:1;
+    padding:12px;
+    border-radius:7px;
+}
+
+.save-product{
+    background:var(--green);
+    color:white;
+}
+
+.cancel-edit{
+    background:#eee;
+}
+
+.enterprise-table-wrapper{
+    overflow-x:auto;
+}
+
+.enterprise-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.enterprise-table th,
+.enterprise-table td{
+    padding:12px;
+    border-bottom:1px solid var(--border);
+    text-align:left;
+    white-space:nowrap;
+}
+
+.enterprise-table th{
+    background:#f8f9fb;
+}
+
+.table-product{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.table-product img{
+    width:50px;
+    height:50px;
+    object-fit:cover;
+    border-radius:7px;
+}
+
+.status{
+    display:inline-block;
+    padding:5px 8px;
+    border-radius:5px;
+    font-size:12px;
+}
+
+.status.published{
+    background:#d1e7dd;
+    color:#146c43;
+}
+
+.status.hidden{
+    background:#f8d7da;
+    color:#842029;
+}
+
+.table-actions{
+    display:flex;
+    gap:5px;
+}
+
+.table-actions button{
+    padding:7px 9px;
+    border-radius:5px;
+    color:white;
+}
+
+.edit-btn{
+    background:var(--primary);
+}
+
+.delete-btn{
+    background:var(--red);
+}
+
+.toggle-btn{
+    background:var(--green);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+    header{
+        flex-wrap:wrap;
+    }
+
+    .search-box{
+        order:3;
+        flex-basis:100%;
+    }
+
+    .enterprise-grid{
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+
+    .hero{
+        padding:50px 20px;
+    }
+
+    .hero h2{
+        font-size:30px;
+    }
+
+    .header-actions{
+        margin-left:auto;
+    }
+
+    .header-btn{
+        padding:9px;
+        font-size:13px;
+    }
+
+    .logo-area h1{
+        font-size:16px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .enterprise-content{
+        padding:20px 15px;
+    }
+
+    .enterprise-header{
+        padding:12px 15px;
+    }
+
+    .enterprise-actions button{
+        padding:8px;
+        font-size:12px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-<header class="navbar">
+<!-- =====================================================
+     BOUTIQUE PUBLIQUE
+===================================================== -->
 
-    <a href="index.html" class="logo">
-        <img src="https://lgshaiti.com/Image/lgs1.jpg"
-             alt="La Grâce Solution">
+<div id="storefront">
 
-        <span>La Grâce Solution</span>
-    </a>
+<header>
 
-    <div class="nav-actions">
+    <div class="logo-area">
+        <img src="https://lgshaiti.com/Image/lgs1.jpg" alt="La Grâce Solution">
+        <h1>La Grâce Solution</h1>
+    </div>
 
-        <button class="cart-button" onclick="openCart()">
-            🛒 Panier
-            <span id="cartCount">0</span>
+    <div class="search-box">
+        <input
+            type="search"
+            id="searchInput"
+            placeholder="Rechercher un produit..."
+            oninput="renderProducts()"
+        >
+    </div>
+
+    <div class="header-actions">
+
+        <button class="header-btn" onclick="openCart()">
+            🛒 Panier (<span id="cartCount">0</span>)
         </button>
 
-        <a href="entreprise.html" class="enterprise-button">
-            🔐 Espace entreprise
-        </a>
+        <button class="header-btn enterprise-btn" onclick="openLogin()">
+            🔐 Entreprise
+        </button>
 
     </div>
 
@@ -39,93 +792,112 @@
 
 <section class="hero">
 
-    <div class="hero-content">
+    <h2>Bienvenue chez La Grâce Solution</h2>
 
-        <span class="hero-label">
-            LA GRÂCE SOLUTION
-        </span>
+    <p>
+        Découvrez nos produits et profitez d'une expérience
+        d'achat simple, rapide et pratique.
+    </p>
 
-        <h1>
-            Bienvenue dans votre boutique en ligne
-        </h1>
-
-        <p>
-            Découvrez nos produits, consultez leurs informations
-            et ajoutez vos articles au panier.
-        </p>
-
-        <a href="#products" class="main-button">
-            Découvrir les produits
-        </a>
-
-    </div>
+    <button onclick="document.getElementById('productsSection').scrollIntoView({behavior:'smooth'})">
+        Découvrir les produits
+    </button>
 
 </section>
 
 
-<section class="shop-tools">
+<div class="categories">
 
-    <div class="search-box">
-        🔎
-        <input
-            type="search"
-            id="searchInput"
-            placeholder="Rechercher un produit..."
-            oninput="renderShop()"
-        >
-    </div>
+    <button class="category-btn active"
+            data-category="Toutes"
+            onclick="filterCategory('Toutes',this)">
+        Toutes
+    </button>
 
-    <select id="categoryFilter" onchange="renderShop()">
-        <option value="">Toutes les catégories</option>
-    </select>
+    <button class="category-btn"
+            data-category="Électronique"
+            onclick="filterCategory('Électronique',this)">
+        Électronique
+    </button>
+
+    <button class="category-btn"
+            data-category="Maison"
+            onclick="filterCategory('Maison',this)">
+        Maison
+    </button>
+
+    <button class="category-btn"
+            data-category="Mode"
+            onclick="filterCategory('Mode',this)">
+        Mode
+    </button>
+
+    <button class="category-btn"
+            data-category="Beauté"
+            onclick="filterCategory('Beauté',this)">
+        Beauté
+    </button>
+
+    <button class="category-btn"
+            data-category="Autres"
+            onclick="filterCategory('Autres',this)">
+        Autres
+    </button>
+
+</div>
+
+
+<section class="products-section" id="productsSection">
+
+    <h2>Nos produits</h2>
+
+    <div class="products" id="productsContainer"></div>
 
 </section>
 
 
-<main class="shop">
+<footer>
 
-    <div class="section-title">
+    <h3>La Grâce Solution</h3>
 
-        <div>
-            <span>NOTRE BOUTIQUE</span>
-            <h2>Produits disponibles</h2>
-        </div>
+    <p>Votre solution pour acheter facilement.</p>
 
-        <small id="productCount"></small>
+    <p>© 2026 La Grâce Solution. Tous droits réservés.</p>
 
-    </div>
+</footer>
 
-
-    <div id="productsGrid" class="products-grid"></div>
-
-</main>
+</div>
 
 
-<!-- PANIER -->
+<!-- =====================================================
+     PANIER
+===================================================== -->
 
-<div id="cartModal" class="modal">
+<div class="cart-panel" id="cartPanel">
 
-    <div class="modal-content">
-
-        <button class="close-button" onclick="closeCart()">
-            ×
-        </button>
+    <div class="cart-header">
 
         <h2>🛒 Mon panier</h2>
 
-        <div id="cartItems"></div>
+        <button class="close-btn" onclick="closeCart()">
+            ×
+        </button>
+
+    </div>
+
+    <div class="cart-items" id="cartItems"></div>
+
+    <div class="cart-footer">
 
         <div class="cart-total">
-            Total :
-            <strong id="cartTotal">
-                0 HTG
-            </strong>
+
+            <span>Total</span>
+
+            <span id="cartTotal">0 HTG</span>
+
         </div>
 
-        <button
-            class="main-button full"
-            onclick="checkout()"
-        >
+        <button class="checkout-btn" onclick="checkout()">
             Passer la commande
         </button>
 
@@ -134,16 +906,1488 @@
 </div>
 
 
-<footer>
+<!-- =====================================================
+     CONNEXION ENTREPRISE
+===================================================== -->
 
-    © <span id="year"></span>
-    La Grâce Solution — Tous droits réservés.
+<div class="overlay" id="loginOverlay">
 
-</footer>
+    <div class="login-box">
+
+        <h2>🔐 Espace entreprise</h2>
+
+        <p>Connexion réservée aux personnes autorisées.</p>
+
+        <form onsubmit="login(event)">
+
+            <div class="form-group">
+
+                <label for="username">
+                    Nom d'utilisateur
+                </label>
+
+                <input
+                    id="username"
+                    type="text"
+                    autocomplete="username"
+                    required
+                >
+
+            </div>
 
 
-<script src="app.js"></script>
+            <div class="form-group">
+
+                <label for="password">
+                    Mot de passe
+                </label>
+
+                <input
+                    id="password"
+                    type="password"
+                    autocomplete="current-password"
+                    required
+                >
+
+            </div>
+
+
+            <div class="error" id="loginError">
+                Identifiants incorrects.
+            </div>
+
+
+            <div class="login-actions">
+
+                <button type="button"
+                        class="login-cancel"
+                        onclick="closeLogin()">
+                    Annuler
+                </button>
+
+                <button type="submit"
+                        class="login-submit">
+                    Se connecter
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     ESPACE ENTREPRISE
+===================================================== -->
+
+<div class="enterprise" id="enterpriseArea">
+
+    <div class="enterprise-header">
+
+        <div class="enterprise-brand">
+
+            <img
+                src="https://lgshaiti.com/Image/lgs1.jpg"
+                alt="La Grâce Solution"
+            >
+
+            <div>
+                <strong>La Grâce Solution</strong>
+                <small style="display:block;color:#cfd4dc;">
+                    Tableau de bord entreprise
+                </small>
+            </div>
+
+        </div>
+
+
+        <div class="enterprise-actions">
+
+            <button class="back-store"
+                    onclick="backToStore()">
+                ← Boutique
+            </button>
+
+            <button class="logout"
+                    onclick="logout()">
+                Déconnexion
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <main class="enterprise-content">
+
+        <div class="enterprise-title">
+
+            <h2>🏢 Tableau de bord</h2>
+
+            <p style="color:#667085;margin-top:7px;">
+                Gestion des produits de La Grâce Solution.
+            </p>
+
+        </div>
+
+
+        <!-- STATISTIQUES -->
+
+        <div class="stats">
+
+            <div class="stat">
+                <span>Produits</span>
+                <strong id="statProducts">0</strong>
+            </div>
+
+            <div class="stat">
+                <span>Produits publiés</span>
+                <strong id="statPublished">0</strong>
+            </div>
+
+            <div class="stat">
+                <span>Stock total</span>
+                <strong id="statStock">0</strong>
+            </div>
+
+            <div class="stat">
+                <span>Articles panier</span>
+                <strong id="statCart">0</strong>
+            </div>
+
+        </div>
+
+
+        <div class="enterprise-grid">
+
+            <!-- FORMULAIRE -->
+
+            <div>
+
+                <div class="enterprise-card">
+
+                    <h3 id="formTitle">
+                        ➕ Ajouter un produit
+                    </h3>
+
+                    <form onsubmit="saveProduct(event)">
+
+                        <input
+                            type="hidden"
+                            id="productId"
+                        >
+
+
+                        <div class="form-group">
+
+                            <label for="productName">
+                                Nom du produit
+                            </label>
+
+                            <input
+                                id="productName"
+                                type="text"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="productPrice">
+                                Prix (HTG)
+                            </label>
+
+                            <input
+                                id="productPrice"
+                                type="number"
+                                min="0"
+                                step="1"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="productStock">
+                                Stock
+                            </label>
+
+                            <input
+                                id="productStock"
+                                type="number"
+                                min="0"
+                                step="1"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="productCategory">
+                                Catégorie
+                            </label>
+
+                            <select id="productCategory" required>
+
+                                <option value="Électronique">
+                                    Électronique
+                                </option>
+
+                                <option value="Maison">
+                                    Maison
+                                </option>
+
+                                <option value="Mode">
+                                    Mode
+                                </option>
+
+                                <option value="Beauté">
+                                    Beauté
+                                </option>
+
+                                <option value="Autres">
+                                    Autres
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="productImage">
+                                URL de l'image
+                            </label>
+
+                            <input
+                                id="productImage"
+                                type="url"
+                                placeholder="https://..."
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="productDescription">
+                                Description
+                            </label>
+
+                            <textarea
+                                id="productDescription"
+                                placeholder="Description du produit..."
+                            ></textarea>
+
+                        </div>
+
+
+                        <div class="form-actions">
+
+                            <button
+                                class="save-product"
+                                type="submit"
+                                id="saveButton">
+                                Ajouter le produit
+                            </button>
+
+                            <button
+                                type="button"
+                                class="cancel-edit"
+                                id="cancelEdit"
+                                onclick="cancelEdit()"
+                                style="display:none;">
+                                Annuler
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+
+            <!-- LISTE PRODUITS -->
+
+            <div>
+
+                <div class="enterprise-card">
+
+                    <h3>📦 Gestion des produits</h3>
+
+                    <div class="enterprise-table-wrapper">
+
+                        <table class="enterprise-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Produit</th>
+                                    <th>Prix</th>
+                                    <th>Stock</th>
+                                    <th>Catégorie</th>
+                                    <th>État</th>
+                                    <th>Actions</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="enterpriseProducts"></tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   DONNÉES
+===================================================== */
+
+const DEFAULT_PRODUCTS = [
+
+    {
+        id:1,
+        name:"Exemple de produit",
+        price:2500,
+        stock:10,
+        category:"Autres",
+        image:"https://lgshaiti.com/Image/lgs1.jpg",
+        description:"Produit exemple. Vous pouvez le modifier ou le supprimer.",
+        published:true
+    }
+
+];
+
+
+let products =
+    JSON.parse(localStorage.getItem("lgs_products"))
+    || DEFAULT_PRODUCTS;
+
+
+let cart =
+    JSON.parse(localStorage.getItem("lgs_cart"))
+    || [];
+
+
+let currentCategory = "Toutes";
+
+
+/* =====================================================
+   SAUVEGARDE
+===================================================== */
+
+function saveData(){
+
+    localStorage.setItem(
+        "lgs_products",
+        JSON.stringify(products)
+    );
+
+    localStorage.setItem(
+        "lgs_cart",
+        JSON.stringify(cart)
+    );
+
+}
+
+
+/* =====================================================
+   AFFICHAGE PRODUITS
+===================================================== */
+
+function renderProducts(){
+
+    const container =
+        document.getElementById("productsContainer");
+
+    const search =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const filtered = products.filter(product => {
+
+        if(!product.published){
+            return false;
+        }
+
+        const categoryMatch =
+            currentCategory === "Toutes"
+            || product.category === currentCategory;
+
+
+        const searchMatch =
+            product.name.toLowerCase().includes(search)
+            ||
+            product.description.toLowerCase().includes(search)
+            ||
+            product.category.toLowerCase().includes(search);
+
+
+        return categoryMatch && searchMatch;
+
+    });
+
+
+    if(filtered.length === 0){
+
+        container.innerHTML = `
+            <div class="empty">
+                Aucun produit disponible.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    container.innerHTML = filtered.map(product => {
+
+        const disabled =
+            product.stock <= 0
+            ? "disabled"
+            : "";
+
+
+        return `
+
+            <article class="product-card">
+
+                <img
+                    src="${escapeAttribute(product.image)}"
+                    alt="${escapeAttribute(product.name)}"
+                    onerror="this.src='https://lgshaiti.com/Image/lgs1.jpg'"
+                >
+
+                <div class="product-info">
+
+                    <span class="product-category">
+                        ${escapeHTML(product.category)}
+                    </span>
+
+                    <h3>
+                        ${escapeHTML(product.name)}
+                    </h3>
+
+                    <p class="product-description">
+                        ${escapeHTML(product.description)}
+                    </p>
+
+                    <div class="price">
+                        ${formatPrice(product.price)}
+                    </div>
+
+                    <div class="stock">
+                        ${
+                            product.stock > 0
+                            ? "Stock disponible : " + product.stock
+                            : "Rupture de stock"
+                        }
+                    </div>
+
+                    <button
+                        class="add-cart"
+                        onclick="addToCart(${product.id})"
+                        ${disabled}>
+                        ${
+                            product.stock > 0
+                            ? "🛒 Ajouter au panier"
+                            : "Indisponible"
+                        }
+                    </button>
+
+                </div>
+
+            </article>
+
+        `;
+
+    }).join("");
+
+}
+
+
+/* =====================================================
+   CATÉGORIES
+===================================================== */
+
+function filterCategory(category, button){
+
+    currentCategory = category;
+
+
+    document
+        .querySelectorAll(".category-btn")
+        .forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+
+    if(button){
+        button.classList.add("active");
+    }
+
+
+    renderProducts();
+
+}
+
+
+/* =====================================================
+   PANIER
+===================================================== */
+
+function addToCart(id){
+
+    const product =
+        products.find(p => p.id === id);
+
+
+    if(!product){
+        return;
+    }
+
+
+    if(product.stock <= 0){
+        alert("Ce produit est en rupture de stock.");
+        return;
+    }
+
+
+    const existing =
+        cart.find(item => item.id === id);
+
+
+    if(existing){
+
+        if(existing.quantity >= product.stock){
+
+            alert("Stock disponible insuffisant.");
+            return;
+
+        }
+
+        existing.quantity++;
+
+    }else{
+
+        cart.push({
+            id:id,
+            quantity:1
+        });
+
+    }
+
+
+    saveData();
+    renderCart();
+    updateStats();
+
+}
+
+
+function renderCart(){
+
+    const container =
+        document.getElementById("cartItems");
+
+
+    const count =
+        cart.reduce(
+            (total,item) => total + item.quantity,
+            0
+        );
+
+
+    document.getElementById("cartCount").textContent =
+        count;
+
+
+    if(cart.length === 0){
+
+        container.innerHTML = `
+            <div class="empty">
+                Votre panier est vide.
+            </div>
+        `;
+
+        document.getElementById("cartTotal").textContent =
+            "0 HTG";
+
+        return;
+    }
+
+
+    let total = 0;
+
+
+    container.innerHTML = cart.map(item => {
+
+        const product =
+            products.find(p => p.id === item.id);
+
+
+        if(!product){
+            return "";
+        }
+
+
+        const subtotal =
+            product.price * item.quantity;
+
+
+        total += subtotal;
+
+
+        return `
+
+            <div class="cart-item">
+
+                <img
+                    src="${escapeAttribute(product.image)}"
+                    alt="${escapeAttribute(product.name)}"
+                    onerror="this.src='https://lgshaiti.com/Image/lgs1.jpg'"
+                >
+
+                <div class="cart-item-info">
+
+                    <h4>
+                        ${escapeHTML(product.name)}
+                    </h4>
+
+                    <div>
+                        ${formatPrice(product.price)}
+                    </div>
+
+                    <div class="quantity">
+
+                        <button
+                            onclick="changeQuantity(${product.id},-1)">
+                            −
+                        </button>
+
+                        <span>
+                            ${item.quantity}
+                        </span>
+
+                        <button
+                            onclick="changeQuantity(${product.id},1)">
+                            +
+                        </button>
+
+                        <button
+                            class="remove-item"
+                            onclick="removeFromCart(${product.id})">
+                            Supprimer
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+    }).join("");
+
+
+    document.getElementById("cartTotal").textContent =
+        formatPrice(total);
+
+}
+
+
+function changeQuantity(id, change){
+
+    const item =
+        cart.find(item => item.id === id);
+
+
+    const product =
+        products.find(product => product.id === id);
+
+
+    if(!item || !product){
+        return;
+    }
+
+
+    const newQuantity =
+        item.quantity + change;
+
+
+    if(newQuantity <= 0){
+
+        removeFromCart(id);
+        return;
+
+    }
+
+
+    if(newQuantity > product.stock){
+
+        alert("Stock disponible insuffisant.");
+        return;
+
+    }
+
+
+    item.quantity = newQuantity;
+
+
+    saveData();
+    renderCart();
+    updateStats();
+
+}
+
+
+function removeFromCart(id){
+
+    cart =
+        cart.filter(item => item.id !== id);
+
+
+    saveData();
+    renderCart();
+    updateStats();
+
+}
+
+
+function openCart(){
+
+    document
+        .getElementById("cartPanel")
+        .classList.add("open");
+
+}
+
+
+function closeCart(){
+
+    document
+        .getElementById("cartPanel")
+        .classList.remove("open");
+
+}
+
+
+function checkout(){
+
+    if(cart.length === 0){
+
+        alert("Votre panier est vide.");
+        return;
+
+    }
+
+
+    alert(
+        "Votre panier est prêt. " +
+        "La fonctionnalité de commande peut être connectée " +
+        "à votre système de paiement ou de commande."
+    );
+
+}
+
+
+/* =====================================================
+   CONNEXION ENTREPRISE
+===================================================== */
+
+function openLogin(){
+
+    document
+        .getElementById("loginOverlay")
+        .classList.add("show");
+
+
+    document
+        .getElementById("username")
+        .focus();
+
+}
+
+
+function closeLogin(){
+
+    document
+        .getElementById("loginOverlay")
+        .classList.remove("show");
+
+
+    document.getElementById("loginError").style.display =
+        "none";
+
+}
+
+
+function login(event){
+
+    event.preventDefault();
+
+
+    const username =
+        document.getElementById("username").value.trim();
+
+
+    const password =
+        document.getElementById("password").value;
+
+
+    /*
+       IMPORTANT :
+       Ceci est une authentification locale de démonstration.
+       Pour un vrai site en production, les identifiants
+       doivent être vérifiés côté serveur.
+    */
+
+    if(
+        username === "entreprise"
+        &&
+        password === "LGS2026"
+    ){
+
+        sessionStorage.setItem(
+            "lgs_authenticated",
+            "true"
+        );
+
+
+        closeLogin();
+
+
+        showEnterprise();
+
+
+    }else{
+
+        document.getElementById("loginError").style.display =
+            "block";
+
+    }
+
+}
+
+
+/* =====================================================
+   ESPACE ENTREPRISE
+===================================================== */
+
+function showEnterprise(){
+
+    /*
+       IMPORTANT :
+       On NE cache PAS la boutique.
+       L'espace entreprise apparaît au-dessus.
+    */
+
+    document
+        .getElementById("enterpriseArea")
+        .classList.add("show");
+
+
+    document.body.style.overflow =
+        "hidden";
+
+
+    renderEnterpriseProducts();
+    updateStats();
+
+
+    window.scrollTo(0,0);
+
+}
+
+
+function backToStore(){
+
+    document
+        .getElementById("enterpriseArea")
+        .classList.remove("show");
+
+
+    document.body.style.overflow =
+        "";
+
+
+    renderProducts();
+    renderCart();
+    updateStats();
+
+
+    window.scrollTo(0,0);
+
+}
+
+
+function logout(){
+
+    sessionStorage.removeItem(
+        "lgs_authenticated"
+    );
+
+
+    cancelEdit();
+
+
+    backToStore();
+
+}
+
+
+/* =====================================================
+   GESTION PRODUITS ENTREPRISE
+===================================================== */
+
+function renderEnterpriseProducts(){
+
+    const container =
+        document.getElementById("enterpriseProducts");
+
+
+    if(products.length === 0){
+
+        container.innerHTML = `
+            <tr>
+                <td colspan="6">
+                    Aucun produit.
+                </td>
+            </tr>
+        `;
+
+        return;
+    }
+
+
+    container.innerHTML =
+        products.map(product => {
+
+            return `
+
+                <tr>
+
+                    <td>
+
+                        <div class="table-product">
+
+                            <img
+                                src="${escapeAttribute(product.image)}"
+                                alt="${escapeAttribute(product.name)}"
+                                onerror="this.src='https://lgshaiti.com/Image/lgs1.jpg'"
+                            >
+
+                            <strong>
+                                ${escapeHTML(product.name)}
+                            </strong>
+
+                        </div>
+
+                    </td>
+
+
+                    <td>
+                        ${formatPrice(product.price)}
+                    </td>
+
+
+                    <td>
+                        ${product.stock}
+                    </td>
+
+
+                    <td>
+                        ${escapeHTML(product.category)}
+                    </td>
+
+
+                    <td>
+
+                        <span class="status ${
+                            product.published
+                            ? "published"
+                            : "hidden"
+                        }">
+
+                            ${
+                                product.published
+                                ? "Publié"
+                                : "Masqué"
+                            }
+
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+                        <div class="table-actions">
+
+                            <button
+                                class="edit-btn"
+                                onclick="editProduct(${product.id})">
+                                ✏️
+                            </button>
+
+                            <button
+                                class="toggle-btn"
+                                onclick="toggleProduct(${product.id})">
+                                👁️
+                            </button>
+
+                            <button
+                                class="delete-btn"
+                                onclick="deleteProduct(${product.id})">
+                                🗑️
+                            </button>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        }).join("");
+
+}
+
+
+function saveProduct(event){
+
+    event.preventDefault();
+
+
+    const idValue =
+        document.getElementById("productId").value;
+
+
+    const name =
+        document.getElementById("productName").value.trim();
+
+
+    const price =
+        Number(document.getElementById("productPrice").value);
+
+
+    const stock =
+        Number(document.getElementById("productStock").value);
+
+
+    const category =
+        document.getElementById("productCategory").value;
+
+
+    const image =
+        document.getElementById("productImage").value.trim()
+        ||
+        "https://lgshaiti.com/Image/lgs1.jpg";
+
+
+    const description =
+        document.getElementById("productDescription").value.trim();
+
+
+    if(!name){
+
+        alert("Veuillez entrer le nom du produit.");
+        return;
+
+    }
+
+
+    if(price < 0 || stock < 0){
+
+        alert("Le prix et le stock doivent être positifs.");
+        return;
+
+    }
+
+
+    if(idValue){
+
+        const id =
+            Number(idValue);
+
+
+        const product =
+            products.find(p => p.id === id);
+
+
+        if(product){
+
+            product.name = name;
+            product.price = price;
+            product.stock = stock;
+            product.category = category;
+            product.image = image;
+            product.description = description;
+
+        }
+
+    }else{
+
+        const newId =
+            products.length > 0
+            ? Math.max(...products.map(p => p.id)) + 1
+            : 1;
+
+
+        products.push({
+
+            id:newId,
+            name:name,
+            price:price,
+            stock:stock,
+            category:category,
+            image:image,
+            description:description,
+            published:true
+
+        });
+
+    }
+
+
+    saveData();
+
+
+    renderProducts();
+    renderEnterpriseProducts();
+    renderCart();
+    updateStats();
+
+
+    resetProductForm();
+
+
+    alert(
+        idValue
+        ? "Produit modifié avec succès."
+        : "Produit ajouté avec succès."
+    );
+
+}
+
+
+function editProduct(id){
+
+    const product =
+        products.find(p => p.id === id);
+
+
+    if(!product){
+        return;
+    }
+
+
+    document.getElementById("productId").value =
+        product.id;
+
+
+    document.getElementById("productName").value =
+        product.name;
+
+
+    document.getElementById("productPrice").value =
+        product.price;
+
+
+    document.getElementById("productStock").value =
+        product.stock;
+
+
+    document.getElementById("productCategory").value =
+        product.category;
+
+
+    document.getElementById("productImage").value =
+        product.image;
+
+
+    document.getElementById("productDescription").value =
+        product.description;
+
+
+    document.getElementById("formTitle").textContent =
+        "✏️ Modifier le produit";
+
+
+    document.getElementById("saveButton").textContent =
+        "Enregistrer les modifications";
+
+
+    document.getElementById("cancelEdit").style.display =
+        "block";
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+function cancelEdit(){
+
+    resetProductForm();
+
+}
+
+
+function resetProductForm(){
+
+    document.getElementById("productId").value =
+        "";
+
+
+    document.getElementById("productName").value =
+        "";
+
+
+    document.getElementById("productPrice").value =
+        "";
+
+
+    document.getElementById("productStock").value =
+        "";
+
+
+    document.getElementById("productCategory").value =
+        "Électronique";
+
+
+    document.getElementById("productImage").value =
+        "";
+
+
+    document.getElementById("productDescription").value =
+        "";
+
+
+    document.getElementById("formTitle").textContent =
+        "➕ Ajouter un produit";
+
+
+    document.getElementById("saveButton").textContent =
+        "Ajouter le produit";
+
+
+    document.getElementById("cancelEdit").style.display =
+        "none";
+
+}
+
+
+function deleteProduct(id){
+
+    const product =
+        products.find(p => p.id === id);
+
+
+    if(!product){
+        return;
+    }
+
+
+    const confirmed =
+        confirm(
+            `Voulez-vous vraiment supprimer "${product.name}" ?`
+        );
+
+
+    if(!confirmed){
+        return;
+    }
+
+
+    products =
+        products.filter(p => p.id !== id);
+
+
+    cart =
+        cart.filter(item => item.id !== id);
+
+
+    saveData();
+
+
+    renderProducts();
+    renderEnterpriseProducts();
+    renderCart();
+    updateStats();
+
+}
+
+
+function toggleProduct(id){
+
+    const product =
+        products.find(p => p.id === id);
+
+
+    if(!product){
+        return;
+    }
+
+
+    product.published =
+        !product.published;
+
+
+    saveData();
+
+
+    renderProducts();
+    renderEnterpriseProducts();
+    updateStats();
+
+}
+
+
+/* =====================================================
+   STATISTIQUES
+===================================================== */
+
+function updateStats(){
+
+    document.getElementById("statProducts").textContent =
+        products.length;
+
+
+    document.getElementById("statPublished").textContent =
+        products.filter(p => p.published).length;
+
+
+    document.getElementById("statStock").textContent =
+        products.reduce(
+            (total,product) =>
+                total + Number(product.stock || 0),
+            0
+        );
+
+
+    document.getElementById("statCart").textContent =
+        cart.reduce(
+            (total,item) =>
+                total + Number(item.quantity || 0),
+            0
+        );
+
+
+    document.getElementById("cartCount").textContent =
+        cart.reduce(
+            (total,item) =>
+                total + Number(item.quantity || 0),
+            0
+        );
+
+}
+
+
+/* =====================================================
+   UTILITAIRES
+===================================================== */
+
+function formatPrice(price){
+
+    return new Intl.NumberFormat("fr-FR",{
+        maximumFractionDigits:0
+    }).format(Number(price) || 0) + " HTG";
+
+}
+
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+function escapeAttribute(value){
+
+    return escapeHTML(value);
+
+}
+
+
+/* =====================================================
+   FERMETURE DU LOGIN EN CLIQUANT À L'EXTÉRIEUR
+===================================================== */
+
+document
+    .getElementById("loginOverlay")
+    .addEventListener("click",function(event){
+
+        if(event.target === this){
+            closeLogin();
+        }
+
+    });
+
+
+/* =====================================================
+   INITIALISATION
+===================================================== */
+
+function initialize(){
+
+    /*
+       La boutique est TOUJOURS la page de départ.
+
+       Même si l'utilisateur s'est connecté auparavant,
+       l'espace entreprise ne s'ouvre pas automatiquement.
+    */
+
+    renderProducts();
+    renderCart();
+    updateStats();
+
+}
+
+
+initialize();
+
+</script>
 
 </body>
 </html>
-```
