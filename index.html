@@ -78,9 +78,9 @@ header {
 .hero-box {
     background: white;
     width: 100%;
-    max-width: 850px;
+    max-width: 1000px;
     border-radius: 20px;
-    padding: 55px;
+    padding: 45px;
     text-align: center;
     box-shadow: 0 10px 35px rgba(0,0,0,0.08);
 }
@@ -91,13 +91,13 @@ header {
     font-size: 34px;
 }
 
-.hero-box p {
+.hero-box > p {
     color: #667085;
     font-size: 17px;
     line-height: 1.6;
 }
 
-/* ZONE DE TEST */
+/* ZONE APRÈS CONNEXION */
 .test-panel {
     display: none;
     margin-top: 30px;
@@ -112,6 +112,12 @@ header {
     margin-bottom: 10px;
 }
 
+.test-panel > p {
+    color: #667085;
+    margin-bottom: 20px;
+}
+
+/* BOUTON DÉCONNEXION */
 .logout-btn {
     margin-top: 18px;
     padding: 10px 18px;
@@ -121,6 +127,207 @@ header {
     color: white;
     cursor: pointer;
     font-weight: bold;
+}
+
+/* =========================
+   AJOUT PRODUIT
+   ========================= */
+
+.product-section {
+    margin-top: 25px;
+    padding: 25px;
+    background: white;
+    border-radius: 15px;
+    border: 1px solid #e4e7ec;
+    text-align: left;
+}
+
+.product-section h3 {
+    color: #173b76;
+    font-size: 23px;
+    margin-bottom: 8px;
+}
+
+.product-section-description {
+    color: #667085;
+    font-size: 14px;
+    margin-bottom: 22px;
+}
+
+.product-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 17px;
+}
+
+.product-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-field.full {
+    grid-column: 1 / -1;
+}
+
+.product-field label {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 7px;
+}
+
+.product-field input,
+.product-field select,
+.product-field textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d0d5dd;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    outline: none;
+}
+
+.product-field input:focus,
+.product-field select:focus,
+.product-field textarea:focus {
+    border-color: #173b76;
+    box-shadow: 0 0 0 3px rgba(23,59,118,0.1);
+}
+
+.product-field textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+/* IMAGE */
+.image-preview {
+    width: 100%;
+    height: 220px;
+    margin-top: 10px;
+    border: 2px dashed #cfd6e0;
+    border-radius: 10px;
+    background: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: #667085;
+    font-size: 14px;
+}
+
+.image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: none;
+}
+
+/* AJOUTER */
+.add-product-btn {
+    grid-column: 1 / -1;
+    border: none;
+    background: #173b76;
+    color: white;
+    padding: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.add-product-btn:hover {
+    background: #0e2b59;
+}
+
+/* MESSAGE */
+.product-message {
+    grid-column: 1 / -1;
+    display: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.product-message.success {
+    display: block;
+    background: #ecfdf3;
+    color: #067647;
+}
+
+.product-message.error {
+    display: block;
+    background: #fff1f0;
+    color: #c62828;
+}
+
+/* PRODUITS AJOUTÉS */
+.saved-products {
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 1px solid #e4e7ec;
+}
+
+.saved-products h4 {
+    color: #173b76;
+    margin-bottom: 15px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.product-card {
+    border: 1px solid #e4e7ec;
+    border-radius: 10px;
+    overflow: hidden;
+    background: white;
+}
+
+.product-card-image {
+    width: 100%;
+    height: 160px;
+    background: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.product-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.product-card-info {
+    padding: 13px;
+}
+
+.product-card-info h5 {
+    font-size: 15px;
+    margin-bottom: 7px;
+    color: #172033;
+}
+
+.product-price {
+    color: #173b76;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.product-stock,
+.product-category {
+    color: #667085;
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+.no-products {
+    color: #667085;
+    font-size: 14px;
 }
 
 /* MODAL */
@@ -233,7 +440,7 @@ header {
 }
 
 /* MOBILE */
-@media (max-width: 600px) {
+@media (max-width: 700px) {
 
     header {
         padding: 0 20px;
@@ -254,15 +461,32 @@ header {
     }
 
     .hero-box {
-        padding: 35px 22px;
+        padding: 30px 18px;
     }
 
     .hero-box h1 {
         font-size: 27px;
     }
 
-    .hero-box p {
+    .hero-box > p {
         font-size: 15px;
+    }
+
+    .product-form {
+        grid-template-columns: 1fr;
+    }
+
+    .product-field.full {
+        grid-column: auto;
+    }
+
+    .add-product-btn,
+    .product-message {
+        grid-column: auto;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
     }
 
     .login-box {
@@ -279,11 +503,18 @@ header {
 
 ```
 <div class="logo">
-    <img src="https://lgshaiti.com/Image/lgs1.jpg" alt="La Grâce Solution">
+    <img
+        src="https://lgshaiti.com/Image/lgs1.jpg"
+        alt="La Grâce Solution"
+    >
+
     <span>La Grâce Solution</span>
 </div>
 
-<button class="enterprise-btn" onclick="openLogin()">
+<button
+    class="enterprise-btn"
+    onclick="openLogin()"
+>
     🔐 Espace entreprise
 </button>
 ```
@@ -304,7 +535,9 @@ header {
     </p>
 
 
-    <!-- ZONE AFFICHÉE APRÈS CONNEXION -->
+    <!-- =========================
+         ZONE APRÈS CONNEXION
+         ========================= -->
 
     <div class="test-panel" id="testPanel">
 
@@ -312,11 +545,229 @@ header {
 
         <p>
             La connexion fonctionne correctement.
-            Cette zone représente actuellement l'espace réservé
-            à l'entreprise.
+            Vous pouvez maintenant ajouter un produit.
         </p>
 
-        <button class="logout-btn" onclick="logout()">
+
+        <!-- =========================
+             AJOUTER UN PRODUIT
+             ========================= -->
+
+        <div class="product-section">
+
+            <h3>➕ Ajouter un produit</h3>
+
+            <p class="product-section-description">
+                Ajoutez les informations du produit à votre boutique.
+            </p>
+
+
+            <form
+                class="product-form"
+                id="productForm"
+            >
+
+                <!-- NOM -->
+
+                <div class="product-field">
+
+                    <label for="productName">
+                        Nom du produit
+                    </label>
+
+                    <input
+                        type="text"
+                        id="productName"
+                        placeholder="Ex : Panneau solaire 550W"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- PRIX -->
+
+                <div class="product-field">
+
+                    <label for="productPrice">
+                        Prix (HTG)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="productPrice"
+                        placeholder="Ex : 85000"
+                        min="0"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- CATÉGORIE -->
+
+                <div class="product-field">
+
+                    <label for="productCategory">
+                        Catégorie
+                    </label>
+
+                    <select
+                        id="productCategory"
+                        required
+                    >
+
+                        <option value="">
+                            Sélectionner une catégorie
+                        </option>
+
+                        <option value="Solaire">
+                            Solaire
+                        </option>
+
+                        <option value="Batteries">
+                            Batteries
+                        </option>
+
+                        <option value="Onduleurs">
+                            Onduleurs
+                        </option>
+
+                        <option value="Électricité">
+                            Électricité
+                        </option>
+
+                        <option value="Outils">
+                            Outils
+                        </option>
+
+                        <option value="Accessoires">
+                            Accessoires
+                        </option>
+
+                        <option value="Autres">
+                            Autres
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- STOCK -->
+
+                <div class="product-field">
+
+                    <label for="productStock">
+                        Quantité en stock
+                    </label>
+
+                    <input
+                        type="number"
+                        id="productStock"
+                        placeholder="Ex : 20"
+                        min="0"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="product-field full">
+
+                    <label for="productDescription">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="productDescription"
+                        placeholder="Description du produit..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <!-- IMAGE -->
+
+                <div class="product-field full">
+
+                    <label for="productImage">
+                        Image du produit
+                    </label>
+
+                    <input
+                        type="file"
+                        id="productImage"
+                        accept="image/*"
+                        required
+                    >
+
+                    <div
+                        class="image-preview"
+                        id="imagePreview"
+                    >
+
+                        <span id="previewText">
+                            L'aperçu de l'image apparaîtra ici
+                        </span>
+
+                        <img
+                            id="previewImage"
+                            alt="Aperçu du produit"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- BOUTON -->
+
+                <button
+                    type="submit"
+                    class="add-product-btn"
+                >
+                    ➕ Ajouter le produit
+                </button>
+
+
+                <!-- MESSAGE -->
+
+                <div
+                    class="product-message"
+                    id="productMessage"
+                ></div>
+
+            </form>
+
+
+            <!-- PRODUITS -->
+
+            <div class="saved-products">
+
+                <h4>
+                    Produits ajoutés
+                </h4>
+
+                <div
+                    class="products-grid"
+                    id="productsGrid"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- DÉCONNEXION -->
+
+        <button
+            class="logout-btn"
+            onclick="logout()"
+        >
             Se déconnecter
         </button>
 
@@ -327,23 +778,39 @@ header {
 
 </main>
 
-<!-- MODAL CONNEXION -->
+<!-- =========================
+     MODAL CONNEXION
+     ========================= -->
 
-<div class="modal" id="loginModal">
+<div
+    class="modal"
+    id="loginModal"
+>
 
 ```
 <div class="login-box">
 
-    <button class="close" onclick="closeLogin()">×</button>
+    <button
+        class="close"
+        onclick="closeLogin()"
+    >
+        ×
+    </button>
 
-    <h2>Connexion entreprise</h2>
+
+    <h2>
+        Connexion entreprise
+    </h2>
+
 
     <p class="description">
         Connectez-vous avec vos identifiants autorisés.
     </p>
 
 
-    <form onsubmit="login(event)">
+    <form
+        onsubmit="login(event)"
+    >
 
         <div class="form-group">
 
@@ -379,12 +846,18 @@ header {
         </div>
 
 
-        <button class="login-submit" type="submit">
+        <button
+            class="login-submit"
+            type="submit"
+        >
             Se connecter
         </button>
 
 
-        <div class="error" id="loginError">
+        <div
+            class="error"
+            id="loginError"
+        >
             Nom d'utilisateur ou mot de passe incorrect.
         </div>
 
@@ -392,9 +865,13 @@ header {
 
 
     <div class="demo-info">
+
         <strong>Test :</strong><br>
+
         Utilisateur : entreprise<br>
+
         Mot de passe : LGS2026
+
     </div>
 
 </div>
@@ -405,7 +882,7 @@ header {
 <script>
 
 /* =========================================
-   IDENTIFIANTS DE DÉMONSTRATION
+   IDENTIFIANTS
    ========================================= */
 
 const AUTHORIZED_USERNAME = "entreprise";
@@ -453,10 +930,15 @@ function login(event) {
     event.preventDefault();
 
     const username =
-        document.getElementById("username").value.trim();
+        document
+            .getElementById("username")
+            .value
+            .trim();
 
     const password =
-        document.getElementById("password").value;
+        document
+            .getElementById("password")
+            .value;
 
     const error =
         document.getElementById("loginError");
@@ -483,6 +965,7 @@ function login(event) {
         error.style.display = "block";
 
     }
+
 }
 
 
@@ -495,6 +978,8 @@ function showAuthenticatedArea() {
     document
         .getElementById("testPanel")
         .style.display = "block";
+
+    displayProducts();
 
 }
 
@@ -517,38 +1002,436 @@ function logout() {
 
 
 /* =========================================
-   VÉRIFIER LA SESSION AU CHARGEMENT
+   STOCKAGE PRODUITS
    ========================================= */
 
-window.addEventListener("DOMContentLoaded", function() {
+function getProducts() {
 
-    const authenticated =
-        sessionStorage.getItem("lgs_authenticated");
+    const saved =
+        localStorage.getItem("lgs_products");
 
-    if (authenticated === "true") {
-
-        showAuthenticatedArea();
-
+    if (!saved) {
+        return [];
     }
 
-});
+    try {
+        return JSON.parse(saved);
+    } catch (error) {
+        return [];
+    }
+
+}
+
+
+function saveProducts(products) {
+
+    localStorage.setItem(
+        "lgs_products",
+        JSON.stringify(products)
+    );
+
+}
 
 
 /* =========================================
-   FERMER LE MODAL EN CLIQUANT À L'EXTÉRIEUR
+   APERÇU DE L'IMAGE
+   ========================================= */
+
+document
+    .getElementById("productImage")
+    .addEventListener("change", function() {
+
+        const file = this.files[0];
+
+        const preview =
+            document.getElementById("previewImage");
+
+        const text =
+            document.getElementById("previewText");
+
+
+        if (!file) {
+
+            preview.style.display = "none";
+            text.style.display = "block";
+
+            return;
+
+        }
+
+
+        if (!file.type.startsWith("image/")) {
+
+            alert("Veuillez sélectionner une image.");
+
+            this.value = "";
+
+            preview.style.display = "none";
+            text.style.display = "block";
+
+            return;
+
+        }
+
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload = function(event) {
+
+            preview.src =
+                event.target.result;
+
+            preview.style.display =
+                "block";
+
+            text.style.display =
+                "none";
+
+        };
+
+
+        reader.readAsDataURL(file);
+
+    });
+
+
+/* =========================================
+   AJOUTER LE PRODUIT
+   ========================================= */
+
+document
+    .getElementById("productForm")
+    .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+
+        const name =
+            document
+                .getElementById("productName")
+                .value
+                .trim();
+
+        const price =
+            Number(
+                document
+                    .getElementById("productPrice")
+                    .value
+            );
+
+        const category =
+            document
+                .getElementById("productCategory")
+                .value;
+
+        const stock =
+            Number(
+                document
+                    .getElementById("productStock")
+                    .value
+            );
+
+        const description =
+            document
+                .getElementById("productDescription")
+                .value
+                .trim();
+
+        const imageFile =
+            document
+                .getElementById("productImage")
+                .files[0];
+
+
+        if (!name || !category || !description) {
+
+            showProductMessage(
+                "Veuillez remplir tous les champs.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (
+            !Number.isFinite(price) ||
+            price < 0
+        ) {
+
+            showProductMessage(
+                "Veuillez entrer un prix valide.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (
+            !Number.isInteger(stock) ||
+            stock < 0
+        ) {
+
+            showProductMessage(
+                "Veuillez entrer un stock valide.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (!imageFile) {
+
+            showProductMessage(
+                "Veuillez sélectionner une image.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload = function(event) {
+
+            const products =
+                getProducts();
+
+
+            const newProduct = {
+
+                id: Date.now(),
+
+                name: name,
+
+                price: price,
+
+                category: category,
+
+                stock: stock,
+
+                description: description,
+
+                image: event.target.result
+
+            };
+
+
+            products.push(newProduct);
+
+
+            saveProducts(products);
+
+
+            showProductMessage(
+                "✓ Produit ajouté avec succès.",
+                "success"
+            );
+
+
+            document
+                .getElementById("productForm")
+                .reset();
+
+
+            document
+                .getElementById("previewImage")
+                .style.display = "none";
+
+
+            document
+                .getElementById("previewText")
+                .style.display = "block";
+
+
+            displayProducts();
+
+        };
+
+
+        reader.readAsDataURL(imageFile);
+
+    });
+
+
+/* =========================================
+   AFFICHER LES PRODUITS
+   ========================================= */
+
+function displayProducts() {
+
+    const grid =
+        document.getElementById("productsGrid");
+
+    const products =
+        getProducts();
+
+
+    grid.innerHTML = "";
+
+
+    if (products.length === 0) {
+
+        grid.innerHTML = `
+            <div class="no-products">
+                Aucun produit ajouté pour le moment.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    products.forEach(function(product) {
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "product-card";
+
+
+        card.innerHTML = `
+
+            <div class="product-card-image">
+
+                <img
+                    src="${product.image}"
+                    alt=""
+                >
+
+            </div>
+
+            <div class="product-card-info">
+
+                <h5>
+                    ${escapeHTML(product.name)}
+                </h5>
+
+                <div class="product-price">
+                    ${Number(product.price).toLocaleString("fr-FR")} HTG
+                </div>
+
+                <div class="product-category">
+                    Catégorie : ${escapeHTML(product.category)}
+                </div>
+
+                <div class="product-stock">
+                    Stock : ${product.stock}
+                </div>
+
+            </div>
+        `;
+
+
+        grid.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================================
+   PROTECTION DU TEXTE
+   ========================================= */
+
+function escapeHTML(text) {
+
+    return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =========================================
+   MESSAGE
+   ========================================= */
+
+function showProductMessage(text, type) {
+
+    const message =
+        document.getElementById("productMessage");
+
+
+    message.textContent =
+        text;
+
+    message.className =
+        "product-message " + type;
+
+
+    setTimeout(function() {
+
+        message.className =
+            "product-message";
+
+    }, 4000);
+
+}
+
+
+/* =========================================
+   VÉRIFIER LA SESSION
+   ========================================= */
+
+window.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        const authenticated =
+            sessionStorage.getItem(
+                "lgs_authenticated"
+            );
+
+
+        if (
+            authenticated === "true"
+        ) {
+
+            showAuthenticatedArea();
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   FERMER LE MODAL À L'EXTÉRIEUR
    ========================================= */
 
 document
     .getElementById("loginModal")
-    .addEventListener("click", function(event) {
+    .addEventListener(
+        "click",
+        function(event) {
 
-        if (event.target === this) {
+            if (
+                event.target === this
+            ) {
 
-            closeLogin();
+                closeLogin();
+
+            }
 
         }
-
-    });
+    );
 
 </script>
 
