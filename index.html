@@ -4,39 +4,34 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>La Grâce Solution | Boutique en ligne</title>
+<title>La Grâce Solution — Boutique</title>
 
-<meta
-    name="description"
-    content="La Grâce Solution - Boutique en ligne en Haïti"
-/>
+<meta name="description"
+      content="La Grâce Solution — Solutions solaires, batteries, onduleurs, matériel électrique et outils en Haïti.">
 
 <style>
 
-/* =========================================================
+/* =========================
    RESET
-========================================================= */
+========================= */
 
-*{
+*,
+*::before,
+*::after{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
 }
 
 html{
-    scroll-behavior:smooth;
+    scroll-behavior:auto;
 }
 
 body{
     font-family:Arial, Helvetica, sans-serif;
     background:#f6f8fb;
-    color:#172033;
-    overflow-x:hidden;
-}
-
-img{
-    max-width:100%;
-    display:block;
+    color:#1f2937;
+    line-height:1.6;
 }
 
 button,
@@ -55,205 +50,216 @@ a{
     color:inherit;
 }
 
+/* =========================
+   VARIABLES
+========================= */
 
-/* =========================================================
+:root{
+    --primary:#0b5ed7;
+    --primary-dark:#084298;
+    --secondary:#f59e0b;
+    --dark:#111827;
+    --text:#1f2937;
+    --muted:#6b7280;
+    --white:#ffffff;
+    --light:#f6f8fb;
+    --border:#e5e7eb;
+    --danger:#dc2626;
+    --success:#16a34a;
+    --shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+/* =========================
    TOP BAR
-========================================================= */
+========================= */
 
 .topbar{
-    width:100%;
-    background:#084298;
-    color:#fff;
+    background:var(--dark);
+    color:white;
     text-align:center;
-    padding:9px 15px;
+    padding:8px 15px;
     font-size:14px;
 }
 
-
-/* =========================================================
+/* =========================
    HEADER
-========================================================= */
+========================= */
 
-header{
-    width:100%;
-    background:#fff;
-    border-bottom:1px solid #e5e9ef;
+.header{
+    background:white;
+    border-bottom:1px solid var(--border);
     position:sticky;
     top:0;
-    z-index:100;
+    z-index:1000;
 }
 
-.header-main{
-    width:100%;
+.header-inner{
     max-width:1250px;
-    min-height:75px;
-    margin:0 auto;
+    margin:auto;
+    min-height:78px;
     padding:12px 20px;
-
     display:flex;
     align-items:center;
-    gap:18px;
+    gap:20px;
 }
 
 .logo{
     display:flex;
     align-items:center;
     gap:10px;
-
-    font-size:20px;
-    font-weight:700;
-    color:#084298;
-
-    white-space:nowrap;
+    min-width:220px;
 }
 
 .logo img{
-    width:48px;
-    height:48px;
+    width:55px;
+    height:55px;
     object-fit:cover;
-    border-radius:9px;
+    border-radius:10px;
+}
+
+.logo-text{
+    font-size:19px;
+    font-weight:800;
+    color:var(--primary);
 }
 
 .search-box{
-    position:relative;
     flex:1;
+    position:relative;
 }
 
 .search-box input{
     width:100%;
-    height:45px;
-
-    padding:0 45px 0 15px;
-
-    border:1px solid #d8dee8;
+    height:44px;
+    border:1px solid var(--border);
     border-radius:10px;
-
+    padding:0 45px 0 15px;
     outline:none;
-    background:#fff;
 }
 
 .search-box input:focus{
-    border-color:#0b5ed7;
+    border-color:var(--primary);
 }
 
 .search-icon{
     position:absolute;
     right:15px;
     top:50%;
-
     transform:translateY(-50%);
-
-    pointer-events:none;
 }
 
 .header-actions{
     display:flex;
     align-items:center;
-    gap:7px;
+    gap:10px;
 }
 
-.header-btn{
-    height:42px;
-
-    padding:0 12px;
-
-    background:#fff;
-    border:1px solid #dfe4ec;
-    border-radius:9px;
-
-    color:#172033;
+.icon-btn{
+    border:1px solid var(--border);
+    background:white;
+    width:44px;
+    height:44px;
+    border-radius:10px;
+    position:relative;
 }
 
-.header-btn:hover{
-    background:#f3f6fa;
+.icon-btn:hover{
+    border-color:var(--primary);
 }
 
 .cart-count{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-
-    min-width:20px;
+    position:absolute;
+    top:-6px;
+    right:-6px;
+    background:var(--danger);
+    color:white;
+    width:20px;
     height:20px;
-
-    margin-left:3px;
-
-    padding:0 5px;
-
-    background:#0b5ed7;
-    color:#fff;
-
-    border-radius:20px;
-
+    border-radius:50%;
     font-size:11px;
-}
-
-
-/* =========================================================
-   NAVIGATION
-========================================================= */
-
-.nav{
-    width:100%;
-    max-width:1250px;
-    margin:0 auto;
-
-    padding:0 20px 12px;
-
     display:flex;
     align-items:center;
-    gap:25px;
+    justify-content:center;
+}
+
+.admin-btn{
+    background:var(--primary);
+    color:white;
+    border:none;
+    border-radius:10px;
+    padding:11px 16px;
+    font-weight:bold;
+}
+
+.admin-btn:hover{
+    background:var(--primary-dark);
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.nav{
+    background:white;
+    border-top:1px solid #f0f0f0;
+}
+
+.nav-inner{
+    max-width:1250px;
+    margin:auto;
+    padding:0 20px;
+    display:flex;
+    gap:5px;
 }
 
 .nav a{
-    color:#505b6d;
-    font-size:14px;
+    padding:14px 18px;
+    font-weight:600;
+    color:#374151;
 }
 
 .nav a:hover{
-    color:#0b5ed7;
+    color:var(--primary);
 }
 
-
-/* =========================================================
+/* =========================
    HERO
-========================================================= */
+========================= */
 
 .hero{
-    width:100%;
-    background:#0b5ed7;
-    color:#fff;
+    max-width:1250px;
+    margin:25px auto;
+    padding:0 20px;
 }
 
-.hero-inner{
-    width:100%;
-    max-width:1250px;
-    margin:0 auto;
+.hero-box{
+    background:linear-gradient(135deg,#0b5ed7,#084298);
+    border-radius:20px;
+    min-height:380px;
+    padding:55px;
+    display:flex;
+    align-items:center;
+    color:white;
+    overflow:hidden;
+}
 
-    padding:75px 20px;
+.hero-content{
+    max-width:650px;
 }
 
 .hero h1{
-    max-width:780px;
-
-    font-size:clamp(34px,6vw,60px);
-    line-height:1.08;
-
+    font-size:46px;
+    line-height:1.1;
     margin-bottom:20px;
 }
 
 .hero p{
-    max-width:700px;
-
     font-size:18px;
-    line-height:1.7;
-
     opacity:.95;
+    margin-bottom:28px;
 }
 
 .hero-buttons{
-    margin-top:28px;
-
     display:flex;
     gap:12px;
     flex-wrap:wrap;
@@ -262,461 +268,385 @@ header{
 .btn{
     border:none;
     border-radius:10px;
-
     padding:13px 20px;
-
-    font-weight:700;
+    font-weight:bold;
 }
 
 .btn-primary{
-    background:#fff;
-    color:#084298;
+    background:white;
+    color:var(--primary);
 }
 
 .btn-secondary{
-    background:transparent;
-    color:#fff;
-
-    border:1px solid rgba(255,255,255,.6);
+    background:var(--secondary);
+    color:#111827;
 }
 
-
-/* =========================================================
+/* =========================
    SECTIONS
-========================================================= */
+========================= */
 
 .section{
-    width:100%;
     max-width:1250px;
+    margin:60px auto;
+    padding:0 20px;
+}
 
-    margin:0 auto;
-
-    padding:60px 20px;
+.section-header{
+    margin-bottom:25px;
 }
 
 .section-title{
-    font-size:32px;
-    margin-bottom:10px;
+    font-size:30px;
+    color:var(--dark);
 }
 
 .section-subtitle{
-    color:#687386;
-    margin-bottom:28px;
+    color:var(--muted);
+    margin-top:5px;
 }
 
-
-/* =========================================================
+/* =========================
    CATEGORIES
-========================================================= */
+========================= */
 
 .categories{
     display:grid;
     grid-template-columns:repeat(6,1fr);
-    gap:15px;
+    gap:18px;
 }
 
 .category{
-    background:#fff;
-
-    border:1px solid #e3e7ed;
-    border-radius:14px;
-
+    background:white;
+    border:1px solid var(--border);
+    border-radius:15px;
     overflow:hidden;
-
     cursor:pointer;
+    box-shadow:0 4px 15px rgba(0,0,0,.04);
+}
+
+.category:hover{
+    border-color:var(--primary);
 }
 
 .category img{
     width:100%;
-    height:120px;
-
+    height:140px;
     object-fit:cover;
+    display:block;
 }
 
-.category div{
+.category-name{
     padding:15px;
-
+    text-align:center;
     font-weight:700;
 }
 
-
-/* =========================================================
+/* =========================
    PROMOTION
-========================================================= */
+========================= */
 
-.promotion{
-    width:100%;
-
-    background:#fff6d9;
-
-    border:1px solid #f0d477;
-    border-radius:16px;
-
-    padding:28px;
-}
-
-.promotion h2{
-    margin-bottom:8px;
-}
-
-.promotion p{
-    color:#665925;
-    line-height:1.6;
-}
-
-
-/* =========================================================
-   PRODUCT TOOLBAR
-========================================================= */
-
-.products-toolbar{
+.promotion-box{
+    background:#fff7e6;
+    border:1px solid #fcd68a;
+    border-radius:18px;
+    padding:30px;
     display:flex;
     align-items:center;
     justify-content:space-between;
-
-    gap:15px;
-
-    margin-bottom:25px;
-
-    flex-wrap:wrap;
+    gap:20px;
 }
 
-.categories-filter{
+.promotion-box h2{
+    color:#92400e;
+}
+
+.promotion-box p{
+    color:#78350f;
+}
+
+/* =========================
+   PRODUCT FILTERS
+========================= */
+
+.product-controls{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-bottom:25px;
+}
+
+.filters{
     display:flex;
     gap:8px;
     flex-wrap:wrap;
 }
 
 .filter-btn{
-    border:1px solid #dce1e8;
-
-    background:#fff;
-
-    color:#303949;
-
-    border-radius:8px;
-
-    padding:9px 13px;
+    border:1px solid var(--border);
+    background:white;
+    border-radius:20px;
+    padding:9px 15px;
+    cursor:pointer;
 }
 
 .filter-btn.active{
-    background:#0b5ed7;
-    color:#fff;
-    border-color:#0b5ed7;
+    background:var(--primary);
+    color:white;
+    border-color:var(--primary);
 }
 
-#sortSelect{
-    height:40px;
-
-    padding:0 12px;
-
-    border:1px solid #dce1e8;
-    border-radius:8px;
-
-    background:#fff;
+.sort-select{
+    border:1px solid var(--border);
+    border-radius:9px;
+    padding:9px 12px;
+    background:white;
 }
 
-
-/* =========================================================
+/* =========================
    PRODUCTS
-========================================================= */
+========================= */
 
-.products-grid{
-    width:100%;
-
+.products{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-
     gap:20px;
 }
 
 .product{
-    position:relative;
-
-    background:#fff;
-
-    border:1px solid #e4e8ee;
+    background:white;
+    border:1px solid var(--border);
     border-radius:15px;
-
     overflow:hidden;
+    box-shadow:0 5px 18px rgba(0,0,0,.05);
 }
 
 .product-image{
-    width:100%;
     height:220px;
-
-    object-fit:cover;
-
-    background:#edf1f5;
+    background:#f3f4f6;
+    position:relative;
 }
 
-.product-body{
+.product-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.product-promo{
+    position:absolute;
+    top:10px;
+    left:10px;
+    background:var(--danger);
+    color:white;
+    padding:5px 9px;
+    border-radius:7px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.product-content{
     padding:17px;
 }
 
 .product-category{
-    color:#0b5ed7;
-
-    font-size:12px;
-    font-weight:700;
-
-    text-transform:uppercase;
+    color:var(--primary);
+    font-size:13px;
+    font-weight:bold;
 }
 
 .product-name{
-    margin:8px 0;
-
     font-size:18px;
+    font-weight:700;
+    margin:6px 0;
 }
 
 .product-description{
-    color:#687386;
-
+    color:var(--muted);
     font-size:14px;
-    line-height:1.5;
-
-    min-height:42px;
+    min-height:45px;
 }
 
-.stock{
-    margin-top:9px;
-
-    color:#687386;
-
-    font-size:12px;
+.product-price{
+    font-size:21px;
+    font-weight:800;
+    margin:12px 0;
+    color:var(--dark);
 }
 
-.product-bottom{
-    margin-top:16px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    gap:10px;
+.product-stock{
+    font-size:13px;
+    margin-bottom:12px;
 }
 
-.price{
-    font-size:19px;
-    font-weight:700;
-}
-
-.add-btn{
+.add-cart{
+    width:100%;
+    background:var(--primary);
+    color:white;
     border:none;
-
-    background:#0b5ed7;
-    color:#fff;
-
-    border-radius:8px;
-
-    padding:10px 13px;
+    border-radius:9px;
+    padding:11px;
+    font-weight:bold;
 }
 
-.add-btn:disabled{
-    background:#aeb6c2;
+.add-cart:hover{
+    background:var(--primary-dark);
+}
+
+.add-cart:disabled{
+    background:#9ca3af;
     cursor:not-allowed;
 }
 
-.promo-badge{
-    position:absolute;
-
-    top:12px;
-    left:12px;
-
-    background:#dc3545;
-    color:#fff;
-
-    padding:5px 9px;
-
-    border-radius:7px;
-
-    font-size:11px;
-    font-weight:700;
-}
-
-
-/* =========================================================
-   AVANTAGES
-========================================================= */
+/* =========================
+   ADVANTAGES
+========================= */
 
 .advantages{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-
     gap:18px;
 }
 
 .advantage{
-    background:#fff;
-
-    border:1px solid #e3e7ed;
-    border-radius:14px;
-
+    background:white;
     padding:25px;
+    border:1px solid var(--border);
+    border-radius:15px;
 }
 
-.advantage strong{
-    display:block;
-    margin-bottom:9px;
+.advantage-icon{
+    font-size:30px;
+    margin-bottom:10px;
 }
 
+.advantage h3{
+    margin-bottom:5px;
+}
 
-/* =========================================================
+/* =========================
    FOOTER
-========================================================= */
+========================= */
 
-footer{
-    width:100%;
-
-    background:#101828;
-    color:#fff;
+.footer{
+    background:var(--dark);
+    color:white;
+    margin-top:70px;
+    padding:45px 20px;
 }
 
 .footer-inner{
-    width:100%;
     max-width:1250px;
-
-    margin:0 auto;
-
-    padding:50px 20px;
-
+    margin:auto;
     display:grid;
-    grid-template-columns:2fr 1fr 1fr;
-
-    gap:40px;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
 }
 
-.footer-inner p{
-    margin-top:10px;
-
-    color:#b8c1cf;
-
-    line-height:1.6;
+.footer h3{
+    margin-bottom:12px;
 }
 
+.footer p{
+    color:#d1d5db;
+}
 
-/* =========================================================
-   OVERLAY
-========================================================= */
+.footer-bottom{
+    max-width:1250px;
+    margin:30px auto 0;
+    padding-top:20px;
+    border-top:1px solid #374151;
+    text-align:center;
+    color:#9ca3af;
+}
+
+/* =========================
+   OVERLAYS
+========================= */
 
 .overlay{
     position:fixed;
-
     inset:0;
-
+    background:rgba(0,0,0,.55);
+    z-index:2000;
     display:none;
-
     align-items:center;
     justify-content:center;
-
     padding:20px;
-
-    background:rgba(15,23,42,.65);
-
-    z-index:1000;
 }
 
-.overlay.open{
+.overlay.active{
     display:flex;
 }
 
 .modal{
     width:100%;
-    max-width:600px;
-
+    max-width:550px;
     max-height:90vh;
-
     overflow:auto;
-
-    background:#fff;
-
-    border-radius:16px;
-
+    background:white;
+    border-radius:18px;
     padding:25px;
+    position:relative;
 }
 
-.modal-large{
-    max-width:1200px;
+.modal.large{
+    max-width:1100px;
 }
 
-.modal-header{
-    display:flex;
-
-    align-items:center;
-    justify-content:space-between;
-
-    gap:15px;
-
-    margin-bottom:20px;
-}
-
-.close{
-    width:36px;
-    height:36px;
-
+.close-btn{
+    position:absolute;
+    top:12px;
+    right:12px;
+    width:35px;
+    height:35px;
     border:none;
-
+    background:#f3f4f6;
     border-radius:50%;
-
-    background:#eef1f5;
-
-    font-size:22px;
 }
 
-
-/* =========================================================
+/* =========================
    CART
-========================================================= */
+========================= */
 
 .cart-item{
-    display:grid;
-
-    grid-template-columns:1fr auto;
-
-    gap:15px;
-
-    padding:15px 0;
-
-    border-bottom:1px solid #e8ecf1;
-}
-
-.cart-controls{
     display:flex;
-
-    align-items:center;
-
-    gap:8px;
-
-    margin-top:8px;
+    justify-content:space-between;
+    gap:15px;
+    padding:15px 0;
+    border-bottom:1px solid var(--border);
 }
 
-.qty-btn{
+.cart-item-info{
+    flex:1;
+}
+
+.quantity-controls{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.quantity-controls button{
     width:30px;
     height:30px;
-
-    border:1px solid #dce1e8;
-
-    background:#fff;
-
+    border:1px solid var(--border);
+    background:white;
     border-radius:6px;
 }
 
 .cart-total{
     display:flex;
-
-    align-items:center;
     justify-content:space-between;
-
-    padding-top:20px;
-
-    font-size:21px;
-    font-weight:700;
+    font-size:20px;
+    font-weight:bold;
+    padding:20px 0;
 }
 
-
-/* =========================================================
-   FORM
-========================================================= */
+/* =========================
+   FORMS
+========================= */
 
 .form-group{
     margin-bottom:15px;
@@ -724,284 +654,186 @@ footer{
 
 .form-group label{
     display:block;
-
-    margin-bottom:7px;
-
-    font-weight:700;
+    font-weight:600;
+    margin-bottom:6px;
 }
 
 .form-group input,
-.form-group textarea,
-.form-group select{
+.form-group select,
+.form-group textarea{
     width:100%;
-
-    border:1px solid #d8dee8;
-
-    border-radius:8px;
-
-    padding:12px;
-
+    border:1px solid var(--border);
+    border-radius:9px;
+    padding:11px;
     outline:none;
-
-    background:#fff;
 }
 
 .form-group textarea{
     min-height:100px;
-
     resize:vertical;
 }
 
 .form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus{
-    border-color:#0b5ed7;
+.form-group select:focus,
+.form-group textarea:focus{
+    border-color:var(--primary);
 }
 
-
-/* =========================================================
-   ADMIN
-========================================================= */
-
-.admin-modal{
+.submit-btn{
     width:100%;
-    max-width:1300px;
-
-    height:92vh;
-
-    padding:0;
-
-    display:flex;
-
-    overflow:hidden;
-}
-
-.admin-sidebar{
-    width:220px;
-
-    flex-shrink:0;
-
-    background:#101828;
-    color:#fff;
-
-    padding:20px;
-}
-
-.admin-brand{
-    font-size:20px;
-    font-weight:700;
-
-    margin-bottom:25px;
-}
-
-.admin-menu{
-    display:grid;
-
-    gap:7px;
-}
-
-.admin-menu button{
-    width:100%;
-
     border:none;
-
-    background:transparent;
-    color:#cbd5e1;
-
-    text-align:left;
-
-    padding:11px;
-
-    border-radius:8px;
+    background:var(--primary);
+    color:white;
+    border-radius:9px;
+    padding:13px;
+    font-weight:bold;
 }
 
-.admin-menu button.active{
-    background:#0b5ed7;
-    color:#fff;
-}
+/* =========================
+   ADMIN
+========================= */
 
-.admin-content{
-    flex:1;
-
-    min-width:0;
-
-    overflow:auto;
-
-    padding:25px;
-
-    background:#f7f9fc;
-}
-
-.admin-top{
+.admin-header{
     display:flex;
-
-    align-items:center;
     justify-content:space-between;
-
+    align-items:center;
     gap:15px;
-
-    margin-bottom:25px;
+    margin-bottom:20px;
 }
 
-.admin-page{
+.admin-tabs{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+    border-bottom:1px solid var(--border);
+    margin-bottom:20px;
+}
+
+.admin-tab{
+    border:none;
+    background:white;
+    padding:11px 15px;
+    border-bottom:3px solid transparent;
+}
+
+.admin-tab.active{
+    color:var(--primary);
+    border-bottom-color:var(--primary);
+}
+
+.admin-panel{
     display:none;
 }
 
-.admin-page.active{
+.admin-panel.active{
     display:block;
 }
 
 .stats{
     display:grid;
-
-    grid-template-columns:repeat(4,1fr);
-
+    grid-template-columns:repeat(5,1fr);
     gap:15px;
-
-    margin-bottom:20px;
+    margin-bottom:25px;
 }
 
 .stat{
-    background:#fff;
-
-    border:1px solid #e3e7ed;
-
-    border-radius:13px;
-
+    background:#f8fafc;
+    border:1px solid var(--border);
     padding:20px;
+    border-radius:12px;
 }
 
 .stat-number{
-    margin-top:8px;
-
-    font-size:27px;
-
-    font-weight:700;
+    font-size:26px;
+    font-weight:800;
 }
 
-.admin-card{
-    background:#fff;
-
-    border:1px solid #e3e7ed;
-
-    border-radius:13px;
-
-    padding:20px;
-
-    margin-bottom:20px;
-}
-
-.admin-form-grid{
-    display:grid;
-
-    grid-template-columns:repeat(2,1fr);
-
-    gap:15px;
-}
-
-.full{
-    grid-column:1/-1;
-}
-
-.admin-table-wrapper{
-    width:100%;
-
-    overflow-x:auto;
+.stat-label{
+    color:var(--muted);
+    font-size:13px;
 }
 
 .admin-table{
     width:100%;
-
-    min-width:800px;
-
     border-collapse:collapse;
 }
 
 .admin-table th,
 .admin-table td{
-    padding:12px 8px;
-
+    padding:11px;
+    border-bottom:1px solid var(--border);
     text-align:left;
-
-    border-bottom:1px solid #edf0f4;
-
-    vertical-align:middle;
+    font-size:14px;
 }
 
-.admin-table img{
-    width:55px;
-    height:45px;
-
-    object-fit:cover;
-
-    border-radius:7px;
+.admin-table th{
+    background:#f8fafc;
 }
 
 .admin-actions{
     display:flex;
-
-    gap:6px;
-
+    gap:5px;
     flex-wrap:wrap;
 }
 
 .small-btn{
     border:none;
-
-    border-radius:7px;
-
-    padding:7px 9px;
+    padding:7px 10px;
+    border-radius:6px;
+    font-size:12px;
 }
 
-.blue{
-    background:#0b5ed7;
-    color:#fff;
+.edit-btn{
+    background:#dbeafe;
+    color:#1d4ed8;
 }
 
-.red{
-    background:#dc3545;
-    color:#fff;
+.delete-btn{
+    background:#fee2e2;
+    color:#b91c1c;
 }
 
-.green{
-    background:#198754;
-    color:#fff;
+/* =========================
+   EMPTY
+========================= */
+
+.empty{
+    text-align:center;
+    padding:40px 20px;
+    color:var(--muted);
 }
 
-.gray{
-    background:#e9edf2;
-    color:#172033;
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    background:var(--dark);
+    color:white;
+    padding:13px 18px;
+    border-radius:10px;
+    z-index:5000;
+    display:none;
 }
 
-
-/* =========================================================
-   LOGIN
-========================================================= */
-
-.login-box{
-    max-width:420px;
+.toast.show{
+    display:block;
 }
 
-.login-box p{
-    color:#687386;
-
-    line-height:1.5;
-
-    margin-bottom:20px;
-}
-
-
-/* =========================================================
+/* =========================
    RESPONSIVE
-========================================================= */
+========================= */
 
-@media(max-width:1050px){
+@media(max-width:1000px){
 
     .categories{
         grid-template-columns:repeat(3,1fr);
     }
 
-    .products-grid{
+    .products{
         grid-template-columns:repeat(3,1fr);
     }
 
@@ -1010,93 +842,45 @@ footer{
     }
 
     .stats{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:repeat(3,1fr);
     }
 
 }
 
+@media(max-width:700px){
 
-@media(max-width:800px){
-
-    .header-main{
+    .header-inner{
         flex-wrap:wrap;
     }
 
     .logo{
-        flex:1;
+        min-width:auto;
     }
 
     .search-box{
         order:3;
+        width:100%;
         flex-basis:100%;
     }
 
-    .nav{
-        overflow-x:auto;
-        white-space:nowrap;
-    }
-
-    .products-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .admin-modal{
-        height:95vh;
-
-        flex-direction:column;
-    }
-
-    .admin-sidebar{
-        width:100%;
-
-        padding:12px;
-    }
-
-    .admin-brand{
-        margin-bottom:10px;
-    }
-
-    .admin-menu{
-        display:flex;
-
+    .nav-inner{
         overflow-x:auto;
     }
 
-    .admin-menu button{
-        width:auto;
-
-        white-space:nowrap;
+    .hero-box{
+        padding:35px 25px;
     }
 
-    .admin-form-grid{
-        grid-template-columns:1fr;
-    }
-
-    .full{
-        grid-column:auto;
-    }
-
-}
-
-
-@media(max-width:550px){
-
-    .header-actions{
-        width:100%;
-
-        justify-content:flex-end;
-    }
-
-    .hero-inner{
-        padding:55px 20px;
+    .hero h1{
+        font-size:34px;
     }
 
     .categories{
         grid-template-columns:repeat(2,1fr);
     }
 
-    .products-grid{
-        grid-template-columns:1fr;
+    .products{
+        grid-template-columns:repeat(2,1fr);
     }
 
     .advantages{
@@ -1111,63 +895,59 @@ footer{
         grid-template-columns:repeat(2,1fr);
     }
 
+    .admin-table{
+        display:block;
+        overflow-x:auto;
+    }
+
 }
 
+@media(max-width:450px){
 
-/* =========================================================
-   IMPORTANT : AUCUNE ANIMATION DE TREMBLEMENT
-========================================================= */
+    .categories,
+    .products{
+        grid-template-columns:1fr;
+    }
 
-*,
-*::before,
-*::after{
-    animation:none !important;
+    .header-actions .admin-btn{
+        display:none;
+    }
+
 }
 
 </style>
 </head>
 
-
 <body>
 
-
-<!-- ======================================================
+<!-- =========================
      TOP BAR
-====================================================== -->
+========================= -->
 
-<div
-    class="topbar"
-    id="topMessage"
->
+<div class="topbar">
     Livraison disponible en Haïti
 </div>
 
-
-<!-- ======================================================
+<!-- =========================
      HEADER
-====================================================== -->
+========================= -->
 
-<header>
+<header class="header">
 
-    <div class="header-main">
+    <div class="header-inner">
 
-        <a
-            href="#accueil"
-            class="logo"
-        >
+        <a href="#accueil" class="logo">
 
             <img
                 src="https://lgshaiti.com/Image/lgs1.jpg"
                 alt="La Grâce Solution"
-                onerror="this.style.display='none'"
             >
 
-            <span id="headerSiteName">
+            <span class="logo-text">
                 La Grâce Solution
             </span>
 
         </a>
-
 
         <div class="search-box">
 
@@ -1177,26 +957,26 @@ footer{
                 placeholder="Rechercher un produit..."
             >
 
-            <span class="search-icon">
-                🔎
-            </span>
+            <span class="search-icon">🔎</span>
 
         </div>
-
 
         <div class="header-actions">
 
             <button
-                class="header-btn"
+                class="icon-btn"
                 onclick="showFavorites()"
+                aria-label="Favoris"
             >
                 ❤️
             </button>
 
             <button
-                class="header-btn"
+                class="icon-btn"
                 onclick="openCart()"
+                aria-label="Panier"
             >
+
                 🛒
 
                 <span
@@ -1209,79 +989,97 @@ footer{
             </button>
 
             <button
-                class="header-btn"
-                onclick="openAdmin()"
+                class="admin-btn"
+                onclick="openAdminLogin()"
             >
-                ⚙️ Admin
+                Administration
             </button>
 
         </div>
 
     </div>
 
-
     <nav class="nav">
 
-        <a href="#accueil">
-            Accueil
-        </a>
+        <div class="nav-inner">
 
-        <a href="#categories">
-            Catégories
-        </a>
+            <a href="#accueil">
+                Accueil
+            </a>
 
-        <a href="#produits">
-            Produits
-        </a>
+            <a
+                href="#categories"
+                onclick="goToSection('categories'); return false;"
+            >
+                Catégories
+            </a>
 
-        <a href="#promotion">
-            Promotions
-        </a>
+            <a
+                href="#produits"
+                onclick="goToSection('produits'); return false;"
+            >
+                Produits
+            </a>
 
-        <a href="#contact">
-            Contact
-        </a>
+            <a
+                href="#promotions"
+                onclick="goToSection('promotions'); return false;"
+            >
+                Promotions
+            </a>
+
+            <a
+                href="#contact"
+                onclick="goToSection('contact'); return false;"
+            >
+                Contact
+            </a>
+
+        </div>
 
     </nav>
 
 </header>
 
-
-<!-- ======================================================
-     HERO
-====================================================== -->
+<!-- =========================
+     ACCUEIL
+========================= -->
 
 <section
     class="hero"
     id="accueil"
 >
 
-    <div class="hero-inner">
+    <div class="hero-box">
 
-        <h1 id="heroTitle">
-            Les solutions dont vous avez besoin au même endroit.
-        </h1>
+        <div class="hero-content">
 
-        <p id="heroDescription">
-            Découvrez nos produits et solutions pour votre maison,
-            votre entreprise et vos projets.
-        </p>
+            <h1 id="heroTitle">
+                Des solutions fiables pour votre énergie
+            </h1>
 
-        <div class="hero-buttons">
+            <p id="heroDescription">
+                Découvrez nos solutions solaires, batteries,
+                onduleurs, matériel électrique et outils.
+            </p>
 
-            <a
-                href="#produits"
-                class="btn btn-primary"
-            >
-                Découvrir les produits
-            </a>
+            <div class="hero-buttons">
 
-            <a
-                href="#contact"
-                class="btn btn-secondary"
-            >
-                Nous contacter
-            </a>
+                <button
+                    class="btn btn-primary"
+                    onclick="goToSection('produits')"
+                >
+                    Voir les produits
+                </button>
+
+                <button
+                    class="btn btn-secondary"
+                    onclick="goToSection('categories')"
+                >
+                    Voir les catégories
+                </button>
+
+            </div>
 
         </div>
 
@@ -1289,24 +1087,26 @@ footer{
 
 </section>
 
-
-<!-- ======================================================
+<!-- =========================
      CATEGORIES
-====================================================== -->
+========================= -->
 
 <section
     class="section"
     id="categories"
 >
 
-    <h2 class="section-title">
-        Nos catégories
-    </h2>
+    <div class="section-header">
 
-    <p class="section-subtitle">
-        Trouvez rapidement ce dont vous avez besoin.
-    </p>
+        <h2 class="section-title">
+            Nos catégories
+        </h2>
 
+        <p class="section-subtitle">
+            Trouvez rapidement ce dont vous avez besoin
+        </p>
+
+    </div>
 
     <div class="categories">
 
@@ -1318,15 +1118,13 @@ footer{
             <img
                 src="https://loremflickr.com/700/500/solar"
                 alt="Solaire"
-                loading="lazy"
             >
 
-            <div>
-                Solaire
+            <div class="category-name">
+                ☀️ Solaire
             </div>
 
         </div>
-
 
         <div
             class="category"
@@ -1336,15 +1134,13 @@ footer{
             <img
                 src="https://loremflickr.com/700/500/battery"
                 alt="Batteries"
-                loading="lazy"
             >
 
-            <div>
-                Batteries
+            <div class="category-name">
+                🔋 Batteries
             </div>
 
         </div>
-
 
         <div
             class="category"
@@ -1352,17 +1148,15 @@ footer{
         >
 
             <img
-                src="https://loremflickr.com/700/500/inverter"
+                src="https://loremflickr.com/700/500/electric"
                 alt="Onduleurs"
-                loading="lazy"
             >
 
-            <div>
-                Onduleurs
+            <div class="category-name">
+                ⚡ Onduleurs
             </div>
 
         </div>
-
 
         <div
             class="category"
@@ -1370,17 +1164,15 @@ footer{
         >
 
             <img
-                src="https://loremflickr.com/700/500/electric"
+                src="https://loremflickr.com/700/500/electricity"
                 alt="Électricité"
-                loading="lazy"
             >
 
-            <div>
-                Électricité
+            <div class="category-name">
+                💡 Électricité
             </div>
 
         </div>
-
 
         <div
             class="category"
@@ -1390,15 +1182,13 @@ footer{
             <img
                 src="https://loremflickr.com/700/500/tools"
                 alt="Outils"
-                loading="lazy"
             >
 
-            <div>
-                Outils
+            <div class="category-name">
+                🛠️ Outils
             </div>
 
         </div>
-
 
         <div
             class="category"
@@ -1408,11 +1198,10 @@ footer{
             <img
                 src="https://loremflickr.com/700/500/accessories"
                 alt="Accessoires"
-                loading="lazy"
             >
 
-            <div>
-                Accessoires
+            <div class="category-name">
+                🔌 Accessoires
             </div>
 
         </div>
@@ -1421,52 +1210,64 @@ footer{
 
 </section>
 
-
-<!-- ======================================================
+<!-- =========================
      PROMOTION
-====================================================== -->
+========================= -->
 
 <section
     class="section"
-    id="promotion"
+    id="promotions"
 >
 
-    <div class="promotion">
+    <div class="promotion-box">
 
-        <h2 id="promotionTitle">
-            Promotion spéciale
-        </h2>
+        <div>
 
-        <p id="promotionDescription">
-            Profitez de nos offres du moment.
-        </p>
+            <h2 id="promotionTitle">
+                Promotion
+            </h2>
+
+            <p id="promotionDescription">
+                Découvrez nos offres spéciales.
+            </p>
+
+        </div>
+
+        <button
+            class="btn btn-secondary"
+            onclick="goToSection('produits')"
+        >
+            Profiter de l'offre
+        </button>
 
     </div>
 
 </section>
 
-
-<!-- ======================================================
+<!-- =========================
      PRODUITS
-====================================================== -->
+========================= -->
 
 <section
     class="section"
     id="produits"
 >
 
-    <h2 class="section-title">
-        Nos produits
-    </h2>
+    <div class="section-header">
 
-    <p class="section-subtitle">
-        Des produits sélectionnés pour vos projets.
-    </p>
+        <h2 class="section-title">
+            Nos produits
+        </h2>
 
+        <p class="section-subtitle">
+            Des produits sélectionnés pour vos besoins
+        </p>
 
-    <div class="products-toolbar">
+    </div>
 
-        <div class="categories-filter">
+    <div class="product-controls">
+
+        <div class="filters">
 
             <button
                 class="filter-btn active"
@@ -1526,10 +1327,9 @@ footer{
 
         </div>
 
-
         <select
             id="sortSelect"
-            onchange="renderProducts()"
+            class="sort-select"
         >
 
             <option value="default">
@@ -1552,80 +1352,95 @@ footer{
 
     </div>
 
-
     <div
-        class="products-grid"
-        id="productsGrid"
+        class="products"
+        id="productsContainer"
     >
 
-        <p>
+        <div class="empty">
             Chargement des produits...
-        </p>
+        </div>
 
     </div>
 
 </section>
 
-
-<!-- ======================================================
+<!-- =========================
      AVANTAGES
-====================================================== -->
+========================= -->
 
 <section class="section">
 
-    <h2 class="section-title">
-        Pourquoi choisir La Grâce Solution ?
-    </h2>
+    <div class="section-header">
+
+        <h2 class="section-title">
+            Pourquoi choisir La Grâce Solution ?
+        </h2>
+
+    </div>
 
     <div class="advantages">
 
         <div class="advantage">
 
-            <strong>
-                🚚 Livraison
-            </strong>
+            <div class="advantage-icon">
+                🚚
+            </div>
+
+            <h3>
+                Livraison
+            </h3>
 
             <p>
-                Livraison disponible selon votre zone.
+                Livraison disponible en Haïti.
             </p>
 
         </div>
 
-
         <div class="advantage">
 
-            <strong>
-                💳 Paiement
-            </strong>
+            <div class="advantage-icon">
+                🔒
+            </div>
+
+            <h3>
+                Paiement sécurisé
+            </h3>
 
             <p>
-                Plusieurs solutions de paiement disponibles.
+                Vos commandes sont traitées avec sérieux.
             </p>
 
         </div>
 
-
         <div class="advantage">
 
-            <strong>
-                🔧 Solutions
-            </strong>
+            <div class="advantage-icon">
+                ⭐
+            </div>
+
+            <h3>
+                Qualité
+            </h3>
 
             <p>
-                Des produits adaptés à différents projets.
+                Des solutions adaptées à vos besoins.
             </p>
 
         </div>
 
-
         <div class="advantage">
 
-            <strong>
-                📞 Assistance
-            </strong>
+            <div class="advantage-icon">
+                📞
+            </div>
+
+            <h3>
+                Assistance
+            </h3>
 
             <p>
-                Contactez La Grâce Solution pour vos besoins.
+                Une équipe disponible pour vous accompagner.
             </p>
 
         </div>
@@ -1634,28 +1449,53 @@ footer{
 
 </section>
 
+<!-- =========================
+     CONTACT / FOOTER
+========================= -->
 
-<!-- ======================================================
-     FOOTER
-====================================================== -->
-
-<footer id="contact">
+<footer
+    class="footer"
+    id="contact"
+>
 
     <div class="footer-inner">
 
         <div>
 
-            <h2 id="footerSiteName">
+            <h3>
                 La Grâce Solution
-            </h2>
+            </h3>
 
             <p>
-                Des solutions pour votre maison,
-                votre entreprise et vos projets.
+                Solutions solaires, électriques et équipements
+                pour vos projets.
             </p>
 
         </div>
 
+        <div>
+
+            <h3>
+                Navigation
+            </h3>
+
+            <p>
+                Accueil
+            </p>
+
+            <p>
+                Catégories
+            </p>
+
+            <p>
+                Produits
+            </p>
+
+            <p>
+                Promotions
+            </p>
+
+        </div>
 
         <div>
 
@@ -1663,72 +1503,48 @@ footer{
                 Contact
             </h3>
 
-            <p id="footerPhone">
-                Téléphone : —
+            <p id="contactPhone">
+                Contactez-nous pour plus d'informations.
             </p>
 
-            <p id="footerWhatsApp">
-                WhatsApp : —
-            </p>
-
-            <p id="footerEmail">
-                Email : —
-            </p>
-
-        </div>
-
-
-        <div>
-
-            <h3>
-                Adresse
-            </h3>
-
-            <p id="footerAddress">
-                —
-            </p>
+            <p id="contactEmail"></p>
 
         </div>
 
     </div>
 
+    <div class="footer-bottom">
+
+        © <span id="year"></span>
+        La Grâce Solution — Tous droits réservés.
+
+    </div>
+
 </footer>
 
-
-<!-- ======================================================
+<!-- =========================
      PANIER
-====================================================== -->
+========================= -->
 
 <div
     class="overlay"
     id="cartOverlay"
-    onclick="closeOverlay(event,'cartOverlay')"
 >
 
-    <div
-        class="modal"
-        onclick="event.stopPropagation()"
-    >
+    <div class="modal">
 
-        <div class="modal-header">
+        <button
+            class="close-btn"
+            onclick="closeCart()"
+        >
+            ×
+        </button>
 
-            <h2>
-                Votre panier
-            </h2>
+        <h2>
+            Mon panier
+        </h2>
 
-            <button
-                class="close"
-                onclick="closeModal('cartOverlay')"
-            >
-                ×
-            </button>
-
-        </div>
-
-
-        <div id="cartItems">
-        </div>
-
+        <div id="cartItems"></div>
 
         <div class="cart-total">
 
@@ -1742,13 +1558,8 @@ footer{
 
         </div>
 
-
-        <br>
-
-
         <button
-            class="btn blue"
-            style="width:100%"
+            class="submit-btn"
             onclick="openCheckout()"
         >
             Passer la commande
@@ -1758,37 +1569,29 @@ footer{
 
 </div>
 
-
-<!-- ======================================================
+<!-- =========================
      CHECKOUT
-====================================================== -->
+========================= -->
 
 <div
     class="overlay"
     id="checkoutOverlay"
-    onclick="closeOverlay(event,'checkoutOverlay')"
 >
 
-    <div
-        class="modal"
-        onclick="event.stopPropagation()"
-    >
+    <div class="modal">
 
-        <div class="modal-header">
+        <button
+            class="close-btn"
+            onclick="closeCheckout()"
+        >
+            ×
+        </button>
 
-            <h2>
-                Finaliser la commande
-            </h2>
+        <h2>
+            Finaliser la commande
+        </h2>
 
-            <button
-                class="close"
-                onclick="closeModal('checkoutOverlay')"
-            >
-                ×
-            </button>
-
-        </div>
-
+        <br>
 
         <form id="checkoutForm">
 
@@ -1799,12 +1602,12 @@ footer{
                 </label>
 
                 <input
+                    type="text"
                     id="customerName"
                     required
                 >
 
             </div>
-
 
             <div class="form-group">
 
@@ -1813,17 +1616,17 @@ footer{
                 </label>
 
                 <input
+                    type="tel"
                     id="customerPhone"
                     required
                 >
 
             </div>
 
-
             <div class="form-group">
 
                 <label>
-                    Adresse
+                    Adresse de livraison
                 </label>
 
                 <textarea
@@ -1833,14 +1636,20 @@ footer{
 
             </div>
 
-
             <div class="form-group">
 
                 <label>
                     Mode de paiement
                 </label>
 
-                <select id="paymentMethod">
+                <select
+                    id="paymentMethod"
+                    required
+                >
+
+                    <option value="">
+                        Sélectionner
+                    </option>
 
                     <option value="MonCash">
                         MonCash
@@ -1858,11 +1667,9 @@ footer{
 
             </div>
 
-
             <button
+                class="submit-btn"
                 type="submit"
-                class="btn blue"
-                style="width:100%"
             >
                 Confirmer la commande
             </button>
@@ -1873,55 +1680,46 @@ footer{
 
 </div>
 
-
-<!-- ======================================================
-     LOGIN ADMIN
-====================================================== -->
+<!-- =========================
+     ADMIN LOGIN
+========================= -->
 
 <div
     class="overlay"
     id="adminLoginOverlay"
 >
 
-    <div class="modal login-box">
+    <div class="modal">
 
-        <div class="modal-header">
+        <button
+            class="close-btn"
+            onclick="closeAdminLogin()"
+        >
+            ×
+        </button>
 
-            <h2>
-                Administration
-            </h2>
+        <h2>
+            Administration
+        </h2>
 
-            <button
-                class="close"
-                onclick="closeModal('adminLoginOverlay')"
-            >
-                ×
-            </button>
-
-        </div>
-
-
-        <p>
-            Connectez-vous pour gérer La Grâce Solution.
-        </p>
-
+        <br>
 
         <form id="adminLoginForm">
 
             <div class="form-group">
 
                 <label>
-                    Identifiant
+                    Nom d'utilisateur
                 </label>
 
                 <input
+                    type="text"
                     id="adminUsername"
                     value="admin"
                     required
                 >
 
             </div>
-
 
             <div class="form-group">
 
@@ -1930,902 +1728,759 @@ footer{
                 </label>
 
                 <input
-                    id="adminPassword"
                     type="password"
+                    id="adminPassword"
                     required
                 >
 
             </div>
 
-
             <button
+                class="submit-btn"
                 type="submit"
-                class="btn blue"
-                style="width:100%"
             >
                 Se connecter
             </button>
 
         </form>
 
-
-        <p
-            id="loginError"
-            style="color:#dc3545;margin-top:15px"
-        ></p>
-
     </div>
 
 </div>
 
-
-<!-- ======================================================
+<!-- =========================
      ADMIN DASHBOARD
-====================================================== -->
+========================= -->
 
 <div
     class="overlay"
     id="adminOverlay"
 >
 
-    <div class="modal admin-modal">
+    <div class="modal large">
 
+        <button
+            class="close-btn"
+            onclick="closeAdmin()"
+        >
+            ×
+        </button>
 
-        <!-- SIDEBAR -->
+        <div class="admin-header">
 
-        <aside class="admin-sidebar">
+            <div>
 
-            <div class="admin-brand">
-                LGS Admin
-            </div>
+                <h2>
+                    Tableau de bord
+                </h2>
 
-
-            <div class="admin-menu">
-
-                <button
-                    class="active"
-                    data-page="dashboard"
-                    onclick="adminPage('dashboard')"
-                >
-                    📊 Tableau de bord
-                </button>
-
-
-                <button
-                    data-page="products"
-                    onclick="adminPage('products')"
-                >
-                    📦 Produits
-                </button>
-
-
-                <button
-                    data-page="orders"
-                    onclick="adminPage('orders')"
-                >
-                    🧾 Commandes
-                </button>
-
-
-                <button
-                    data-page="promotion"
-                    onclick="adminPage('promotion')"
-                >
-                    🏷️ Promotion
-                </button>
-
-
-                <button
-                    data-page="site"
-                    onclick="adminPage('site')"
-                >
-                    🌐 Site
-                </button>
-
-
-                <button
-                    onclick="adminLogout()"
-                >
-                    🚪 Déconnexion
-                </button>
+                <p>
+                    Administration de La Grâce Solution
+                </p>
 
             </div>
 
-        </aside>
-
-
-        <!-- ADMIN CONTENT -->
-
-        <section class="admin-content">
-
-            <div class="admin-top">
-
-                <div>
-
-                    <h2>
-                        Administration
-                    </h2>
-
-                    <p id="adminConnectionStatus">
-                        Connecté
-                    </p>
-
-                </div>
-
-
-                <button
-                    class="close"
-                    onclick="closeModal('adminOverlay')"
-                >
-                    ×
-                </button>
-
-            </div>
-
-
-            <!-- DASHBOARD -->
-
-            <div
-                class="admin-page active"
-                id="admin-dashboard"
+            <button
+                class="small-btn delete-btn"
+                onclick="adminLogout()"
             >
+                Déconnexion
+            </button>
 
-                <div class="stats">
+        </div>
 
-                    <div class="stat">
+        <div class="admin-tabs">
 
-                        Produits
+            <button
+                class="admin-tab active"
+                data-tab="dashboard"
+                onclick="showAdminTab('dashboard')"
+            >
+                Tableau de bord
+            </button>
 
-                        <div
-                            class="stat-number"
-                            id="statProducts"
-                        >
-                            0
-                        </div>
+            <button
+                class="admin-tab"
+                data-tab="products"
+                onclick="showAdminTab('products')"
+            >
+                Produits
+            </button>
 
-                    </div>
+            <button
+                class="admin-tab"
+                data-tab="orders"
+                onclick="showAdminTab('orders')"
+            >
+                Commandes
+            </button>
 
+            <button
+                class="admin-tab"
+                data-tab="promotion"
+                onclick="showAdminTab('promotion')"
+            >
+                Promotion
+            </button>
 
-                    <div class="stat">
+            <button
+                class="admin-tab"
+                data-tab="settings"
+                onclick="showAdminTab('settings')"
+            >
+                Paramètres
+            </button>
 
-                        Produits actifs
+        </div>
 
-                        <div
-                            class="stat-number"
-                            id="statActive"
-                        >
-                            0
-                        </div>
+        <!-- DASHBOARD -->
 
-                    </div>
+        <div
+            class="admin-panel active"
+            id="admin-dashboard"
+        >
 
+            <div class="stats">
 
-                    <div class="stat">
+                <div class="stat">
 
-                        Commandes
-
-                        <div
-                            class="stat-number"
-                            id="statOrders"
-                        >
-                            0
-                        </div>
-
-                    </div>
-
-
-                    <div class="stat">
-
-                        Chiffre d'affaires
-
-                        <div
-                            class="stat-number"
-                            id="statRevenue"
-                        >
-                            0 HTG
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="admin-card">
-
-                    <h3>
-                        Stock total
-                    </h3>
-
-                    <p
-                        id="statStock"
-                        style="margin-top:10px"
+                    <div
+                        class="stat-number"
+                        id="statProducts"
                     >
                         0
-                    </p>
+                    </div>
 
-                </div>
-
-            </div>
-
-
-            <!-- PRODUITS -->
-
-            <div
-                class="admin-page"
-                id="admin-products"
-            >
-
-                <div class="admin-card">
-
-                    <h3>
-                        Ajouter un produit
-                    </h3>
-
-                    <br>
-
-
-                    <form id="productForm">
-
-                        <div class="admin-form-grid">
-
-                            <div class="form-group">
-
-                                <label>
-                                    Nom
-                                </label>
-
-                                <input
-                                    id="productName"
-                                    required
-                                >
-
-                            </div>
-
-
-                            <div class="form-group">
-
-                                <label>
-                                    Catégorie
-                                </label>
-
-                                <input
-                                    id="productCategory"
-                                    placeholder="Solaire"
-                                    required
-                                >
-
-                            </div>
-
-
-                            <div class="form-group">
-
-                                <label>
-                                    Prix HTG
-                                </label>
-
-                                <input
-                                    id="productPrice"
-                                    type="number"
-                                    min="0"
-                                    required
-                                >
-
-                            </div>
-
-
-                            <div class="form-group">
-
-                                <label>
-                                    Stock
-                                </label>
-
-                                <input
-                                    id="productStock"
-                                    type="number"
-                                    min="0"
-                                    required
-                                >
-
-                            </div>
-
-
-                            <div class="form-group full">
-
-                                <label>
-                                    Image URL
-                                </label>
-
-                                <input
-                                    id="productImage"
-                                    placeholder="https://..."
-                                >
-
-                            </div>
-
-
-                            <div class="form-group full">
-
-                                <label>
-                                    Description
-                                </label>
-
-                                <textarea
-                                    id="productDescription"
-                                ></textarea>
-
-                            </div>
-
-
-                            <div>
-
-                                <label>
-
-                                    <input
-                                        id="productActive"
-                                        type="checkbox"
-                                        checked
-                                    >
-
-                                    Produit actif
-
-                                </label>
-
-                            </div>
-
-
-                            <div>
-
-                                <label>
-
-                                    <input
-                                        id="productPromo"
-                                        type="checkbox"
-                                    >
-
-                                    Promotion
-
-                                </label>
-
-                            </div>
-
-                        </div>
-
-
-                        <button
-                            class="btn blue"
-                            type="submit"
-                        >
-                            Ajouter le produit
-                        </button>
-
-                    </form>
-
-                </div>
-
-
-                <div class="admin-card">
-
-                    <h3>
-                        Produits existants
-                    </h3>
-
-                    <br>
-
-                    <div id="adminProductsList">
-                        Chargement...
+                    <div class="stat-label">
+                        Produits
                     </div>
 
                 </div>
 
-            </div>
+                <div class="stat">
 
+                    <div
+                        class="stat-number"
+                        id="statActive"
+                    >
+                        0
+                    </div>
 
-            <!-- COMMANDES -->
+                    <div class="stat-label">
+                        Produits actifs
+                    </div>
 
-            <div
-                class="admin-page"
-                id="admin-orders"
-            >
+                </div>
 
-                <div class="admin-card">
+                <div class="stat">
 
-                    <h3>
+                    <div
+                        class="stat-number"
+                        id="statOrders"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-label">
                         Commandes
-                    </h3>
+                    </div>
 
-                    <br>
+                </div>
 
-                    <div id="adminOrdersList">
-                        Chargement...
+                <div class="stat">
+
+                    <div
+                        class="stat-number"
+                        id="statRevenue"
+                    >
+                        0 HTG
+                    </div>
+
+                    <div class="stat-label">
+                        Chiffre d'affaires
+                    </div>
+
+                </div>
+
+                <div class="stat">
+
+                    <div
+                        class="stat-number"
+                        id="statStock"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-label">
+                        Stock
                     </div>
 
                 </div>
 
             </div>
 
+        </div>
 
-            <!-- PROMOTION -->
+        <!-- PRODUCTS -->
 
-            <div
-                class="admin-page"
-                id="admin-promotion"
-            >
+        <div
+            class="admin-panel"
+            id="admin-products"
+        >
 
-                <div class="admin-card">
+            <div style="margin-bottom:20px;">
 
-                    <h3>
-                        Gestion de la promotion
-                    </h3>
-
-                    <br>
-
-
-                    <form id="promotionForm">
-
-                        <div class="form-group">
-
-                            <label>
-
-                                <input
-                                    type="checkbox"
-                                    id="promotionActive"
-                                >
-
-                                Promotion active
-
-                            </label>
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label>
-                                Titre
-                            </label>
-
-                            <input
-                                id="promotionAdminTitle"
-                            >
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label>
-                                Description
-                            </label>
-
-                            <textarea
-                                id="promotionAdminDescription"
-                            ></textarea>
-
-                        </div>
-
-
-                        <button
-                            class="btn blue"
-                            type="submit"
-                        >
-                            Enregistrer
-                        </button>
-
-                    </form>
-
-                </div>
+                <button
+                    class="submit-btn"
+                    onclick="showProductForm()"
+                >
+                    + Ajouter un produit
+                </button>
 
             </div>
 
-
-            <!-- SITE -->
-
-            <div
-                class="admin-page"
-                id="admin-site"
+            <form
+                id="productForm"
+                style="display:none;margin-bottom:25px;"
             >
 
-                <div class="admin-card">
+                <input
+                    type="hidden"
+                    id="productId"
+                >
 
-                    <h3>
-                        Paramètres du site
-                    </h3>
+                <div class="form-group">
 
-                    <br>
+                    <label>
+                        Nom
+                    </label>
 
-
-                    <form id="siteSettingsForm">
-
-                        <div class="admin-form-grid">
-
-
-                            <div class="form-group">
-
-                                <label>
-                                    Nom du site
-                                </label>
-
-                                <input id="siteNameAdmin">
-
-                            </div>
-
-
-                            <div class="form-group">
-
-                                <label>
-                                    Téléphone
-                                </label>
-
-                                <input id="sitePhoneAdmin">
-
-                            </div>
-
-
-                            <div class="form-group">
-
-                                <label>
-                                    WhatsApp
-                                </label>
-
-                                <input id="siteWhatsappAdmin">
-
-                            </div>
-
-
-                            <div class="form-group">
-
-                                <label>
-                                    Email
-                                </label>
-
-                                <input
-                                    id="siteEmailAdmin"
-                                    type="email"
-                                >
-
-                            </div>
-
-
-                            <div class="form-group full">
-
-                                <label>
-                                    Adresse
-                                </label>
-
-                                <input id="siteAddressAdmin">
-
-                            </div>
-
-
-                            <div class="form-group full">
-
-                                <label>
-                                    Message du haut
-                                </label>
-
-                                <input id="siteTopMessageAdmin">
-
-                            </div>
-
-
-                            <div class="form-group full">
-
-                                <label>
-                                    Titre principal
-                                </label>
-
-                                <textarea id="siteHeroTitleAdmin"></textarea>
-
-                            </div>
-
-
-                            <div class="form-group full">
-
-                                <label>
-                                    Description principale
-                                </label>
-
-                                <textarea id="siteHeroDescriptionAdmin"></textarea>
-
-                            </div>
-
-                        </div>
-
-
-                        <button
-                            class="btn blue"
-                            type="submit"
-                        >
-                            Enregistrer les paramètres
-                        </button>
-
-                    </form>
+                    <input
+                        type="text"
+                        id="productName"
+                        required
+                    >
 
                 </div>
 
+                <div class="form-group">
+
+                    <label>
+                        Catégorie
+                    </label>
+
+                    <select
+                        id="productCategory"
+                        required
+                    >
+
+                        <option value="Solaire">
+                            Solaire
+                        </option>
+
+                        <option value="Batteries">
+                            Batteries
+                        </option>
+
+                        <option value="Onduleurs">
+                            Onduleurs
+                        </option>
+
+                        <option value="Électricité">
+                            Électricité
+                        </option>
+
+                        <option value="Outils">
+                            Outils
+                        </option>
+
+                        <option value="Accessoires">
+                            Accessoires
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Description
+                    </label>
+
+                    <textarea
+                        id="productDescription"
+                    ></textarea>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Prix
+                    </label>
+
+                    <input
+                        type="number"
+                        id="productPrice"
+                        min="0"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Stock
+                    </label>
+
+                    <input
+                        type="number"
+                        id="productStock"
+                        min="0"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Image
+                    </label>
+
+                    <input
+                        type="url"
+                        id="productImage"
+                        placeholder="https://..."
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            id="productActive"
+                            checked
+                        >
+                        Produit actif
+                    </label>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            id="productPromo"
+                        >
+                        En promotion
+                    </label>
+
+                </div>
+
+                <button
+                    class="submit-btn"
+                    type="submit"
+                >
+                    Enregistrer
+                </button>
+
+            </form>
+
+            <div style="overflow-x:auto;">
+
+                <table class="admin-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Produit
+                            </th>
+
+                            <th>
+                                Catégorie
+                            </th>
+
+                            <th>
+                                Prix
+                            </th>
+
+                            <th>
+                                Stock
+                            </th>
+
+                            <th>
+                                Statut
+                            </th>
+
+                            <th>
+                                Actions
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="adminProductsTable"></tbody>
+
+                </table>
+
             </div>
 
-        </section>
+        </div>
+
+        <!-- ORDERS -->
+
+        <div
+            class="admin-panel"
+            id="admin-orders"
+        >
+
+            <div style="overflow-x:auto;">
+
+                <table class="admin-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                ID
+                            </th>
+
+                            <th>
+                                Client
+                            </th>
+
+                            <th>
+                                Téléphone
+                            </th>
+
+                            <th>
+                                Total
+                            </th>
+
+                            <th>
+                                Statut
+                            </th>
+
+                            <th>
+                                Date
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="adminOrdersTable"></tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+        <!-- PROMOTION -->
+
+        <div
+            class="admin-panel"
+            id="admin-promotion"
+        >
+
+            <form id="promotionForm">
+
+                <div class="form-group">
+
+                    <label>
+                        Titre
+                    </label>
+
+                    <input
+                        type="text"
+                        id="promotionTitleInput"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Description
+                    </label>
+
+                    <textarea
+                        id="promotionDescriptionInput"
+                    ></textarea>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Active
+                    </label>
+
+                    <select
+                        id="promotionActive"
+                    >
+
+                        <option value="true">
+                            Oui
+                        </option>
+
+                        <option value="false">
+                            Non
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <button
+                    class="submit-btn"
+                    type="submit"
+                >
+                    Enregistrer la promotion
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- SETTINGS -->
+
+        <div
+            class="admin-panel"
+            id="admin-settings"
+        >
+
+            <form id="settingsForm">
+
+                <div class="form-group">
+
+                    <label>
+                        Nom du site
+                    </label>
+
+                    <input
+                        type="text"
+                        id="settingSiteName"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Téléphone
+                    </label>
+
+                    <input
+                        type="text"
+                        id="settingPhone"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="settingEmail"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Titre principal
+                    </label>
+
+                    <input
+                        type="text"
+                        id="settingHeroTitle"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Description principale
+                    </label>
+
+                    <textarea
+                        id="settingHeroDescription"
+                    ></textarea>
+
+                </div>
+
+                <button
+                    class="submit-btn"
+                    type="submit"
+                >
+                    Enregistrer les paramètres
+                </button>
+
+            </form>
+
+        </div>
 
     </div>
 
 </div>
 
+<!-- =========================
+     TOAST
+========================= -->
+
+<div
+    class="toast"
+    id="toast"
+></div>
 
 <script>
 
-/* =========================================================
+/* =========================
    VARIABLES
-========================================================= */
+========================= */
 
 let products = [];
 
-let cart = [];
-
 let currentCategory = "all";
 
-let searchTerm = "";
+let cart =
+    JSON.parse(
+        localStorage.getItem("lgs_cart") || "[]"
+    );
+
+let favorites =
+    JSON.parse(
+        localStorage.getItem("lgs_favorites") || "[]"
+    );
+
+let settings = {};
+
+let promotion = {};
+
+let editingProductId = null;
 
 
-/* =========================================================
+/* =========================
    API
-========================================================= */
+========================= */
 
 async function api(url, options = {}){
 
-    const response = await fetch(url, {
-        credentials:"same-origin",
+    const response =
+        await fetch(
+            url,
+            {
+                headers:{
+                    "Content-Type":"application/json",
+                    ...(options.headers || {})
+                },
+                ...options
+            }
+        );
 
-        headers:{
-            "Content-Type":"application/json"
-        },
-
-        ...options
-    });
-
-    const data = await response.json()
-        .catch(() => ({}));
+    const data =
+        await response.json().catch(
+            () => ({})
+        );
 
     if(!response.ok){
 
         throw new Error(
-            data.error || "Erreur serveur"
+            data.error ||
+            "Une erreur est survenue."
         );
+
     }
 
     return data;
 }
 
 
-/* =========================================================
-   FORMAT
-========================================================= */
+/* =========================
+   FORMAT MONEY
+========================= */
 
 function money(value){
 
     return Number(value || 0)
-        .toLocaleString("fr-FR")
-        + " HTG";
+        .toLocaleString(
+            "fr-FR"
+        ) + " HTG";
+
 }
 
 
-function escapeHTML(value){
+/* =========================
+   TOAST
+========================= */
 
-    return String(value ?? "")
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    setTimeout(
+        () => {
+            toast.classList.remove("show");
+        },
+        3000
+    );
+
 }
 
 
-/* =========================================================
-   PRODUITS
-========================================================= */
+/* =========================
+   NAVIGATION
+========================= */
 
-async function loadProducts(){
+function goToSection(id){
 
-    try{
+    const element =
+        document.getElementById(id);
 
-        products = await api("/api/products");
-
-        renderProducts();
-
-    }catch(error){
-
-        console.error(error);
-
-        document.getElementById(
-            "productsGrid"
-        ).innerHTML = `
-            <p>
-                Impossible de charger les produits.
-            </p>
-        `;
-    }
-}
-
-
-function renderProducts(){
-
-    const grid =
-        document.getElementById("productsGrid");
-
-    if(!grid){
+    if(!element){
         return;
     }
 
-    let list = [...products];
+    const position =
+        element.getBoundingClientRect().top +
+        window.pageYOffset -
+        90;
 
+    window.scrollTo({
+        top:position,
+        left:0,
+        behavior:"auto"
+    });
 
-    if(currentCategory !== "all"){
-
-        list = list.filter(
-            product =>
-                product.category === currentCategory
-        );
-    }
-
-
-    if(searchTerm){
-
-        const term =
-            searchTerm.toLowerCase();
-
-        list = list.filter(product => {
-
-            return (
-                product.name
-                    .toLowerCase()
-                    .includes(term)
-
-                ||
-
-                product.category
-                    .toLowerCase()
-                    .includes(term)
-
-                ||
-
-                product.description
-                    .toLowerCase()
-                    .includes(term)
-            );
-
-        });
-    }
-
-
-    const sort =
-        document.getElementById("sortSelect")?.value;
-
-
-    if(sort === "priceAsc"){
-
-        list.sort(
-            (a,b) => a.price - b.price
-        );
-
-    }
-
-    else if(sort === "priceDesc"){
-
-        list.sort(
-            (a,b) => b.price - a.price
-        );
-
-    }
-
-    else if(sort === "name"){
-
-        list.sort(
-            (a,b) =>
-                a.name.localeCompare(b.name)
-        );
-
-    }
-
-
-    if(list.length === 0){
-
-        grid.innerHTML = `
-            <p>
-                Aucun produit trouvé.
-            </p>
-        `;
-
-        return;
-    }
-
-
-    grid.innerHTML = list.map(product => {
-
-        return `
-
-        <article class="product">
-
-            ${
-                product.promo
-                ?
-                `<span class="promo-badge">
-                    PROMO
-                </span>`
-                :
-                ""
-            }
-
-            <img
-                class="product-image"
-                src="${escapeHTML(
-                    product.image ||
-                    "https://via.placeholder.com/700x500?text=Produit"
-                )}"
-                alt="${escapeHTML(product.name)}"
-                loading="lazy"
-                onerror="
-                    this.onerror=null;
-                    this.src='https://via.placeholder.com/700x500?text=Produit';
-                "
-            >
-
-            <div class="product-body">
-
-                <div class="product-category">
-                    ${escapeHTML(product.category)}
-                </div>
-
-                <h3 class="product-name">
-                    ${escapeHTML(product.name)}
-                </h3>
-
-                <p class="product-description">
-                    ${escapeHTML(product.description)}
-                </p>
-
-                <div class="stock">
-                    ${
-                        product.stock > 0
-                        ?
-                        `${product.stock} disponible(s)`
-                        :
-                        "Rupture de stock"
-                    }
-                </div>
-
-                <div class="product-bottom">
-
-                    <span class="price">
-                        ${money(product.price)}
-                    </span>
-
-                    <button
-                        class="add-btn"
-                        ${
-                            product.stock <= 0
-                            ? "disabled"
-                            : ""
-                        }
-                        onclick="addToCart(${product.id})"
-                    >
-                        Ajouter
-                    </button>
-
-                </div>
-
-            </div>
-
-        </article>
-
-        `;
-
-    }).join("");
 }
 
 
-/* =========================================================
+/* =========================
    CATEGORIES
-========================================================= */
+========================= */
 
 function selectCategory(category){
 
@@ -2844,56 +2499,275 @@ function selectCategory(category){
 
     renderProducts();
 
-    if(
-        document.activeElement?.tagName !== "INPUT"
-    ){
+    const produits =
+        document.getElementById("produits");
 
-        document.getElementById("produits")
-            ?.scrollIntoView({
-                behavior:"smooth",
-                block:"start"
-            });
+    if(produits){
+
+        const position =
+            produits.getBoundingClientRect().top +
+            window.pageYOffset -
+            100;
+
+        window.scrollTo({
+            top:position,
+            left:0,
+            behavior:"auto"
+        });
+
     }
+
 }
 
 
-/* =========================================================
-   RECHERCHE
-========================================================= */
+/* =========================
+   LOAD PRODUCTS
+========================= */
 
-document
-    .getElementById("searchInput")
-    .addEventListener("input", function(){
-
-        searchTerm =
-            this.value.trim();
-
-        renderProducts();
-
-    });
-
-
-/* =========================================================
-   PANIER
-========================================================= */
-
-function loadCart(){
+async function loadProducts(){
 
     try{
 
-        cart = JSON.parse(
-            localStorage.getItem("lgs_cart") || "[]"
-        );
+        products =
+            await api("/api/products");
 
-    }catch{
+        renderProducts();
 
-        cart = [];
+    }catch(error){
+
+        console.error(error);
+
+        document.getElementById(
+            "productsContainer"
+        ).innerHTML = `
+            <div class="empty">
+                Impossible de charger les produits.
+            </div>
+        `;
 
     }
 
-    updateCartCount();
 }
 
+
+/* =========================
+   RENDER PRODUCTS
+========================= */
+
+function renderProducts(){
+
+    const container =
+        document.getElementById(
+            "productsContainer"
+        );
+
+    if(!container){
+        return;
+    }
+
+    let list =
+        [...products];
+
+    if(currentCategory !== "all"){
+
+        list =
+            list.filter(
+                product =>
+                    product.category ===
+                    currentCategory
+            );
+
+    }
+
+    const search =
+        document
+            .getElementById("searchInput")
+            .value
+            .trim()
+            .toLowerCase();
+
+    if(search){
+
+        list =
+            list.filter(
+                product =>
+                    String(product.name || "")
+                        .toLowerCase()
+                        .includes(search)
+                    ||
+                    String(product.description || "")
+                        .toLowerCase()
+                        .includes(search)
+            );
+
+    }
+
+    const sort =
+        document
+            .getElementById("sortSelect")
+            .value;
+
+    if(sort === "priceAsc"){
+
+        list.sort(
+            (a,b) =>
+                Number(a.price) -
+                Number(b.price)
+        );
+
+    }
+
+    if(sort === "priceDesc"){
+
+        list.sort(
+            (a,b) =>
+                Number(b.price) -
+                Number(a.price)
+        );
+
+    }
+
+    if(sort === "name"){
+
+        list.sort(
+            (a,b) =>
+                String(a.name)
+                    .localeCompare(
+                        String(b.name),
+                        "fr"
+                    )
+        );
+
+    }
+
+    if(!list.length){
+
+        container.innerHTML = `
+            <div class="empty">
+                Aucun produit trouvé.
+            </div>
+        `;
+
+        return;
+
+    }
+
+    container.innerHTML =
+        list.map(
+            product => {
+
+                const stock =
+                    Number(product.stock || 0);
+
+                return `
+
+                <article class="product">
+
+                    <div class="product-image">
+
+                        ${
+                            product.image
+                            ?
+                            `<img
+                                src="${escapeHtml(product.image)}"
+                                alt="${escapeHtml(product.name)}"
+                                loading="lazy"
+                            >`
+                            :
+                            `<div
+                                style="
+                                    height:100%;
+                                    display:flex;
+                                    align-items:center;
+                                    justify-content:center;
+                                    font-size:60px;
+                                "
+                            >
+                                🛍️
+                            </div>`
+                        }
+
+                        ${
+                            product.promo
+                            ?
+                            `<span class="product-promo">
+                                PROMO
+                            </span>`
+                            :
+                            ""
+                        }
+
+                    </div>
+
+                    <div class="product-content">
+
+                        <div class="product-category">
+                            ${escapeHtml(product.category)}
+                        </div>
+
+                        <div class="product-name">
+                            ${escapeHtml(product.name)}
+                        </div>
+
+                        <div class="product-description">
+                            ${escapeHtml(product.description || "")}
+                        </div>
+
+                        <div class="product-price">
+                            ${money(product.price)}
+                        </div>
+
+                        <div class="product-stock">
+
+                            ${
+                                stock > 0
+                                ?
+                                `Stock : ${stock}`
+                                :
+                                "Rupture de stock"
+                            }
+
+                        </div>
+
+                        <button
+                            class="add-cart"
+                            onclick="addToCart(${Number(product.id)})"
+                            ${stock <= 0 ? "disabled" : ""}
+                        >
+                            Ajouter au panier
+                        </button>
+
+                    </div>
+
+                </article>
+
+                `;
+
+            }
+        ).join("");
+
+}
+
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHtml(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   CART
+========================= */
 
 function saveCart(){
 
@@ -2903,248 +2777,140 @@ function saveCart(){
     );
 
     updateCartCount();
+
 }
 
 
 function updateCartCount(){
 
-    const total =
+    const count =
         cart.reduce(
-            (sum,item) =>
-                sum + Number(item.quantity || 0),
+            (total,item) =>
+                total + Number(item.quantity || 0),
             0
         );
 
     document.getElementById(
         "cartCount"
-    ).textContent = total;
+    ).textContent = count;
+
 }
 
 
-function addToCart(id){
+function addToCart(productId){
 
     const product =
         products.find(
-            item => item.id === id
+            p => Number(p.id) === Number(productId)
         );
 
-    if(!product || product.stock <= 0){
-
+    if(!product){
         return;
     }
 
-
     const existing =
         cart.find(
-            item => item.id === id
+            item =>
+                Number(item.id) ===
+                Number(productId)
         );
-
 
     if(existing){
 
-        if(
-            existing.quantity <
-            product.stock
-        ){
+        if(existing.quantity < Number(product.stock)){
 
             existing.quantity++;
+
+        }else{
+
+            showToast(
+                "Stock disponible insuffisant."
+            );
+
+            return;
+
         }
 
     }else{
 
         cart.push({
-
             id:product.id,
-
             name:product.name,
-
-            price:product.price,
-
+            price:Number(product.price),
             quantity:1
-
         });
 
     }
 
-
     saveCart();
 
-    renderCart();
+    showToast(
+        "Produit ajouté au panier."
+    );
 
-    openCart();
 }
 
 
-function removeFromCart(id){
+function removeFromCart(productId){
 
     cart =
         cart.filter(
-            item => item.id !== id
+            item =>
+                Number(item.id) !==
+                Number(productId)
         );
 
     saveCart();
 
     renderCart();
+
 }
 
 
-function changeQuantity(id, amount){
+function changeQuantity(productId, amount){
 
     const item =
         cart.find(
-            product => product.id === id
+            item =>
+                Number(item.id) ===
+                Number(productId)
         );
+
+    if(!item){
+        return;
+    }
 
     const product =
         products.find(
-            product => product.id === id
+            p =>
+                Number(p.id) ===
+                Number(productId)
         );
-
-    if(!item || !product){
-        return;
-    }
-
 
     item.quantity += amount;
 
-
     if(item.quantity <= 0){
 
-        removeFromCart(id);
+        removeFromCart(productId);
 
         return;
+
     }
 
+    if(product &&
+       item.quantity > Number(product.stock)){
 
-    if(item.quantity > product.stock){
+        item.quantity =
+            Number(product.stock);
 
-        item.quantity = product.stock;
     }
-
 
     saveCart();
 
     renderCart();
+
 }
 
-
-function renderCart(){
-
-    const container =
-        document.getElementById("cartItems");
-
-    if(!container){
-        return;
-    }
-
-
-    if(cart.length === 0){
-
-        container.innerHTML = `
-            <p>
-                Votre panier est vide.
-            </p>
-        `;
-
-        document.getElementById(
-            "cartTotal"
-        ).textContent = "0 HTG";
-
-        return;
-    }
-
-
-    let total = 0;
-
-
-    container.innerHTML =
-        cart.map(item => {
-
-            const product =
-                products.find(
-                    p => p.id === item.id
-                );
-
-
-            const subtotal =
-                item.price * item.quantity;
-
-
-            total += subtotal;
-
-
-            return `
-
-            <div class="cart-item">
-
-                <div>
-
-                    <strong>
-                        ${escapeHTML(item.name)}
-                    </strong>
-
-                    <div>
-                        ${money(item.price)}
-                    </div>
-
-                    <div class="cart-controls">
-
-                        <button
-                            class="qty-btn"
-                            onclick="changeQuantity(${item.id},-1)"
-                        >
-                            −
-                        </button>
-
-                        <span>
-                            ${item.quantity}
-                        </span>
-
-                        <button
-                            class="qty-btn"
-                            onclick="changeQuantity(${item.id},1)"
-                        >
-                            +
-                        </button>
-
-                    </div>
-
-                </div>
-
-                <div>
-
-                    <strong>
-                        ${money(subtotal)}
-                    </strong>
-
-                    <br>
-
-                    <button
-                        class="small-btn red"
-                        style="margin-top:8px"
-                        onclick="removeFromCart(${item.id})"
-                    >
-                        Supprimer
-                    </button>
-
-                </div>
-
-            </div>
-
-            `;
-
-        }).join("");
-
-
-    document.getElementById(
-        "cartTotal"
-    ).textContent = money(total);
-}
-
-
-/* =========================================================
-   MODALS
-========================================================= */
 
 function openCart(){
 
@@ -3152,71 +2918,176 @@ function openCart(){
 
     document
         .getElementById("cartOverlay")
-        .classList.add("open");
+        .classList.add("active");
+
+}
+
+
+function closeCart(){
+
+    document
+        .getElementById("cartOverlay")
+        .classList.remove("active");
+
+}
+
+
+function renderCart(){
+
+    const container =
+        document.getElementById(
+            "cartItems"
+        );
+
+    const totalElement =
+        document.getElementById(
+            "cartTotal"
+        );
+
+    if(!cart.length){
+
+        container.innerHTML = `
+            <div class="empty">
+                Votre panier est vide.
+            </div>
+        `;
+
+        totalElement.textContent =
+            money(0);
+
+        return;
+
+    }
+
+    let total = 0;
+
+    container.innerHTML =
+        cart.map(
+            item => {
+
+                const subtotal =
+                    Number(item.price) *
+                    Number(item.quantity);
+
+                total += subtotal;
+
+                return `
+
+                <div class="cart-item">
+
+                    <div class="cart-item-info">
+
+                        <strong>
+                            ${escapeHtml(item.name)}
+                        </strong>
+
+                        <div>
+                            ${money(item.price)}
+                        </div>
+
+                    </div>
+
+                    <div class="quantity-controls">
+
+                        <button
+                            onclick="changeQuantity(${Number(item.id)},-1)"
+                        >
+                            −
+                        </button>
+
+                        <span>
+                            ${Number(item.quantity)}
+                        </span>
+
+                        <button
+                            onclick="changeQuantity(${Number(item.id)},1)"
+                        >
+                            +
+                        </button>
+
+                        <button
+                            onclick="removeFromCart(${Number(item.id)})"
+                        >
+                            🗑️
+                        </button>
+
+                    </div>
+
+                </div>
+
+                `;
+
+            }
+        ).join("");
+
+    totalElement.textContent =
+        money(total);
+
 }
 
 
 function openCheckout(){
 
-    if(cart.length === 0){
+    if(!cart.length){
 
-        alert("Votre panier est vide.");
+        showToast(
+            "Votre panier est vide."
+        );
 
         return;
+
     }
 
-
-    closeModal("cartOverlay");
+    closeCart();
 
     document
         .getElementById("checkoutOverlay")
-        .classList.add("open");
+        .classList.add("active");
+
 }
 
 
-function closeModal(id){
+function closeCheckout(){
 
     document
-        .getElementById(id)
-        ?.classList.remove("open");
+        .getElementById("checkoutOverlay")
+        .classList.remove("active");
+
 }
 
 
-function closeOverlay(event,id){
+/* =========================
+   CHECKOUT
+========================= */
 
-    if(event.target.id === id){
+async function checkout(event){
 
-        closeModal(id);
+    event.preventDefault();
+
+    if(!cart.length){
+
+        showToast(
+            "Votre panier est vide."
+        );
+
+        return;
+
     }
-}
 
+    const button =
+        event.target.querySelector(
+            "button[type='submit']"
+        );
 
-/* =========================================================
-   COMMANDE
-========================================================= */
+    button.disabled = true;
 
-document
-    .getElementById("checkoutForm")
-    .addEventListener("submit", async function(event){
+    try{
 
-        event.preventDefault();
-
-
-        if(cart.length === 0){
-
-            alert("Votre panier est vide.");
-
-            return;
-        }
-
-
-        try{
-
-            const data = await api(
+        const data =
+            await api(
                 "/api/orders",
                 {
                     method:"POST",
-
                     body:JSON.stringify({
 
                         customer_name:
@@ -3224,12 +3095,12 @@ document
                                 "customerName"
                             ).value,
 
-                        phone:
+                        customer_phone:
                             document.getElementById(
                                 "customerPhone"
                             ).value,
 
-                        address:
+                        customer_address:
                             document.getElementById(
                                 "customerAddress"
                             ).value,
@@ -3245,44 +3116,203 @@ document
                 }
             );
 
+        cart = [];
 
-            alert(
-                "Commande #" +
-                data.order.id +
-                " enregistrée avec succès."
-            );
+        saveCart();
+
+        document
+            .getElementById("checkoutForm")
+            .reset();
+
+        closeCheckout();
+
+        showToast(
+            "Commande #" +
+            data.order_id +
+            " enregistrée avec succès."
+        );
+
+        await loadProducts();
+
+    }catch(error){
+
+        showToast(
+            error.message
+        );
+
+    }finally{
+
+        button.disabled = false;
+
+    }
+
+}
 
 
-            cart = [];
+/* =========================
+   FAVORITES
+========================= */
 
-            saveCart();
+function showFavorites(){
 
-            renderCart();
+    showToast(
+        "Vos favoris seront disponibles ici."
+    );
 
-            closeModal("checkoutOverlay");
-
-            this.reset();
-
-            await loadProducts();
-
-        }catch(error){
-
-            alert(error.message);
-
-        }
-
-    });
+}
 
 
-/* =========================================================
-   ADMIN
-========================================================= */
+/* =========================
+   SETTINGS
+========================= */
 
-function openAdmin(){
+async function loadSettings(){
+
+    try{
+
+        settings =
+            await api("/api/settings");
+
+        applySettings(settings);
+
+    }catch(error){
+
+        console.error(
+            "Erreur settings :",
+            error
+        );
+
+    }
+
+}
+
+
+function applySettings(data){
+
+    settings = data || {};
+
+    if(data.site_name){
+
+        document.title =
+            data.site_name +
+            " — Boutique";
+
+        document
+            .querySelector(".logo-text")
+            .textContent =
+            data.site_name;
+
+    }
+
+    if(data.hero_title){
+
+        document.getElementById(
+            "heroTitle"
+        ).textContent =
+            data.hero_title;
+
+    }
+
+    if(data.hero_description){
+
+        document.getElementById(
+            "heroDescription"
+        ).textContent =
+            data.hero_description;
+
+    }
+
+    if(data.phone){
+
+        document.getElementById(
+            "contactPhone"
+        ).textContent =
+            data.phone;
+
+    }
+
+    if(data.email){
+
+        document.getElementById(
+            "contactEmail"
+        ).textContent =
+            data.email;
+
+    }
+
+}
+
+
+/* =========================
+   PROMOTION
+========================= */
+
+async function loadPromotion(){
+
+    try{
+
+        promotion =
+            await api("/api/promotion");
+
+        applyPromotion(
+            promotion
+        );
+
+    }catch(error){
+
+        console.error(
+            "Erreur promotion :",
+            error
+        );
+
+    }
+
+}
+
+
+function applyPromotion(data){
+
+    if(!data){
+        return;
+    }
+
+    document.getElementById(
+        "promotionTitle"
+    ).textContent =
+        data.title ||
+        "Promotion";
+
+    document.getElementById(
+        "promotionDescription"
+    ).textContent =
+        data.description ||
+        "Découvrez nos offres spéciales.";
+
+}
+
+
+/* =========================
+   ADMIN LOGIN
+========================= */
+
+function openAdminLogin(){
 
     document
-        .getElementById("adminLoginOverlay")
-        .classList.add("open");
+        .getElementById(
+            "adminLoginOverlay"
+        )
+        .classList.add("active");
+
+}
+
+
+function closeAdminLogin(){
+
+    document
+        .getElementById(
+            "adminLoginOverlay"
+        )
+        .classList.remove("active");
 
 }
 
@@ -3291,58 +3321,83 @@ async function adminLogin(event){
 
     event.preventDefault();
 
-
-    const username =
-        document.getElementById(
-            "adminUsername"
-        ).value;
-
-    const password =
-        document.getElementById(
-            "adminPassword"
-        ).value;
-
-
     try{
 
         await api(
             "/api/admin/login",
             {
                 method:"POST",
-
                 body:JSON.stringify({
-                    username,
-                    password
+
+                    username:
+                        document.getElementById(
+                            "adminUsername"
+                        ).value,
+
+                    password:
+                        document.getElementById(
+                            "adminPassword"
+                        ).value
+
                 })
             }
         );
 
+        closeAdminLogin();
 
         document.getElementById(
-            "loginError"
-        ).textContent = "";
+            "adminPassword"
+        ).value = "";
 
+        await openAdmin();
 
-        closeModal(
-            "adminLoginOverlay"
+    }catch(error){
+
+        showToast(
+            error.message
         );
 
+    }
+
+}
+
+
+/* =========================
+   ADMIN
+========================= */
+
+async function openAdmin(){
+
+    try{
+
+        await api(
+            "/api/admin/me"
+        );
 
         document
-            .getElementById("adminOverlay")
-            .classList.add("open");
-
+            .getElementById(
+                "adminOverlay"
+            )
+            .classList.add("active");
 
         await loadAdmin();
 
     }catch(error){
 
-        document.getElementById(
-            "loginError"
-        ).textContent =
-            error.message;
+        openAdminLogin();
 
     }
+
+}
+
+
+function closeAdmin(){
+
+    document
+        .getElementById(
+            "adminOverlay"
+        )
+        .classList.remove("active");
 
 }
 
@@ -3358,167 +3413,203 @@ async function adminLogout(){
             }
         );
 
+        closeAdmin();
+
+        showToast(
+            "Déconnexion réussie."
+        );
+
     }catch(error){
 
-        console.error(error);
-
-    }
-
-
-    closeModal("adminOverlay");
-
-}
-
-
-/* =========================================================
-   ADMIN NAVIGATION
-========================================================= */
-
-function adminPage(page){
-
-    document
-        .querySelectorAll(".admin-page")
-        .forEach(section => {
-
-            section.classList.remove("active");
-
-        });
-
-
-    document
-        .getElementById(
-            "admin-" + page
-        )
-        ?.classList.add("active");
-
-
-    document
-        .querySelectorAll(".admin-menu button")
-        .forEach(button => {
-
-            button.classList.toggle(
-                "active",
-                button.dataset.page === page
-            );
-
-        });
-
-
-    if(page === "dashboard"){
-
-        loadStats();
-
-    }
-
-    if(page === "products"){
-
-        loadAdminProducts();
-
-    }
-
-    if(page === "orders"){
-
-        loadOrders();
-
-    }
-
-    if(page === "promotion"){
-
-        loadPromotion();
-
-    }
-
-    if(page === "site"){
-
-        loadSettings();
+        showToast(
+            error.message
+        );
 
     }
 
 }
 
-
-/* =========================================================
-   ADMIN CHARGEMENT
-========================================================= */
 
 async function loadAdmin(){
 
-    await loadStats();
-
-    await loadAdminProducts();
-
-    await loadOrders();
-
-    await loadPromotion();
+    await Promise.all([
+        loadStats(),
+        loadAdminProducts(),
+        loadAdminOrders(),
+        loadAdminPromotion()
+    ]);
 
     await loadSettings();
 
 }
 
 
+/* =========================
+   ADMIN TABS
+========================= */
+
+function showAdminTab(tab){
+
+    document
+        .querySelectorAll(".admin-tab")
+        .forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.tab === tab
+            );
+
+        });
+
+    document
+        .querySelectorAll(".admin-panel")
+        .forEach(panel => {
+
+            panel.classList.toggle(
+                "active",
+                panel.id ===
+                "admin-" + tab
+            );
+
+        });
+
+}
+
+
+/* =========================
+   ADMIN STATS
+========================= */
+
 async function loadStats(){
 
     try{
 
         const data =
-            await api("/api/admin/stats");
-
+            await api(
+                "/api/admin/stats"
+            );
 
         document.getElementById(
             "statProducts"
         ).textContent =
-            data.products;
-
+            data.products?.total ?? 0;
 
         document.getElementById(
             "statActive"
         ).textContent =
-            data.activeProducts;
-
+            data.products?.active ?? 0;
 
         document.getElementById(
             "statOrders"
         ).textContent =
-            data.orders;
-
+            data.orders?.total_orders ?? 0;
 
         document.getElementById(
             "statRevenue"
         ).textContent =
-            money(data.revenue);
-
+            money(
+                data.orders?.revenue ?? 0
+            );
 
         document.getElementById(
             "statStock"
         ).textContent =
-            data.stock + " unité(s)";
+            (data.products?.stock ?? 0) +
+            " unité(s)";
 
     }catch(error){
 
-        console.error(error);
+        console.error(
+            "Erreur statistiques :",
+            error
+        );
 
     }
 
 }
 
 
-/* =========================================================
-   ADMIN PRODUITS
-========================================================= */
-
-let adminProducts = [];
-
+/* =========================
+   ADMIN PRODUCTS
+========================= */
 
 async function loadAdminProducts(){
 
     try{
 
-        adminProducts =
+        const data =
             await api(
                 "/api/admin/products"
             );
 
-        renderAdminProducts();
+        const list =
+            Array.isArray(data)
+            ? data
+            : data.products || [];
+
+        const tbody =
+            document.getElementById(
+                "adminProductsTable"
+            );
+
+        tbody.innerHTML =
+            list.map(
+                product => `
+
+                <tr>
+
+                    <td>
+                        ${escapeHtml(product.name)}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(product.category)}
+                    </td>
+
+                    <td>
+                        ${money(product.price)}
+                    </td>
+
+                    <td>
+                        ${Number(product.stock || 0)}
+                    </td>
+
+                    <td>
+                        ${
+                            product.active
+                            ?
+                            "Actif"
+                            :
+                            "Masqué"
+                        }
+                    </td>
+
+                    <td>
+
+                        <div class="admin-actions">
+
+                            <button
+                                class="small-btn edit-btn"
+                                onclick="editProduct(${Number(product.id)})"
+                            >
+                                Modifier
+                            </button>
+
+                            <button
+                                class="small-btn delete-btn"
+                                onclick="deleteProduct(${Number(product.id)})"
+                            >
+                                Supprimer
+                            </button>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+                `
+            ).join("");
 
     }catch(error){
 
@@ -3529,352 +3620,230 @@ async function loadAdminProducts(){
 }
 
 
-function renderAdminProducts(){
+/* =========================
+   PRODUCT FORM
+========================= */
 
-    const container =
-        document.getElementById(
-            "adminProductsList"
-        );
+function showProductForm(){
 
+    editingProductId = null;
 
-    if(adminProducts.length === 0){
+    document.getElementById(
+        "productForm"
+    ).style.display = "block";
 
-        container.innerHTML = `
-            <p>
-                Aucun produit.
-            </p>
-        `;
+    document.getElementById(
+        "productForm"
+    ).reset();
 
-        return;
-    }
+    document.getElementById(
+        "productActive"
+    ).checked = true;
 
-
-    container.innerHTML = `
-
-        <div class="admin-table-wrapper">
-
-            <table class="admin-table">
-
-                <thead>
-
-                    <tr>
-
-                        <th>
-                            Image
-                        </th>
-
-                        <th>
-                            Produit
-                        </th>
-
-                        <th>
-                            Catégorie
-                        </th>
-
-                        <th>
-                            Prix
-                        </th>
-
-                        <th>
-                            Stock
-                        </th>
-
-                        <th>
-                            État
-                        </th>
-
-                        <th>
-                            Actions
-                        </th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    ${
-                        adminProducts.map(
-                            product => `
-
-                            <tr>
-
-                                <td>
-
-                                    <img
-                                        src="${escapeHTML(
-                                            product.image ||
-                                            "https://via.placeholder.com/100"
-                                        )}"
-                                        alt=""
-                                        onerror="
-                                            this.onerror=null;
-                                            this.src='https://via.placeholder.com/100';
-                                        "
-                                    >
-
-                                </td>
-
-
-                                <td>
-
-                                    <strong>
-                                        ${escapeHTML(product.name)}
-                                    </strong>
-
-                                    <br>
-
-                                    <small>
-                                        ${
-                                            product.promo
-                                            ? "🏷️ PROMO"
-                                            : ""
-                                        }
-                                    </small>
-
-                                </td>
-
-
-                                <td>
-                                    ${escapeHTML(product.category)}
-                                </td>
-
-
-                                <td>
-                                    ${money(product.price)}
-                                </td>
-
-
-                                <td>
-                                    ${product.stock}
-                                </td>
-
-
-                                <td>
-
-                                    ${
-                                        product.active
-                                        ?
-                                        "🟢 Actif"
-                                        :
-                                        "🔴 Caché"
-                                    }
-
-                                </td>
-
-
-                                <td>
-
-                                    <div class="admin-actions">
-
-                                        <button
-                                            class="small-btn ${
-                                                product.active
-                                                ? "gray"
-                                                : "green"
-                                            }"
-                                            onclick="toggleProduct(${product.id})"
-                                        >
-                                            ${
-                                                product.active
-                                                ? "Masquer"
-                                                : "Activer"
-                                            }
-                                        </button>
-
-
-                                        <button
-                                            class="small-btn red"
-                                            onclick="deleteProduct(${product.id})"
-                                        >
-                                            Supprimer
-                                        </button>
-
-                                    </div>
-
-                                </td>
-
-                            </tr>
-
-                            `
-                        ).join("")
-                    }
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-    `;
 }
 
 
-document
-    .getElementById("productForm")
-    .addEventListener(
-        "submit",
-        async function(event){
-
-            event.preventDefault();
-
-
-            try{
-
-                await api(
-                    "/api/admin/products",
-                    {
-                        method:"POST",
-
-                        body:JSON.stringify({
-
-                            name:
-                                document.getElementById(
-                                    "productName"
-                                ).value,
-
-                            category:
-                                document.getElementById(
-                                    "productCategory"
-                                ).value,
-
-                            price:
-                                Number(
-                                    document.getElementById(
-                                        "productPrice"
-                                    ).value
-                                ),
-
-                            stock:
-                                Number(
-                                    document.getElementById(
-                                        "productStock"
-                                    ).value
-                                ),
-
-                            image:
-                                document.getElementById(
-                                    "productImage"
-                                ).value,
-
-                            description:
-                                document.getElementById(
-                                    "productDescription"
-                                ).value,
-
-                            active:
-                                document.getElementById(
-                                    "productActive"
-                                ).checked,
-
-                            promo:
-                                document.getElementById(
-                                    "productPromo"
-                                ).checked
-
-                        })
-                    }
-                );
-
-
-                this.reset();
-
-                document.getElementById(
-                    "productActive"
-                ).checked = true;
-
-
-                await loadAdminProducts();
-
-                await loadProducts();
-
-                await loadStats();
-
-
-                alert(
-                    "Produit ajouté avec succès."
-                );
-
-            }catch(error){
-
-                alert(error.message);
-
-            }
-
-        }
-    );
-
-
-async function toggleProduct(id){
-
-    const product =
-        adminProducts.find(
-            p => p.id === id
-        );
-
-
-    if(!product){
-        return;
-    }
-
+async function editProduct(id){
 
     try{
 
-        await api(
-            "/api/admin/products/" + id,
-            {
-                method:"PUT",
+        const list =
+            await api(
+                "/api/admin/products"
+            );
 
-                body:JSON.stringify({
+        const productsList =
+            Array.isArray(list)
+            ? list
+            : list.products || [];
 
-                    name:product.name,
+        const product =
+            productsList.find(
+                p => Number(p.id) === Number(id)
+            );
 
-                    category:product.category,
+        if(!product){
+            return;
+        }
 
-                    description:
-                        product.description,
+        editingProductId =
+            Number(id);
 
-                    price:product.price,
+        document.getElementById(
+            "productForm"
+        ).style.display = "block";
 
-                    stock:product.stock,
+        document.getElementById(
+            "productId"
+        ).value =
+            product.id;
 
-                    image:product.image,
+        document.getElementById(
+            "productName"
+        ).value =
+            product.name || "";
 
-                    active:!product.active,
+        document.getElementById(
+            "productCategory"
+        ).value =
+            product.category || "Solaire";
 
-                    promo:product.promo
+        document.getElementById(
+            "productDescription"
+        ).value =
+            product.description || "";
 
-                })
-            }
-        );
+        document.getElementById(
+            "productPrice"
+        ).value =
+            product.price || 0;
 
+        document.getElementById(
+            "productStock"
+        ).value =
+            product.stock || 0;
 
-        await loadAdminProducts();
+        document.getElementById(
+            "productImage"
+        ).value =
+            product.image || "";
 
-        await loadProducts();
+        document.getElementById(
+            "productActive"
+        ).checked =
+            Boolean(product.active);
 
-        await loadStats();
+        document.getElementById(
+            "productPromo"
+        ).checked =
+            Boolean(product.promo);
 
     }catch(error){
 
-        alert(error.message);
+        showToast(
+            error.message
+        );
 
     }
 
 }
 
 
-async function deleteProduct(id){
+async function saveProduct(event){
 
-    if(
-        !confirm(
-            "Voulez-vous vraiment supprimer ce produit ?"
-        )
-    ){
+    event.preventDefault();
 
-        return;
+    const payload = {
+
+        name:
+            document.getElementById(
+                "productName"
+            ).value,
+
+        category:
+            document.getElementById(
+                "productCategory"
+            ).value,
+
+        description:
+            document.getElementById(
+                "productDescription"
+            ).value,
+
+        price:
+            Number(
+                document.getElementById(
+                    "productPrice"
+                ).value
+            ),
+
+        stock:
+            Number(
+                document.getElementById(
+                    "productStock"
+                ).value
+            ),
+
+        image:
+            document.getElementById(
+                "productImage"
+            ).value,
+
+        active:
+            document.getElementById(
+                "productActive"
+            ).checked,
+
+        promo:
+            document.getElementById(
+                "productPromo"
+            ).checked
+
+    };
+
+    try{
+
+        if(editingProductId){
+
+            await api(
+                "/api/admin/products/" +
+                editingProductId,
+                {
+                    method:"PUT",
+                    body:JSON.stringify(payload)
+                }
+            );
+
+        }else{
+
+            await api(
+                "/api/admin/products",
+                {
+                    method:"POST",
+                    body:JSON.stringify(payload)
+                }
+            );
+
+        }
+
+        editingProductId = null;
+
+        document.getElementById(
+            "productForm"
+        ).style.display = "none";
+
+        await loadProducts();
+
+        await loadAdminProducts();
+
+        await loadStats();
+
+        showToast(
+            "Produit enregistré."
+        );
+
+    }catch(error){
+
+        showToast(
+            error.message
+        );
+
     }
 
+}
+
+
+/* =========================
+   DELETE PRODUCT
+========================= */
+
+async function deleteProduct(id){
+
+    if(!confirm(
+        "Voulez-vous vraiment supprimer ce produit ?"
+    )){
+        return;
+    }
 
     try{
 
@@ -3885,152 +3854,125 @@ async function deleteProduct(id){
             }
         );
 
+        await loadProducts();
 
         await loadAdminProducts();
 
-        await loadProducts();
-
         await loadStats();
+
+        showToast(
+            "Produit supprimé."
+        );
 
     }catch(error){
 
-        alert(error.message);
+        showToast(
+            error.message
+        );
 
     }
 
 }
 
 
-/* =========================================================
-   COMMANDES ADMIN
-========================================================= */
+/* =========================
+   ADMIN ORDERS
+========================= */
 
-async function loadOrders(){
+async function loadAdminOrders(){
 
     try{
 
-        const orders =
+        const data =
             await api(
                 "/api/admin/orders"
             );
 
+        const orders =
+            Array.isArray(data)
+            ? data
+            : data.orders || [];
 
-        const container =
+        const tbody =
             document.getElementById(
-                "adminOrdersList"
+                "adminOrdersTable"
             );
 
+        tbody.innerHTML =
+            orders.map(
+                order => `
 
-        if(orders.length === 0){
+                <tr>
 
-            container.innerHTML = `
-                <p>
-                    Aucune commande.
-                </p>
-            `;
+                    <td>
+                        #${Number(order.id)}
+                    </td>
 
-            return;
-        }
+                    <td>
+                        ${escapeHtml(order.customer_name || "")}
+                    </td>
 
+                    <td>
+                        ${escapeHtml(order.customer_phone || "")}
+                    </td>
 
-        container.innerHTML =
-            orders.map(order => `
+                    <td>
+                        ${money(order.total)}
+                    </td>
 
-                <div
-                    class="admin-card"
-                    style="margin-bottom:12px"
-                >
+                    <td>
 
-                    <strong>
-                        Commande #${order.id}
-                    </strong>
-
-                    <p style="margin-top:8px">
-                        Client :
-                        ${escapeHTML(order.customer_name)}
-                    </p>
-
-                    <p>
-                        Téléphone :
-                        ${escapeHTML(order.phone)}
-                    </p>
-
-                    <p>
-                        Total :
-                        <strong>
-                            ${money(order.total)}
-                        </strong>
-                    </p>
-
-                    <br>
-
-                    <select
-                        onchange="changeOrderStatus(
-                            ${order.id},
-                            this.value
-                        )"
-                    >
-
-                        <option
-                            value="nouvelle"
-                            ${
-                                order.status === "nouvelle"
-                                ? "selected"
-                                : ""
-                            }
+                        <select
+                            onchange="updateOrderStatus(${Number(order.id)},this.value)"
                         >
-                            Nouvelle
-                        </option>
 
-                        <option
-                            value="confirmee"
-                            ${
-                                order.status === "confirmee"
-                                ? "selected"
-                                : ""
-                            }
-                        >
-                            Confirmée
-                        </option>
+                            <option
+                                value="nouvelle"
+                                ${order.status === "nouvelle" ? "selected" : ""}
+                            >
+                                Nouvelle
+                            </option>
 
-                        <option
-                            value="preparee"
-                            ${
-                                order.status === "preparee"
-                                ? "selected"
-                                : ""
-                            }
-                        >
-                            Préparée
-                        </option>
+                            <option
+                                value="confirmee"
+                                ${order.status === "confirmee" ? "selected" : ""}
+                            >
+                                Confirmée
+                            </option>
 
-                        <option
-                            value="livree"
-                            ${
-                                order.status === "livree"
-                                ? "selected"
-                                : ""
-                            }
-                        >
-                            Livrée
-                        </option>
+                            <option
+                                value="expediee"
+                                ${order.status === "expediee" ? "selected" : ""}
+                            >
+                                Expédiée
+                            </option>
 
-                        <option
-                            value="annulee"
-                            ${
-                                order.status === "annulee"
-                                ? "selected"
-                                : ""
-                            }
-                        >
-                            Annulée
-                        </option>
+                            <option
+                                value="livree"
+                                ${order.status === "livree" ? "selected" : ""}
+                            >
+                                Livrée
+                            </option>
 
-                    </select>
+                            <option
+                                value="annulee"
+                                ${order.status === "annulee" ? "selected" : ""}
+                            >
+                                Annulée
+                            </option>
 
-                </div>
+                        </select>
 
-            `).join("");
+                    </td>
+
+                    <td>
+                        ${formatDate(order.created_at)}
+                    </td>
+
+                </tr>
+
+                `
+            ).join("");
 
     }catch(error){
 
@@ -4041,40 +3983,64 @@ async function loadOrders(){
 }
 
 
-async function changeOrderStatus(id,status){
+function formatDate(date){
+
+    if(!date){
+        return "";
+    }
 
     try{
 
-        await api(
-            "/api/admin/orders/" + id + "/status",
-            {
-                method:"PATCH",
+        return new Date(date)
+            .toLocaleString("fr-FR");
 
-                body:JSON.stringify({
-                    status
-                })
-            }
-        );
+    }catch{
 
-
-        await loadOrders();
-
-        await loadStats();
-
-    }catch(error){
-
-        alert(error.message);
+        return String(date);
 
     }
 
 }
 
 
-/* =========================================================
-   PROMOTION
-========================================================= */
+async function updateOrderStatus(id,status){
 
-async function loadPromotion(){
+    try{
+
+        await api(
+            "/api/admin/orders/" +
+            id +
+            "/status",
+            {
+                method:"PATCH",
+                body:JSON.stringify({
+                    status
+                })
+            }
+        );
+
+        showToast(
+            "Statut de la commande mis à jour."
+        );
+
+        await loadAdminOrders();
+
+    }catch(error){
+
+        showToast(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =========================
+   ADMIN PROMOTION
+========================= */
+
+async function loadAdminPromotion(){
 
     try{
 
@@ -4083,26 +4049,26 @@ async function loadPromotion(){
                 "/api/promotion"
             );
 
+        const promo =
+            data.promotion ||
+            data;
+
+        document.getElementById(
+            "promotionTitleInput"
+        ).value =
+            promo.title || "";
+
+        document.getElementById(
+            "promotionDescriptionInput"
+        ).value =
+            promo.description || "";
 
         document.getElementById(
             "promotionActive"
-        ).checked =
-            data.active;
-
-
-        document.getElementById(
-            "promotionAdminTitle"
         ).value =
-            data.title || "";
-
-
-        document.getElementById(
-            "promotionAdminDescription"
-        ).value =
-            data.description || "";
-
-
-        applyPromotion(data);
+            String(
+                promo.active !== false
+            );
 
     }catch(error){
 
@@ -4113,100 +4079,64 @@ async function loadPromotion(){
 }
 
 
-function applyPromotion(data){
+async function savePromotion(event){
 
-    const box =
-        document.getElementById(
-            "promotion"
+    event.preventDefault();
+
+    try{
+
+        const data =
+            await api(
+                "/api/admin/promotion",
+                {
+                    method:"PUT",
+                    body:JSON.stringify({
+
+                        title:
+                            document.getElementById(
+                                "promotionTitleInput"
+                            ).value,
+
+                        description:
+                            document.getElementById(
+                                "promotionDescriptionInput"
+                            ).value,
+
+                        active:
+                            document.getElementById(
+                                "promotionActive"
+                            ).value === "true"
+
+                    })
+                }
+            );
+
+        applyPromotion(
+            data.promotion || data
         );
 
+        await loadPromotion();
 
-    if(!data.active){
+        showToast(
+            "Promotion mise à jour."
+        );
 
-        box.style.display = "none";
+    }catch(error){
 
-        return;
+        showToast(
+            error.message
+        );
+
     }
-
-
-    box.style.display = "block";
-
-
-    document.getElementById(
-        "promotionTitle"
-    ).textContent =
-        data.title || "Promotion";
-
-
-    document.getElementById(
-        "promotionDescription"
-    ).textContent =
-        data.description || "";
 
 }
 
 
-document
-    .getElementById("promotionForm")
-    .addEventListener(
-        "submit",
-        async function(event){
+/* =========================
+   ADMIN SETTINGS
+========================= */
 
-            event.preventDefault();
-
-
-            try{
-
-                const data =
-                    await api(
-                        "/api/admin/promotion",
-                        {
-                            method:"PUT",
-
-                            body:JSON.stringify({
-
-                                active:
-                                    document.getElementById(
-                                        "promotionActive"
-                                    ).checked,
-
-                                title:
-                                    document.getElementById(
-                                        "promotionAdminTitle"
-                                    ).value,
-
-                                description:
-                                    document.getElementById(
-                                        "promotionAdminDescription"
-                                    ).value
-
-                            })
-                        }
-                    );
-
-
-                applyPromotion(data);
-
-
-                alert(
-                    "Promotion mise à jour."
-                );
-
-            }catch(error){
-
-                alert(error.message);
-
-            }
-
-        }
-    );
-
-
-/* =========================================================
-   PARAMÈTRES SITE
-========================================================= */
-
-async function loadSettings(){
+async function loadAdminSettings(){
 
     try{
 
@@ -4215,56 +4145,30 @@ async function loadSettings(){
                 "/api/settings"
             );
 
-
         document.getElementById(
-            "siteNameAdmin"
+            "settingSiteName"
         ).value =
             data.site_name || "";
 
-
         document.getElementById(
-            "sitePhoneAdmin"
+            "settingPhone"
         ).value =
             data.phone || "";
 
-
         document.getElementById(
-            "siteWhatsappAdmin"
-        ).value =
-            data.whatsapp || "";
-
-
-        document.getElementById(
-            "siteEmailAdmin"
+            "settingEmail"
         ).value =
             data.email || "";
 
-
         document.getElementById(
-            "siteAddressAdmin"
-        ).value =
-            data.address || "";
-
-
-        document.getElementById(
-            "siteTopMessageAdmin"
-        ).value =
-            data.top_message || "";
-
-
-        document.getElementById(
-            "siteHeroTitleAdmin"
+            "settingHeroTitle"
         ).value =
             data.hero_title || "";
 
-
         document.getElementById(
-            "siteHeroDescriptionAdmin"
+            "settingHeroDescription"
         ).value =
             data.hero_description || "";
-
-
-        applySettings(data);
 
     }catch(error){
 
@@ -4275,141 +4179,210 @@ async function loadSettings(){
 }
 
 
-function applySettings(data){
+/* =========================
+   REALTIME SETTINGS
+========================= */
 
-    document.getElementById(
-        "headerSiteName"
-    ).textContent =
-        data.site_name || "La Grâce Solution";
+function connectRealtime(){
 
+    try{
 
-    document.getElementById(
-        "footerSiteName"
-    ).textContent =
-        data.site_name || "La Grâce Solution";
+        const events =
+            new EventSource(
+                "/api/events"
+            );
 
+        events.onmessage =
+            async function(event){
 
-    document.getElementById(
-        "topMessage"
-    ).textContent =
-        data.top_message || "";
+                try{
 
+                    const data =
+                        JSON.parse(
+                            event.data
+                        );
 
-    document.getElementById(
-        "heroTitle"
-    ).textContent =
-        data.hero_title || "";
+                    if(
+                        data.type === "products"
+                        ||
+                        data.type === "product"
+                    ){
 
+                        await loadProducts();
 
-    document.getElementById(
-        "heroDescription"
-    ).textContent =
-        data.hero_description || "";
+                    }
 
+                    if(
+                        data.type === "settings"
+                    ){
 
-    document.getElementById(
-        "footerPhone"
-    ).textContent =
-        "Téléphone : " +
-        (data.phone || "—");
+                        await loadSettings();
 
+                    }
 
-    document.getElementById(
-        "footerWhatsApp"
-    ).textContent =
-        "WhatsApp : " +
-        (data.whatsapp || "—");
+                    if(
+                        data.type === "promotion"
+                    ){
 
+                        await loadPromotion();
 
-    document.getElementById(
-        "footerEmail"
-    ).textContent =
-        "Email : " +
-        (data.email || "—");
+                    }
 
+                }catch(error){
 
-    document.getElementById(
-        "footerAddress"
-    ).textContent =
-        data.address || "—";
+                    console.error(
+                        "Erreur événement :",
+                        error
+                    );
+
+                }
+
+            };
+
+        events.onerror =
+            function(){
+
+                console.warn(
+                    "Connexion temps réel interrompue."
+                );
+
+            };
+
+    }catch(error){
+
+        console.error(error);
+
+    }
 
 }
 
 
+/* =========================
+   INITIALIZE
+========================= */
+
+async function initialize(){
+
+    document.getElementById(
+        "year"
+    ).textContent =
+        new Date().getFullYear();
+
+    updateCartCount();
+
+    await Promise.all([
+        loadProducts(),
+        loadSettings(),
+        loadPromotion()
+    ]);
+
+    connectRealtime();
+
+}
+
+
+/* =========================
+   EVENTS
+========================= */
+
 document
-    .getElementById("siteSettingsForm")
+    .getElementById("searchInput")
+    .addEventListener(
+        "input",
+        renderProducts
+    );
+
+document
+    .getElementById("sortSelect")
+    .addEventListener(
+        "change",
+        renderProducts
+    );
+
+document
+    .getElementById("checkoutForm")
+    .addEventListener(
+        "submit",
+        checkout
+    );
+
+document
+    .getElementById("adminLoginForm")
+    .addEventListener(
+        "submit",
+        adminLogin
+    );
+
+document
+    .getElementById("productForm")
+    .addEventListener(
+        "submit",
+        saveProduct
+    );
+
+document
+    .getElementById("promotionForm")
+    .addEventListener(
+        "submit",
+        savePromotion
+    );
+
+document
+    .getElementById("settingsForm")
     .addEventListener(
         "submit",
         async function(event){
 
             event.preventDefault();
 
-
             try{
 
-                const data =
-                    await api(
-                        "/api/admin/settings",
-                        {
-                            method:"PUT",
+                await api(
+                    "/api/admin/settings",
+                    {
+                        method:"PUT",
+                        body:JSON.stringify({
 
-                            body:JSON.stringify({
+                            site_name:
+                                document.getElementById(
+                                    "settingSiteName"
+                                ).value,
 
-                                site_name:
-                                    document.getElementById(
-                                        "siteNameAdmin"
-                                    ).value,
+                            phone:
+                                document.getElementById(
+                                    "settingPhone"
+                                ).value,
 
-                                phone:
-                                    document.getElementById(
-                                        "sitePhoneAdmin"
-                                    ).value,
+                            email:
+                                document.getElementById(
+                                    "settingEmail"
+                                ).value,
 
-                                whatsapp:
-                                    document.getElementById(
-                                        "siteWhatsappAdmin"
-                                    ).value,
+                            hero_title:
+                                document.getElementById(
+                                    "settingHeroTitle"
+                                ).value,
 
-                                email:
-                                    document.getElementById(
-                                        "siteEmailAdmin"
-                                    ).value,
+                            hero_description:
+                                document.getElementById(
+                                    "settingHeroDescription"
+                                ).value
 
-                                address:
-                                    document.getElementById(
-                                        "siteAddressAdmin"
-                                    ).value,
+                        })
+                    }
+                );
 
-                                top_message:
-                                    document.getElementById(
-                                        "siteTopMessageAdmin"
-                                    ).value,
+                await loadSettings();
 
-                                hero_title:
-                                    document.getElementById(
-                                        "siteHeroTitleAdmin"
-                                    ).value,
-
-                                hero_description:
-                                    document.getElementById(
-                                        "siteHeroDescriptionAdmin"
-                                    ).value
-
-                            })
-                        }
-                    );
-
-
-                applySettings(data);
-
-
-                alert(
+                showToast(
                     "Paramètres enregistrés."
                 );
 
             }catch(error){
 
-                alert(error.message);
+                showToast(
+                    error.message
+                );
 
             }
 
@@ -4417,110 +4390,81 @@ document
     );
 
 
-/* =========================================================
-   FAVORIS
-========================================================= */
+/* =========================
+   ADMIN OPEN EVENT
+========================= */
 
-function showFavorites(){
+document
+    .getElementById("adminOverlay")
+    .addEventListener(
+        "click",
+        function(event){
 
-    alert(
-        "La section Favoris sera disponible prochainement."
-    );
-
-}
-
-
-/* =========================================================
-   TEMPS RÉEL
-========================================================= */
-
-function startRealtime(){
-
-    if(!window.EventSource){
-        return;
-    }
-
-
-    const events =
-        new EventSource(
-            "/api/events"
-        );
-
-
-    events.onmessage =
-        async function(event){
-
-            try{
-
-                const data =
-                    JSON.parse(event.data);
-
-
-                if(
-                    data.type === "products"
-                ){
-
-                    await loadProducts();
-
-                }
-
-
-                if(
-                    data.type === "settings"
-                ){
-
-                    await loadSettings();
-
-                }
-
-
-                if(
-                    data.type === "promotion"
-                ){
-
-                    await loadPromotion();
-
-                }
-
-            }catch(error){
-
-                console.error(error);
-
+            if(
+                event.target ===
+                this
+            ){
+                closeAdmin();
             }
 
-        };
+        }
+    );
 
 
-    events.onerror = function(){
+document
+    .getElementById("cartOverlay")
+    .addEventListener(
+        "click",
+        function(event){
 
-        /*
-         * EventSource se reconnecte automatiquement.
-         * Rien à faire ici.
-         */
+            if(
+                event.target ===
+                this
+            ){
+                closeCart();
+            }
 
-    };
+        }
+    );
 
-}
+
+document
+    .getElementById("checkoutOverlay")
+    .addEventListener(
+        "click",
+        function(event){
+
+            if(
+                event.target ===
+                this
+            ){
+                closeCheckout();
+            }
+
+        }
+    );
 
 
-/* =========================================================
-   INITIALISATION
-========================================================= */
+document
+    .getElementById("adminLoginOverlay")
+    .addEventListener(
+        "click",
+        function(event){
 
-async function initialize(){
+            if(
+                event.target ===
+                this
+            ){
+                closeAdminLogin();
+            }
 
-    loadCart();
+        }
+    );
 
-    await loadProducts();
 
-    await loadSettings();
-
-    await loadPromotion();
-
-    startRealtime();
-
-}
-
+/* =========================
+   START
+========================= */
 
 initialize();
 
