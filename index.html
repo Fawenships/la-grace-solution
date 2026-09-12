@@ -957,17 +957,9 @@ a{
 
 <body>
 
-<!-- =========================
-     TOP BAR
-========================= -->
-
 <div class="topbar">
     Livraison disponible en Haïti
 </div>
-
-<!-- =========================
-     HEADER
-========================= -->
 
 <header class="header">
 
@@ -1078,10 +1070,6 @@ a{
 
 </header>
 
-<!-- =========================
-     ACCUEIL
-========================= -->
-
 <section
     class="hero"
     id="accueil"
@@ -1123,10 +1111,6 @@ a{
     </div>
 
 </section>
-
-<!-- =========================
-     CATEGORIES
-========================= -->
 
 <section
     class="section"
@@ -1247,10 +1231,6 @@ a{
 
 </section>
 
-<!-- =========================
-     PROMOTION
-========================= -->
-
 <section
     class="section"
     id="promotions"
@@ -1280,10 +1260,6 @@ a{
     </div>
 
 </section>
-
-<!-- =========================
-     PRODUITS
-========================= -->
 
 <section
     class="section"
@@ -1402,10 +1378,6 @@ a{
 
 </section>
 
-<!-- =========================
-     AVANTAGES
-========================= -->
-
 <section class="section">
 
     <div class="section-header">
@@ -1486,10 +1458,6 @@ a{
 
 </section>
 
-<!-- =========================
-     CONTACT / FOOTER
-========================= -->
-
 <footer
     class="footer"
     id="contact"
@@ -1559,10 +1527,6 @@ a{
 
 </footer>
 
-<!-- =========================
-     PANIER
-========================= -->
-
 <div
     class="overlay"
     id="cartOverlay"
@@ -1605,10 +1569,6 @@ a{
     </div>
 
 </div>
-
-<!-- =========================
-     CHECKOUT
-========================= -->
 
 <div
     class="overlay"
@@ -1717,10 +1677,6 @@ a{
 
 </div>
 
-<!-- =========================
-     ADMIN LOGIN
-========================= -->
-
 <div
     class="overlay"
     id="adminLoginOverlay"
@@ -1788,10 +1744,6 @@ a{
     </div>
 
 </div>
-
-<!-- =========================
-     ADMIN DASHBOARD
-========================= -->
 
 <div
     class="overlay"
@@ -1878,8 +1830,6 @@ a{
             </button>
 
         </div>
-
-        <!-- DASHBOARD -->
 
         <div
             class="admin-panel active"
@@ -1985,8 +1935,6 @@ a{
             </div>
 
         </div>
-
-        <!-- PRODUCTS -->
 
         <div
             class="admin-panel"
@@ -2215,8 +2163,6 @@ a{
 
         </div>
 
-        <!-- ORDERS -->
-
         <div
             class="admin-panel"
             id="admin-orders"
@@ -2265,8 +2211,6 @@ a{
             </div>
 
         </div>
-
-        <!-- PROMOTION -->
 
         <div
             class="admin-panel"
@@ -2332,8 +2276,6 @@ a{
             </form>
 
         </div>
-
-        <!-- SETTINGS -->
 
         <div
             class="admin-panel"
@@ -2421,20 +2363,12 @@ a{
 
 </div>
 
-<!-- =========================
-     TOAST
-========================= -->
-
 <div
     class="toast"
     id="toast"
 ></div>
 
 <script>
-
-/* =========================
-   VARIABLES
-========================= */
 
 let products = [];
 
@@ -2457,51 +2391,340 @@ let promotion = {};
 let editingProductId = null;
 
 
-/* =========================
-   API
-========================= */
+/* =====================================================
+   MODE 100% LOCAL — SANS SERVEUR
+   -----------------------------------------------------
+   Tout ce qui était auparavant envoyé à un serveur (via
+   fetch) est ici simulé directement dans le navigateur,
+   avec localStorage comme "base de données". La fonction
+   api() garde exactement la même signature qu'avant afin
+   que le reste du code (inchangé) continue de fonctionner
+   normalement.
+========================================================= */
+
+const LGS_ADMIN_USERNAME = "admin";
+const LGS_ADMIN_PASSWORD = "lgs2026";
+const LGS_DB_KEY = "lgs_local_db";
+const LGS_SESSION_KEY = "lgs_admin_session";
+
+function lgsDefaultDB(){
+    return {
+        nextProductId: 7,
+        nextOrderId: 1,
+        products: [
+            { id:1, name:"Panneau solaire 200W monocristallin", category:"Solaire", description:"Panneau solaire haute performance, idéal pour installations résidentielles.", price:8500, stock:15, image:"https://loremflickr.com/700/500/solarpanel", active:true, promo:true },
+            { id:2, name:"Batterie lithium 100Ah", category:"Batteries", description:"Batterie longue durée, faible entretien, compatible systèmes solaires.", price:45000, stock:8, image:"https://loremflickr.com/700/500/battery", active:true, promo:false },
+            { id:3, name:"Onduleur 3000W pur sinus", category:"Onduleurs", description:"Convertit l'énergie solaire/batterie en courant utilisable, sortie propre.", price:32000, stock:5, image:"https://loremflickr.com/700/500/inverter", active:true, promo:false },
+            { id:4, name:"Câble électrique 2.5mm (rouleau 100m)", category:"Électricité", description:"Câble en cuivre pour installations électriques domestiques.", price:4200, stock:20, image:"https://loremflickr.com/700/500/cable", active:true, promo:false },
+            { id:5, name:"Perceuse électrique sans fil", category:"Outils", description:"Perceuse rechargeable, idéale pour installation et maintenance.", price:3800, stock:12, image:"https://loremflickr.com/700/500/drill", active:true, promo:true },
+            { id:6, name:"Connecteurs MC4 (paire)", category:"Accessoires", description:"Connecteurs étanches pour panneaux solaires.", price:350, stock:50, image:"https://loremflickr.com/700/500/connector", active:true, promo:false }
+        ],
+        orders: [],
+        settings: {
+            site_name:"La Grâce Solution",
+            phone:"+509 00 00 0000",
+            email:"contact@lgshaiti.com",
+            hero_title:"Des solutions fiables pour votre énergie",
+            hero_description:"Découvrez nos solutions solaires, batteries, onduleurs, matériel électrique et outils."
+        },
+        promotion: {
+            title:"Promotion spéciale",
+            description:"Jusqu'à 15% de réduction sur une sélection de produits solaires.",
+            active:true
+        }
+    };
+}
+
+function lgsLoadDB(){
+    try{
+        const raw = localStorage.getItem(LGS_DB_KEY);
+        if(!raw){
+            const fresh = lgsDefaultDB();
+            lgsSaveDB(fresh);
+            return fresh;
+        }
+        return JSON.parse(raw);
+    }catch(error){
+        const fresh = lgsDefaultDB();
+        lgsSaveDB(fresh);
+        return fresh;
+    }
+}
+
+function lgsSaveDB(db){
+    localStorage.setItem(LGS_DB_KEY, JSON.stringify(db));
+}
+
+function lgsIsAdmin(){
+    return sessionStorage.getItem(LGS_SESSION_KEY) === "true";
+}
+
+function lgsRequireAdmin(){
+    if(!lgsIsAdmin()){
+        throw new Error("Non autorisé. Veuillez vous connecter.");
+    }
+}
 
 async function api(url, options = {}){
 
-    const config = {
-        credentials:"same-origin",
-        ...options,
-        headers:{
-            ...(options.body ? {
-                "Content-Type":"application/json"
-            } : {}),
-            ...(options.headers || {})
-        }
-    };
+    const method = (options.method || "GET").toUpperCase();
+    const body = options.body ? JSON.parse(options.body) : {};
+    const db = lgsLoadDB();
 
-    const response =
-        await fetch(
-            url,
-            config
-        );
+    let match;
 
-    const data =
-        await response.json().catch(
-            () => ({})
-        );
-
-    if(!response.ok){
-
-        throw new Error(
-            data.error ||
-            data.message ||
-            "Une erreur est survenue."
-        );
-
+    // ---- PRODUITS (public) ----
+    if(url === "/api/products" && method === "GET"){
+        return db.products.filter(p => p.active);
     }
 
-    return data;
+    // ---- PARAMÈTRES (public) ----
+    if(url === "/api/settings" && method === "GET"){
+        return db.settings;
+    }
+
+    // ---- PROMOTION (public) ----
+    if(url === "/api/promotion" && method === "GET"){
+        return { promotion: db.promotion };
+    }
+
+    // ---- COMMANDES (création, public) ----
+    if(url === "/api/orders" && method === "POST"){
+
+        const { customer_name, customer_phone, customer_address, payment_method, items } = body;
+
+        if(!customer_name || !customer_phone || !customer_address || !payment_method){
+            throw new Error("Veuillez remplir tous les champs du formulaire.");
+        }
+
+        if(!Array.isArray(items) || !items.length){
+            throw new Error("Le panier est vide.");
+        }
+
+        let total = 0;
+
+        for(const item of items){
+            const product = db.products.find(p => Number(p.id) === Number(item.id));
+            if(!product){
+                throw new Error(`Produit introuvable (id ${item.id}).`);
+            }
+            const qty = Number(item.quantity || 0);
+            if(qty <= 0 || qty > product.stock){
+                throw new Error(`Stock insuffisant pour "${product.name}".`);
+            }
+            total += product.price * qty;
+        }
+
+        for(const item of items){
+            const product = db.products.find(p => Number(p.id) === Number(item.id));
+            product.stock -= Number(item.quantity);
+        }
+
+        const order = {
+            id: db.nextOrderId++,
+            customer_name,
+            customer_phone,
+            customer_address,
+            payment_method,
+            items,
+            total,
+            status:"nouvelle",
+            created_at:new Date().toISOString()
+        };
+
+        db.orders.push(order);
+        lgsSaveDB(db);
+
+        return { order_id: order.id };
+    }
+
+    // ---- ADMIN : LOGIN ----
+    if(url === "/api/admin/login" && method === "POST"){
+
+        const { username, password } = body;
+
+        if(username === LGS_ADMIN_USERNAME && password === LGS_ADMIN_PASSWORD){
+            sessionStorage.setItem(LGS_SESSION_KEY, "true");
+            return { ok:true };
+        }
+
+        throw new Error("Nom d'utilisateur ou mot de passe incorrect.");
+    }
+
+    // ---- ADMIN : ME ----
+    if(url === "/api/admin/me" && method === "GET"){
+        lgsRequireAdmin();
+        return { ok:true, username: LGS_ADMIN_USERNAME };
+    }
+
+    // ---- ADMIN : LOGOUT ----
+    if(url === "/api/admin/logout" && method === "POST"){
+        sessionStorage.removeItem(LGS_SESSION_KEY);
+        return { ok:true };
+    }
+
+    // ---- ADMIN : STATS ----
+    if(url === "/api/admin/stats" && method === "GET"){
+        lgsRequireAdmin();
+
+        const totalProducts = db.products.length;
+        const activeProducts = db.products.filter(p => p.active).length;
+        const totalStock = db.products.reduce((sum,p) => sum + Number(p.stock||0), 0);
+        const totalOrders = db.orders.length;
+        const revenue = db.orders
+            .filter(o => o.status !== "annulee")
+            .reduce((sum,o) => sum + Number(o.total||0), 0);
+
+        return {
+            products:{ total:totalProducts, active:activeProducts, stock:totalStock },
+            orders:{ total_orders:totalOrders, revenue }
+        };
+    }
+
+    // ---- ADMIN : PRODUITS ----
+    if(url === "/api/admin/products" && method === "GET"){
+        lgsRequireAdmin();
+        return db.products;
+    }
+
+    if(url === "/api/admin/products" && method === "POST"){
+        lgsRequireAdmin();
+
+        const { name, category, description, price, stock, image, active, promo } = body;
+
+        if(!name || !category || !Number.isFinite(Number(price)) || Number(price) < 0 ||
+           !Number.isInteger(Number(stock)) || Number(stock) < 0){
+            throw new Error("Données du produit invalides.");
+        }
+
+        const product = {
+            id: db.nextProductId++,
+            name, category,
+            description: description || "",
+            price: Number(price),
+            stock: Number(stock),
+            image: image || "",
+            active: active !== false,
+            promo: Boolean(promo)
+        };
+
+        db.products.push(product);
+        lgsSaveDB(db);
+
+        return { ok:true, product };
+    }
+
+    if((match = url.match(/^\/api\/admin\/products\/(\d+)$/)) && method === "PUT"){
+        lgsRequireAdmin();
+
+        const id = Number(match[1]);
+        const product = db.products.find(p => p.id === id);
+
+        if(!product){
+            throw new Error("Produit introuvable.");
+        }
+
+        const { name, category, description, price, stock, image, active, promo } = body;
+
+        if(!name || !category || !Number.isFinite(Number(price)) || Number(price) < 0 ||
+           !Number.isInteger(Number(stock)) || Number(stock) < 0){
+            throw new Error("Données du produit invalides.");
+        }
+
+        Object.assign(product, {
+            name, category,
+            description: description || "",
+            price: Number(price),
+            stock: Number(stock),
+            image: image || "",
+            active: active !== false,
+            promo: Boolean(promo)
+        });
+
+        lgsSaveDB(db);
+
+        return { ok:true, product };
+    }
+
+    if((match = url.match(/^\/api\/admin\/products\/(\d+)$/)) && method === "DELETE"){
+        lgsRequireAdmin();
+
+        const id = Number(match[1]);
+        const index = db.products.findIndex(p => p.id === id);
+
+        if(index === -1){
+            throw new Error("Produit introuvable.");
+        }
+
+        db.products.splice(index, 1);
+        lgsSaveDB(db);
+
+        return { ok:true };
+    }
+
+    // ---- ADMIN : COMMANDES ----
+    if(url === "/api/admin/orders" && method === "GET"){
+        lgsRequireAdmin();
+        return [...db.orders].sort((a,b) => b.id - a.id);
+    }
+
+    if((match = url.match(/^\/api\/admin\/orders\/(\d+)\/status$/)) && method === "PATCH"){
+        lgsRequireAdmin();
+
+        const id = Number(match[1]);
+        const order = db.orders.find(o => o.id === id);
+
+        if(!order){
+            throw new Error("Commande introuvable.");
+        }
+
+        const validStatuses = ["nouvelle","confirmee","expediee","livree","annulee"];
+
+        if(!validStatuses.includes(body.status)){
+            throw new Error("Statut invalide.");
+        }
+
+        order.status = body.status;
+        lgsSaveDB(db);
+
+        return { ok:true, order };
+    }
+
+    // ---- ADMIN : PROMOTION ----
+    if(url === "/api/admin/promotion" && method === "PUT"){
+        lgsRequireAdmin();
+
+        db.promotion = {
+            title: body.title || "",
+            description: body.description || "",
+            active: body.active !== false
+        };
+
+        lgsSaveDB(db);
+
+        return { ok:true, promotion: db.promotion };
+    }
+
+    // ---- ADMIN : PARAMÈTRES ----
+    if(url === "/api/admin/settings" && method === "PUT"){
+        lgsRequireAdmin();
+
+        db.settings = {
+            site_name: body.site_name || db.settings.site_name,
+            phone: body.phone || "",
+            email: body.email || "",
+            hero_title: body.hero_title || db.settings.hero_title,
+            hero_description: body.hero_description || db.settings.hero_description
+        };
+
+        lgsSaveDB(db);
+
+        return { ok:true, settings: db.settings };
+    }
+
+    throw new Error("Route inconnue (mode local) : " + method + " " + url);
 }
 
-
-/* =========================
-   FORMAT MONEY
-========================= */
 
 function money(value){
 
@@ -2512,10 +2735,6 @@ function money(value){
 
 }
 
-
-/* =========================
-   TOAST
-========================= */
 
 function showToast(message){
 
@@ -2541,10 +2760,6 @@ function showToast(message){
 }
 
 
-/* =========================
-   NAVIGATION
-========================= */
-
 function goToSection(id){
 
     const element =
@@ -2567,10 +2782,6 @@ function goToSection(id){
 
 }
 
-
-/* =========================
-   CATEGORIES
-========================= */
 
 function selectCategory(category){
 
@@ -2610,10 +2821,6 @@ function selectCategory(category){
 }
 
 
-/* =========================
-   LOAD PRODUCTS
-========================= */
-
 async function loadProducts(){
 
     try{
@@ -2647,10 +2854,6 @@ async function loadProducts(){
 
 }
 
-
-/* =========================
-   RENDER PRODUCTS
-========================= */
 
 function renderProducts(){
 
@@ -2848,10 +3051,6 @@ function renderProducts(){
 }
 
 
-/* =========================
-   ESCAPE HTML
-========================= */
-
 function escapeHtml(value){
 
     return String(value ?? "")
@@ -2863,10 +3062,6 @@ function escapeHtml(value){
 
 }
 
-
-/* =========================
-   CART
-========================= */
 
 function saveCart(){
 
@@ -3168,10 +3363,6 @@ function closeCheckout(){
 }
 
 
-/* =========================
-   CHECKOUT
-========================= */
-
 async function checkout(event){
 
     event.preventDefault();
@@ -3261,10 +3452,6 @@ async function checkout(event){
 }
 
 
-/* =========================
-   FAVORITES
-========================= */
-
 function showFavorites(){
 
     showToast(
@@ -3273,10 +3460,6 @@ function showFavorites(){
 
 }
 
-
-/* =========================
-   SETTINGS
-========================= */
 
 async function loadSettings(){
 
@@ -3414,10 +3597,6 @@ function fillSettingsForm(data){
 }
 
 
-/* =========================
-   PROMOTION
-========================= */
-
 async function loadPromotion(){
 
     try{
@@ -3478,10 +3657,6 @@ function applyPromotion(data){
 
 }
 
-
-/* =========================
-   ADMIN LOGIN
-========================= */
 
 function openAdminLogin(){
 
@@ -3560,10 +3735,6 @@ async function adminLogin(event){
 
 }
 
-
-/* =========================
-   ADMIN
-========================= */
 
 async function openAdmin(){
 
@@ -3653,10 +3824,6 @@ async function loadAdmin(){
 }
 
 
-/* =========================
-   ADMIN TABS
-========================= */
-
 function showAdminTab(tab){
 
     document
@@ -3684,10 +3851,6 @@ function showAdminTab(tab){
 
 }
 
-
-/* =========================
-   ADMIN STATS
-========================= */
 
 async function loadStats(){
 
@@ -3737,10 +3900,6 @@ async function loadStats(){
 
 }
 
-
-/* =========================
-   ADMIN PRODUCTS
-========================= */
 
 async function loadAdminProducts(){
 
@@ -3847,10 +4006,6 @@ async function loadAdminProducts(){
 
 }
 
-
-/* =========================
-   PRODUCT FORM
-========================= */
 
 function showProductForm(){
 
@@ -4122,10 +4277,6 @@ async function saveProduct(event){
 }
 
 
-/* =========================
-   DELETE PRODUCT
-========================= */
-
 async function deleteProduct(id){
 
     if(!confirm(
@@ -4163,10 +4314,6 @@ async function deleteProduct(id){
 
 }
 
-
-/* =========================
-   ADMIN ORDERS
-========================= */
 
 async function loadAdminOrders(){
 
@@ -4348,10 +4495,6 @@ async function updateOrderStatus(id,status){
 }
 
 
-/* =========================
-   ADMIN PROMOTION
-========================= */
-
 async function loadAdminPromotion(){
 
     try{
@@ -4464,10 +4607,6 @@ async function savePromotion(event){
 }
 
 
-/* =========================
-   ADMIN SETTINGS
-========================= */
-
 async function loadAdminSettings(){
 
     try{
@@ -4562,111 +4701,17 @@ async function saveSettings(event){
 }
 
 
-/* =========================
-   REALTIME
-========================= */
-
 function connectRealtime(){
 
-    try{
-
-        const events =
-            new EventSource(
-                "/api/events"
-            );
-
-        events.onmessage =
-            async function(event){
-
-                try{
-
-                    const data =
-                        JSON.parse(
-                            event.data
-                        );
-
-                    if(
-                        data.type === "products" ||
-                        data.type === "product"
-                    ){
-
-                        await loadProducts();
-
-                    }
-
-                    if(
-                        data.type === "settings"
-                    ){
-
-                        await loadSettings();
-
-                    }
-
-                    if(
-                        data.type === "promotion"
-                    ){
-
-                        await loadPromotion();
-
-                    }
-
-                    if(
-                        data.type === "orders"
-                    ){
-
-                        if(
-                            document
-                                .getElementById(
-                                    "adminOverlay"
-                                )
-                                .classList.contains(
-                                    "active"
-                                )
-                        ){
-
-                            await loadAdminOrders();
-
-                            await loadStats();
-
-                        }
-
-                    }
-
-                }catch(error){
-
-                    console.error(
-                        "Erreur événement :",
-                        error
-                    );
-
-                }
-
-            };
-
-        events.onerror =
-            function(){
-
-                console.warn(
-                    "Connexion temps réel interrompue."
-                );
-
-            };
-
-    }catch(error){
-
-        console.error(
-            "Erreur temps réel :",
-            error
-        );
-
-    }
+    // Mode 100% local (sans serveur) : il n'y a pas de flux SSE
+    // à écouter puisque tout se passe déjà dans cet onglet. Chaque
+    // action admin (produit, commande, promotion, paramètres)
+    // rafraîchit directement l'affichage juste après, donc rien
+    // à faire ici. Fonction gardée pour ne pas casser l'appel
+    // existant dans initialize().
 
 }
 
-
-/* =========================
-   INITIALIZE
-========================= */
 
 async function initialize(){
 
@@ -4687,10 +4732,6 @@ async function initialize(){
 
 }
 
-
-/* =========================
-   EVENTS
-========================= */
 
 document
     .getElementById("searchInput")
@@ -4741,10 +4782,6 @@ document
         saveSettings
     );
 
-
-/* =========================
-   OVERLAY EVENTS
-========================= */
 
 document
     .getElementById("adminOverlay")
@@ -4814,10 +4851,6 @@ document
     );
 
 
-/* =========================
-   ESC KEY
-========================= */
-
 document.addEventListener(
     "keydown",
     function(event){
@@ -4834,10 +4867,6 @@ document.addEventListener(
     }
 );
 
-
-/* =========================
-   START
-========================= */
 
 initialize();
 
